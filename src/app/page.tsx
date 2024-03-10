@@ -1,11 +1,12 @@
 import { Metadata } from "next";
+import Head from "next/head";
 import IndexPageView from "pages-sections/landing/page-view";
 
 export const metadata: Metadata = {
-  title: "Bazaar - Next.js E-commerce Template",
-  description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
-  authors: [{ name: "UI-LIB", url: "https://ui-lib.com" }],
-  keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
+  title: "Eurobrand",
+  description: `Prodaja i servis novih i polovnih računara i računarske opreme,laptopa,mobitela`,
+  keywords: ["eurobrand", "prodaja i servis racunara", "laptopi", "racunari", "mobiteli", "racunarska oprema", "polovni racunari"],
+  icons: "../../public/assets/eurobrand-logo/logo.jpg"
 };
 
 export default function IndexPage() {
