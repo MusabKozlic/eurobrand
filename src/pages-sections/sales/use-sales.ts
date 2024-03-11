@@ -17,7 +17,9 @@ export default function useSales(defaultSelectCategory = "women", fetchCategory 
   const handlePageChange = (_, page: number) => setPage(page);
 
   // HANDLE THE CHANGE CATEGORY
-  const handleCategoryChange = (category: string) => () => setSelectedCategory(category);
+  const handleCategoryChange = (category: string) => () => {
+    setSelectedCategory(category)
+  };
 
   // FETCH CATEGORIES FROM SERVER
   useEffect(() => {

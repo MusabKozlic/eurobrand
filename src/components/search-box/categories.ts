@@ -1,10 +1,10 @@
 export const categories = [
-  { title: "All Categories", value: "*" },
-  { title: "Car", value: "car" },
-  { title: "Clothes", value: "clothes" },
-  { title: "Electronics", value: "electronics" },
-  { title: "Laptop", value: "laptop" },
-  { title: "Desktop", value: "desktop" },
-  { title: "Camera", value: "camera" },
-  { title: "Toys", value: "toys" },
+  { title: "Sve kategorije", value: "*" },
+  { title: "Racunari", value: "racunari" },
+  { title: "Laptopi", value: "laptopi" },
+  { title: "Konzole", value: "konzole" },
+  { title: "Mobiteli", value: "mobiteli" },
+  { title: "Monitori", value: "monitor" },
+  { title: "Oprema", value: "oprema" },
+  { title: "Printeri", value: "printeri" },
 ];
