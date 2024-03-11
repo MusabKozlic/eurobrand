@@ -33,7 +33,7 @@ export default function Section1() {
       <div className="searchBox">
         <TextField
           fullWidth
-          placeholder="Searching for..."
+          placeholder="Pretraga..."
           InputProps={{
             sx: STYLED,
             endAdornment: SEARCH_BUTTON,

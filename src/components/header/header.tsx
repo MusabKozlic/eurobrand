@@ -33,8 +33,8 @@ export default function Header({ isFixed, className, midSlot }: Props) {
     <Fragment>
       {/* LEFT CONTENT - LOGO AND CATEGORY */}
       <FlexBox minWidth={100} alignItems="center">
-        <Link href="/">
-          <LazyImage src={require("../../../public/assets/images/logo2.svg")} alt="logo" />
+        <Link href="/" style={{ width: '110px', height: '50px' }}>
+          <LazyImage src={require("../../../public/assets/eurobrand-logo/logo.jpg")} alt="logo"/>
         </Link>
 
         {/* SHOW DROP DOWN CATEGORY BUTTON WHEN HEADER FIXED */}

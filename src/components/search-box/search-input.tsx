@@ -26,7 +26,7 @@ export default function SearchInput() {
         disableElevation
         variant="contained"
         sx={{ px: "3rem", height: "100%", borderRadius: "0 4px 4px 0" }}>
-        Search
+        Pretraga
       </Button>
     ),
     startAdornment: <SearchOutlinedIcon fontSize="small" />
@@ -37,7 +37,7 @@ export default function SearchInput() {
       <TextField
         fullWidth
         variant="outlined"
-        placeholder="Searching for..."
+        placeholder="Pretraga..."
         onChange={handleSearch}
         InputProps={INPUT_PROPS}
       />

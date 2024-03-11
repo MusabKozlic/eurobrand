@@ -7,7 +7,7 @@ export default function useSearch() {
   const [_, startTransition] = useTransition();
   const [category, setCategory] = useState("*");
   const [resultList, setResultList] = useState<string[]>([]);
-  const [categoryTitle, setCategoryTitle] = useState("All Categories");
+  const [categoryTitle, setCategoryTitle] = useState("Sve kategorije");
 
   // HANDLE CHANGE THE CATEGORY
   const handleCategoryChange = (cat: { title: string; value: string }) => () => {

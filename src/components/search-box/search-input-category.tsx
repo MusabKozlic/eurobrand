@@ -40,7 +40,7 @@ export default function SearchInputWithCategory() {
       <TextField
         fullWidth
         variant="outlined"
-        placeholder="Searching for..."
+        placeholder="Pretraga..."
         onChange={handleSearch}
         InputProps={INPUT_PROPS}
       />

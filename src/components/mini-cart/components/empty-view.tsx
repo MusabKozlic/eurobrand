@@ -13,7 +13,7 @@ export default function EmptyCartView() {
       <Image width={90} height={100} alt="banner" src="/assets/images/logos/shopping-bag.svg" />
 
       <Paragraph fontSize={15} mt={2} color="grey.600" textAlign="center" maxWidth={200}>
-        Your shopping bag is empty. Start shopping
+        Vaša korpa je trenutno prazna. 
       </Paragraph>
     </FlexBox>
   );

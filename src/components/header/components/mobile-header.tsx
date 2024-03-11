@@ -31,24 +31,16 @@ export default function MobileHeader() {
   return (
     <Fragment>
       <FlexBetween width="100%">
-        {/* LEFT CONTENT - NAVIGATION ICON BUTTON */}
-        <Box flex={1}>
-          <MobileMenu />
-        </Box>
 
-        {/* MIDDLE CONTENT - LOGO */}
+        {/* LOGO */}
         <Link href="/">
-          <Image height={44} src="/assets/images/bazaar-black-sm.svg" alt="logo" />
+          <Image height={44} src="/assets/eurobrand-logo/logo.jpg" alt="logo" />
         </Link>
 
-        {/* RIGHT CONTENT - LOGIN, CART, SEARCH BUTTON */}
+        {/* RIGHT CONTENT - CART, SEARCH BUTTON */}
         <FlexBox justifyContent="end" flex={1}>
           <IconButton onClick={toggleSearchBar}>
             <Icon.Search sx={ICON_STYLE} />
-          </IconButton>
-
-          <IconButton onClick={toggleDialog}>
-            <Icon.User sx={ICON_STYLE} />
           </IconButton>
 
           <Badge badgeContent={state.cart.length} color="primary">
@@ -63,7 +55,6 @@ export default function MobileHeader() {
       <Drawer open={searchBarOpen} anchor="top" onClose={toggleSearchBar} sx={{ zIndex: 9999 }}>
         <Box width="auto" padding={2} height="100vh">
           <FlexBetween mb={1}>
-            <Paragraph>Search to Bazaar</Paragraph>
 
             <IconButton onClick={toggleSearchBar}>
               <Clear />

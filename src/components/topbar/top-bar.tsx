@@ -10,7 +10,6 @@ import { useTranslation } from "react-i18next";
 // MUI ICON COMPONENTS
 import Add from "@mui/icons-material/Add";
 import Remove from "@mui/icons-material/Remove";
-import Twitter from "@mui/icons-material/Twitter";
 import Facebook from "@mui/icons-material/Facebook";
 import Instagram from "@mui/icons-material/Instagram";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -34,9 +33,8 @@ const languageOptions: LanguageOption = {
 };
 
 const socialLinks = [
-  { id: 1, Icon: Twitter, url: "#" },
-  { id: 2, Icon: Facebook, url: "#" },
-  { id: 3, Icon: Instagram, url: "#" }
+  { id: 1, Icon: Facebook, url: "https://www.facebook.com/eBrandZenica/" },
+  { id: 2, Icon: Instagram, url: "https://www.instagram.com/eurobrandcomputers/" },
 ];
 
 // ===========================================
@@ -68,7 +66,7 @@ export default function Topbar({ bgColor }: Props) {
                 "& .MuiChip-label": { pl: ".8rem", pr: ".8rem" }
               }}
             />
-            <Span className="title">Web aplikacija je trenutno u izradi, moguce je da trenutni artikli nisu stvarni</Span>
+            <Span className="title">Web aplikacija je trenutno u izradi, moguće je da trenutni artikli nisu stvarni!</Span>
           </FlexBox>
 
           <IconButton disableRipple className="expand" onClick={() => setExpand((state) => !state)}>
@@ -80,7 +78,7 @@ export default function Topbar({ bgColor }: Props) {
           {/* SOCIAL LINKS AREA */}
           <FlexBox alignItems="center" gap={1.5}>
             {socialLinks.map(({ id, Icon, url }) => (
-              <Link href={url} key={id}>
+              <Link href={url} key={id} target="_blank" rel="noopener noreferrer">
                 <Icon sx={{ fontSize: 16 }} />
               </Link>
             ))}

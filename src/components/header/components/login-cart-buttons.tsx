@@ -21,10 +21,6 @@ export default function LoginCartButtons({ toggleDialog, toggleSidenav }: Props)
 
   return (
     <div>
-      <IconButton onClick={toggleDialog}>
-        <PersonOutline sx={ICON_COLOR} />
-      </IconButton>
-
       <Badge badgeContent={state.cart.length} color="primary">
         <IconButton onClick={toggleSidenav}>
           <ShoppingBagOutlined sx={ICON_COLOR} />

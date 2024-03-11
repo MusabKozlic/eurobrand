@@ -23,7 +23,7 @@ export default function Section8() {
 
         <TextField
           variant="outlined"
-          placeholder="Searching for..."
+          placeholder="Pretraga..."
           fullWidth
           InputProps={{
             sx: {
