@@ -47,7 +47,7 @@ export const categories = [
 export const categoriesTwo = [
   {
     id: "3a35ea11-4791-4477-8ced-18437d421ee2",
-    name: "Racunari",
+    name: "Računari",
     icon: "Computer",
     image: null,
     slug: "computer",
