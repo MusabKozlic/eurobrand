@@ -18,11 +18,13 @@ interface Props {
 // ==========================================================================
 
 export default function SalesNavbar({ categories, selected, onChangeCategory }: Props) {
+  console.log("selected: " + selected);
   return (
     <Box bgcolor="background.paper">
       <Container>
         <StyledScrollbar autoHide={false}>
           {categories.map((item) => {
+            console.log(item.slug);
             const Icon = appIcons[item.icon];
             const selectedItem = item.slug === selected ? 1 : 0;
 

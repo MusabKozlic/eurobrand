@@ -6,14 +6,22 @@ export default function useSearch() {
 
   const [_, startTransition] = useTransition();
   const [category, setCategory] = useState("*");
+  const [state, setState] = useState("*");
   const [resultList, setResultList] = useState<string[]>([]);
   const [categoryTitle, setCategoryTitle] = useState("Sve kategorije");
+  const [stateTitle, setStateTitle] = useState("Sve");
 
   // HANDLE CHANGE THE CATEGORY
   const handleCategoryChange = (cat: { title: string; value: string }) => () => {
     setCategory(cat.value);
     setCategoryTitle(cat.title);
   };
+
+ // HANDLE CHANGE THE STATE
+ const handleChangeStateTitle = (state: { title: string; value: string }) => () => {
+  setState(state.value);
+  setStateTitle(state.title);
+};
 
   // FETCH PRODUCTS VIA API
   const getProducts = async (searchText: string, category?: string) => {
@@ -44,6 +52,8 @@ export default function useSearch() {
     resultList,
     handleSearch,
     categoryTitle,
-    handleCategoryChange
+    handleCategoryChange,
+    handleChangeStateTitle,
+    stateTitle
   };
 }

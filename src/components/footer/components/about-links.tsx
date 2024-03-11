@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Heading, StyledLink } from "../styles";
-import { ABOUT_LINKS } from "../data";
+import { ABOUT_US } from "../data";
+import { Paragraph } from "components/Typography";
 
 // ==============================================================
 type Props = { isDark?: boolean };
@@ -9,13 +10,13 @@ type Props = { isDark?: boolean };
 export default function AboutLinks({ isDark }: Props) {
   return (
     <Fragment>
-      <Heading>About Us</Heading>
+      <Heading>O nama</Heading>
 
       <div>
-        {ABOUT_LINKS.map((item, ind) => (
-          <StyledLink isDark={isDark} href="/" key={ind}>
-            {item}
-          </StyledLink>
+        {ABOUT_US.map((item, ind) => (
+          <div key={ind}>
+            <Paragraph py={0.6} color="grey.500" style={{cursor: "default"}}>{item}</Paragraph>
+          </div>
         ))}
       </div>
     </Fragment>

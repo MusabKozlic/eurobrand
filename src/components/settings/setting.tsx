@@ -25,50 +25,7 @@ export default function Setting() {
   const [showBody, setShowBody] = useState(false);
 
   return (
-    <ClickAwayListener onClickAway={() => setShowBody(false)}>
-      <MainContainer>
-        <Tooltip title="Settings & Demos" placement="left">
-          <StyledIconButton onClick={() => setShowBody((state) => !state)}>
-            {!showBody && <Settings />}
-            {showBody && <Close />}
-          </StyledIconButton>
-        </Tooltip>
-
-        <BodyWrapper showBody={showBody ? 1 : 0}>
-          <Scrollbar sx={{ maxHeight: showBody ? "calc(100vh - 200px)" : 0 }}>
-            <FlexBox gap={2}>
-              <Button
-                fullWidth
-                onClick={() => updateSettings({ direction: "rtl" })}
-                color={settings.direction === "rtl" ? "primary" : "secondary"}
-                variant={settings.direction === "rtl" ? "contained" : "outlined"}>
-                RTL
-              </Button>
-
-              <Button
-                fullWidth
-                onClick={() => updateSettings({ direction: "ltr" })}
-                color={settings.direction === "ltr" ? "primary" : "secondary"}
-                variant={settings.direction === "ltr" ? "contained" : "outlined"}>
-                LTR
-              </Button>
-            </FlexBox>
-
-            <Divider sx={{ my: 3 }} />
-
-            <H6 textAlign="center" mb={2}>
-              Bazaar Demos
-            </H6>
-
-            <FlexBox gap={2} flexWrap="wrap">
-              {demos.map((demo) => (
-                <StyledAvatar key={demo.id} src={demo.img} onClick={() => push(demo.path)} />
-              ))}
-            </FlexBox>
-          </Scrollbar>
-        </BodyWrapper>
-      </MainContainer>
-    </ClickAwayListener>
+    <></>
   );
 }
 

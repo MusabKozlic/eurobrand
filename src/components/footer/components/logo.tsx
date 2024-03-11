@@ -8,15 +8,13 @@ export default function LogoSection() {
   return (
     <Fragment>
       <Link href="/">
-        <Image mb={2.5} src="/assets/images/logo.svg" alt="logo" />
+        <Image mb={2.5} style={{width: "200px", height: "100px"}} src="/assets/eurobrand-logo/logo.jpg" alt="logo" />
       </Link>
 
-      <Paragraph mb={2.5} color="grey.500">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor libero id et, in gravida.
-        Sit diam duis mauris nulla cursus. Erat et lectus vel ut sollicitudin elit at amet.
+      <Paragraph mb={2.5} color="grey.500" style={{cursor: "default"}}>
+        Prodaja i servis novih i polovnih računara i računarske opreme, laptopa, mobitela i još mnogo toga.
       </Paragraph>
 
-      <AppStore />
     </Fragment>
   );
 }

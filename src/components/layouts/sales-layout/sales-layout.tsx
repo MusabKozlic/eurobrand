@@ -68,9 +68,7 @@ export default function SalesLayout(props: SaleLayoutProps) {
 
       {/* FOOTER AREA */}
       <Footer1 />
-
-      {/* SMALLER DEVICE NAVIGATION */}
-      <MobileNavigationBar />
+      
     </Fragment>
   );
 }

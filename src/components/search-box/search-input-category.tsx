@@ -9,7 +9,7 @@ import useSearch from "./hooks/use-search";
 import Search from "icons/Search";
 
 export default function SearchInputWithCategory() {
-  const { categoryTitle, parentRef, resultList, handleCategoryChange, handleSearch } = useSearch();
+  const { categoryTitle, parentRef, resultList, handleCategoryChange, handleSearch, handleChangeStateTitle, stateTitle } = useSearch();
 
   const INPUT_PROPS = {
     sx: {
@@ -32,7 +32,7 @@ export default function SearchInputWithCategory() {
         <Search sx={{ fontSize: 17, color: "grey.600" }} />
       </Box>
     ),
-    endAdornment: <CategoryDropdown title={categoryTitle} handleChange={handleCategoryChange} />
+    endAdornment: <CategoryDropdown title={categoryTitle} handleChange={handleCategoryChange} stateTitle={stateTitle} handleChangeStateTitle={handleChangeStateTitle} />
   };
 
   return (

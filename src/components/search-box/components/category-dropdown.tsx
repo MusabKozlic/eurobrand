@@ -9,39 +9,60 @@ import BazaarMenu from "components/BazaarMenu";
 import { DropDownHandler } from "../styles";
 // DATA
 import { categories } from "../categories";
+import { states } from "../state";
 
 // ==============================================================
 interface Props {
   title: string;
   handleChange: (cat: { title: string; value: string }) => () => void;
+  stateTitle: string;
+  handleChangeStateTitle: (state: { title: string; value: string }) => () => void; 
 }
 // ==============================================================
 
-export default function CategoryDropdown({ title, handleChange }: Props) {
+export default function CategoryDropdown({ title, handleChange, stateTitle, handleChangeStateTitle }: Props) {
   const { breakpoints } = useTheme();
 
   return (
-    <BazaarMenu
+    <><BazaarMenu
       direction="left"
       sx={{ zIndex: breakpoints.down("md") ? 99999 : 1502 }}
-      handler={
-        <DropDownHandler
-          px={3}
-          gap={0.5}
-          height="100%"
-          color="grey.700"
-          // bgcolor="grey.100"
-          alignItems="center"
-          component={TouchRipple}>
-          {title}
-          <KeyboardArrowDownOutlined fontSize="small" color="inherit" />
-        </DropDownHandler>
-      }>
+      handler={<DropDownHandler
+        px={3}
+        gap={0.5}
+        height="100%"
+        color="grey.700"
+        // bgcolor="grey.100"
+        alignItems="center"
+        component={TouchRipple}>
+        {title}
+        <KeyboardArrowDownOutlined fontSize="small" color="inherit" />
+      </DropDownHandler>}>
       {categories.map((item) => (
         <MenuItem key={item.value} onClick={handleChange(item)}>
           {item.title}
         </MenuItem>
       ))}
     </BazaarMenu>
+    <BazaarMenu
+      direction="left"
+      sx={{ zIndex: breakpoints.down("md") ? 99999 : 1502 }}
+      handler={<DropDownHandler
+        px={3}
+        gap={0.5}
+        height="100%"
+        color="grey.700"
+        // bgcolor="grey.100"
+        alignItems="center"
+        component={TouchRipple}>
+        {stateTitle}
+        <KeyboardArrowDownOutlined fontSize="small" color="inherit" />
+      </DropDownHandler>}>
+        {states.map((item) => (
+          <MenuItem key={item.value} onClick={handleChangeStateTitle(item)}>
+            {item.title}
+          </MenuItem>
+        ))}
+      </BazaarMenu></>
   );
 }

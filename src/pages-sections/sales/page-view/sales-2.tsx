@@ -22,7 +22,7 @@ export default function SalesTwoPageView() {
     PRODUCT_PER_PAGE,
     handlePageChange,
     handleCategoryChange
-  } = useSales("men", 1);
+  } = useSales("racunari", 1);
 
   // CATEGORY NAV LIST
   const CATEGORY_NAV = (

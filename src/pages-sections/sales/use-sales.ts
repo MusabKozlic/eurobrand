@@ -5,7 +5,7 @@ import Product from "models/Product.model";
 // SALES API FUNCTIONS
 import api from "utils/__api__/sales";
 
-export default function useSales(defaultSelectCategory = "women", fetchCategory = 0) {
+export default function useSales(defaultSelectCategory = "racunari", fetchCategory = 0) {
   const PRODUCT_PER_PAGE = 28;
 
   const [page, setPage] = useState(1);

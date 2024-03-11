@@ -17,30 +17,6 @@ const iconList = [
 
 export default function Footer() {
   return (
-    <Container className="pt-4 pb-4">
-      <FlexBox justifyContent="space-between" flexWrap="wrap">
-        <FlexBox className="flex" alignItems="center">
-          Developed with{" "}
-          <Favorite fontSize="small" color="primary" sx={{ mx: "0.5rem", fontSize: "16px" }} /> &
-          Care by &nbsp; <a href="https://ui-lib.com">UI Lib</a>
-        </FlexBox>
-
-        <FlexBox className="flex">
-          {iconList.map((item, ind) => (
-            <a href={item.url} target="_blank" rel="noreferrer noopenner" key={ind}>
-              <item.icon
-                color="inherit"
-                sx={{
-                  mx: "0.5rem",
-                  fontSize: "1.25rem",
-                  transition: "0.2s ease-in-out",
-                  "&:hover": { color: "primary.main" }
-                }}
-              />
-            </a>
-          ))}
-        </FlexBox>
-      </FlexBox>
-    </Container>
+    <></>
   );
 }

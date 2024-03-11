@@ -17,7 +17,7 @@ export default function BottomActions({ total, handleNavigate }: Props) {
         variant="contained"
         sx={{ mb: "0.75rem", height: "40px" }}
         onClick={handleNavigate("/checkout-alternative")}>
-        Checkout Now ({total})
+        Naruči ({total})
       </Button>
 
       <Button
@@ -26,7 +26,7 @@ export default function BottomActions({ total, handleNavigate }: Props) {
         variant="outlined"
         sx={{ height: 40 }}
         onClick={handleNavigate("/cart")}>
-        View Cart
+        Pogledaj korpu
       </Button>
     </Box>
   );
