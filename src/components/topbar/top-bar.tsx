@@ -63,7 +63,10 @@ export default function Topbar({ bgColor }: Props) {
                 color: "white",
                 fontWeight: 700,
                 backgroundColor: "primary.main",
-                "& .MuiChip-label": { pl: ".8rem", pr: ".8rem" }
+                "& .MuiChip-label": { pl: ".8rem", pr: ".8rem" },
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             />
             <Span className="title">Web aplikacija je trenutno u izradi, moguće je da trenutni artikli nisu stvarni!</Span>

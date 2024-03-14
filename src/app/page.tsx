@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Head from "next/head";
 import IndexPageView from "pages-sections/landing/page-view";
+import { UserProvider } from "@auth0/nextjs-auth0/client"
 
 export const metadata: Metadata = {
   title: "Eurobrand",
@@ -11,4 +12,7 @@ export const metadata: Metadata = {
 
 export default function IndexPage() {
   return <IndexPageView />;
+ // <UserProvider>
+     
+ // </UserProvider>
 }

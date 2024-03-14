@@ -24,26 +24,7 @@ export default function CategoryDropdown({ title, handleChange, stateTitle, hand
   const { breakpoints } = useTheme();
 
   return (
-    <><BazaarMenu
-      direction="left"
-      sx={{ zIndex: breakpoints.down("md") ? 99999 : 1502 }}
-      handler={<DropDownHandler
-        px={3}
-        gap={0.5}
-        height="100%"
-        color="grey.700"
-        // bgcolor="grey.100"
-        alignItems="center"
-        component={TouchRipple}>
-        {title}
-        <KeyboardArrowDownOutlined fontSize="small" color="inherit" />
-      </DropDownHandler>}>
-      {categories.map((item) => (
-        <MenuItem key={item.value} onClick={handleChange(item)}>
-          {item.title}
-        </MenuItem>
-      ))}
-    </BazaarMenu>
+    <>
     <BazaarMenu
       direction="left"
       sx={{ zIndex: breakpoints.down("md") ? 99999 : 1502 }}

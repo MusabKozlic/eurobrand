@@ -20,16 +20,6 @@ export default function CategoryListItem(props: Props) {
   const { href, title, render, caret = true, icon: Icon } = props;
 
   return (
-    <Wrapper>
-      <Link href={href}>
-        <div className="category-dropdown-link">
-          {Icon ? <Icon fontSize="small" color="inherit" /> : null}
-          <span className="title">{title}</span>
-          {caret ? <ChevronRight fontSize="small" className="caret-icon" /> : null}
-        </div>
-      </Link>
-
-      {render ? <div className="mega-menu">{render}</div> : null}
-    </Wrapper>
+    <></>
   );
 }
