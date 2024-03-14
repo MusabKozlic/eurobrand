@@ -86,7 +86,7 @@ export const categoriesTwo = [
     for: { demo: "sales-1", type: "categories" },
   },
   {
-    id: "740e1b21-8540-4180-b425-71146ea28d59",
+    id: "740e1b21-8540-4180-b425-71146ea28d60",
     name: "Monitori",
     icon: "Monitor",
     image: null,

@@ -2,8 +2,6 @@ import duotone from "icons/duotone";
 
 export const navigation = [
   { type: "label", label: "Admin" },
-  { name: "Dashboard", icon: duotone.Dashboard, path: "/vendor/dashboard" },
-
   {
     name: "Products",
     icon: duotone.Products,
@@ -66,45 +64,6 @@ export const navigation = [
       { name: "Payouts", path: "/admin/payouts" },
       { name: "Payout Request", path: "/admin/payout-requests" }
     ]
-  },
-
-  { type: "label", label: "Vendor" },
-  {
-    name: "Earnings",
-    icon: duotone.ProjectChart,
-    children: [
-      { name: "Earning History", path: "/vendor/earning-history" },
-      { name: "Payouts", path: "/vendor/payouts" },
-      { name: "Payout Request", path: "/vendor/payout-requests" },
-      { name: "Payout Settings", path: "/vendor/payout-settings" }
-    ]
-  },
-
-  {
-    name: "Refund Request",
-    icon: duotone.Refund,
-    path: "/vendor/refund-request"
-  },
-  { name: "Reviews", icon: duotone.Review, path: "/vendor/reviews" },
-  {
-    name: "Shop Setting",
-    icon: duotone.SiteSetting,
-    path: "/vendor/shop-settings"
-  },
-  {
-    name: "Support Tickets",
-    icon: duotone.ElementHub,
-    path: "/vendor/support-tickets"
-  },
-  {
-    name: "Account Settings",
-    icon: duotone.AccountSetting,
-    path: "/vendor/account-settings"
-  },
-  {
-    name: "Site Settings",
-    icon: duotone.SiteSetting,
-    path: "/vendor/site-settings"
   },
   { name: "Logout", icon: duotone.Session, path: "/" }
 ];

@@ -2,20 +2,16 @@
 // YOU NEED TO BUILD YOUR OWN SERVER
 // IF YOU NEED HELP ABOUT SERVER SIDE IMPLEMENTATION
 // CONTACT US AT support@ui-lib.com
-import { categories, categoriesTwo } from "./data";
+import axios from "axios";
+
+const url = "http://localhost:8080"
+
 export const SalesEndpoints = (Mock) => {
-  Mock.onGet("/api/sales-1/categories").reply(async () => {
-    try {
-      return [200, categories];
-    } catch (err) {
-      console.error(err);
-      return [500, { message: "Internal server error" }];
-    }
-  });
 
   Mock.onGet("/api/sales-2/categories").reply(async () => {
     try {
-      return [200, categoriesTwo];
+      const response = await axios.get(url + "/category");
+    return [response.status, response.data];
     } catch (err) {
       console.error(err);
       return [500, { message: "Internal server error" }];

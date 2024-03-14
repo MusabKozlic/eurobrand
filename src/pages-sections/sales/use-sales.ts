@@ -25,8 +25,6 @@ export default function useSales(defaultSelectCategory = "racunari", fetchCatego
   useEffect(() => {
     if (fetchCategory === 1) {
       api.getCategoriesTwo().then((data) => setCategories(data));
-    } else {
-      api.getCategories().then((data) => setCategories(data));
     }
   }, [fetchCategory]);
 

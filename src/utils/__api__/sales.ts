@@ -4,10 +4,6 @@ import Product from "models/Product.model";
 import Category from "models/Category.model";
 import products from "data/product-database";
 
-const getCategories = cache(async (): Promise<Category[]> => {
-  const response = await axios.get("/api/sales-1/categories");
-  return response.data;
-});
 
 const getCategoriesTwo = cache(async (): Promise<Category[]> => {
   const response = await axios.get("/api/sales-2/categories");
@@ -24,4 +20,4 @@ const getProducts = cache(async (page: number = 1): Promise<Product[]> => {
   return currentProducts;
 });
 
-export default { getCategories, getProducts, getCategoriesTwo };
+export default { getProducts, getCategoriesTwo };
