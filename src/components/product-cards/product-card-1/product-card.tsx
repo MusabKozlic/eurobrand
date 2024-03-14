@@ -17,6 +17,7 @@ import DiscountChip from "../discount-chip";
 import QuantityButtons from "./components/quantity-buttons";
 // STYLED COMPONENTS
 import { ImageWrapper, ContentWrapper, StyledBazaarCard } from "./styles";
+import { Typography } from "@mui/material";
 
 // ========================================================
 type Props = {
@@ -24,12 +25,12 @@ type Props = {
   slug: string;
   price: number;
   imgUrl: string;
-  rating?: number;
-  discount?: number;
   id: string | number;
   hideRating?: boolean;
   hoverEffect?: boolean;
   showProductSize?: boolean;
+  description: string;
+  brand: string;
 };
 // ========================================================
 
@@ -39,15 +40,13 @@ export default function ProductCard1({
   title,
   price,
   imgUrl,
-  rating = 5,
-  hideRating,
   hoverEffect,
-  discount = 5,
-  showProductSize
+  showProductSize,
+  description,
+  brand
 }: Props) {
   const { isFavorite, openModal, cartItem, toggleDialog, toggleFavorite, handleCartAmountChange } =
     useProduct(slug);
-
   const handleIncrementQuantity = () => {
     const product = {
       id,
@@ -75,9 +74,6 @@ export default function ProductCard1({
   return (
     <StyledBazaarCard hoverEffect={hoverEffect}>
       <ImageWrapper>
-        {/* DISCOUNT PERCENT CHIP IF AVAILABLE */}
-        <DiscountChip discount={discount} />
-
         {/* HOVER ACTION ICONS */}
         <HoverActions
           isFavorite={isFavorite}
@@ -87,7 +83,7 @@ export default function ProductCard1({
 
         {/* PRODUCT IMAGE / THUMBNAIL */}
         <Link href={`/products/${slug}`}>
-          <LazyImage priority src={imgUrl} width={500} height={500} alt={title} />
+          <LazyImage priority src={`/${imgUrl}`} width={500} height={500} alt={title} />
         </Link>
       </ImageWrapper>
 
@@ -101,10 +97,7 @@ export default function ProductCard1({
       <ContentWrapper>
         <Box flex="1 1 0" minWidth="0px" mr={1}>
           {/* PRODUCT NAME / TITLE */}
-          <ProductTitle title={title} slug={slug} />
-
-          {/* PRODUCT RATINGS IF AVAILABLE */}
-          {!hideRating ? <Rating size="small" value={rating} color="warn" readOnly /> : null}
+          <ProductTitle title={brand + " " + title} slug={slug} />
 
           {/* PRODUCT SIZE IF AVAILABLE */}
           {showProductSize ? (
@@ -114,7 +107,7 @@ export default function ProductCard1({
           ) : null}
 
           {/* PRODUCT PRICE WITH DISCOUNT */}
-          <ProductPrice discount={discount} price={price} />
+          <ProductPrice price={price} />
         </Box>
 
         {/* PRODUCT QUANTITY HANDLER BUTTONS */}

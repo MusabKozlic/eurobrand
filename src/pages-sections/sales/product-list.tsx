@@ -15,12 +15,12 @@ export default function ProductList({ products }: Props) {
         <Grid item lg={3} md={4} sm={6} xs={12} key={item.id}>
           <ProductCard1
             id={item.id}
-            slug={item.slug}
-            title={item.title}
+            slug={item.images[0]?.imageUrl}
+            title={item.model}
             price={item.price}
-            rating={item.rating}
-            imgUrl={item.thumbnail}
-            discount={item.discount}
+            imgUrl={item.images[0]?.imageUrl}
+            description={item.description}
+            brand={item.brand}
           />
         </Grid>
       ))}

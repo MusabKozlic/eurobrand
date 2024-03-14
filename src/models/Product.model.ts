@@ -1,24 +1,15 @@
-import Shop from "./Shop.model";
-import Review from "./Review.model";
+import Category from "./Category.model";
+import Images from "./Images.model";
 
 interface Product {
-  unit?: any;
-  slug: string;
-  price: number;
-  title: string;
-  rating: number;
-  discount: number;
-  thumbnail: string;
   id: string;
-  shop?: Shop;
   brand?: string;
-  size?: string[];
-  status?: string;
-  colors?: string[];
-  images?: string[];
-  categories: any[];
-  reviews?: Review[];
-  published?: boolean;
+  model: string;
+  description: string;
+  stock: number;
+  images?: Images[];
+  categories: Category;
+  price: number;
 }
 
 export default Product;

@@ -2,7 +2,6 @@ import { cache } from "react";
 import axios from "../../utils/axiosInstance";
 import Product from "models/Product.model";
 import Category from "models/Category.model";
-import products from "data/product-database";
 
 
 const getCategoriesTwo = cache(async (): Promise<Category[]> => {
@@ -11,13 +10,10 @@ const getCategoriesTwo = cache(async (): Promise<Category[]> => {
 });
 
 const getProducts = cache(async (page: number = 1): Promise<Product[]> => {
-  const PAGE_SIZE = 28;
-  const currentProducts = products.slice(
-    page * PAGE_SIZE,
-    (page + 1) * PAGE_SIZE,
-  );
+  const products = (await axios.get("/api/sales-2/products")).data;
+
   // @ts-ignore
-  return currentProducts;
+  return products;
 });
 
 export default { getProducts, getCategoriesTwo };
