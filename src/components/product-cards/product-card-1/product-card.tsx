@@ -54,7 +54,8 @@ export default function ProductCard1({
       price,
       imgUrl,
       name: title,
-      qty: (cartItem?.qty || 0) + 1
+      qty: (cartItem?.qty || 0) + 1,
+      brand
     };
     handleCartAmountChange(product);
   };
@@ -66,13 +67,14 @@ export default function ProductCard1({
       price,
       imgUrl,
       name: title,
-      qty: (cartItem?.qty || 0) - 1
+      qty: (cartItem?.qty || 0) - 1,
+      brand
     };
     handleCartAmountChange(product, "remove");
   };
 
   return (
-    <StyledBazaarCard hoverEffect={hoverEffect}>
+    <StyledBazaarCard hoverEffect={hoverEffect} style={{cursor: "default"}}>
       <ImageWrapper>
         {/* HOVER ACTION ICONS */}
         <HoverActions
@@ -94,11 +96,11 @@ export default function ProductCard1({
         product={{ title, price, id, slug, imgGroup: [imgUrl, imgUrl] }}
       />
 
-      <ContentWrapper>
+      <ContentWrapper style={{cursor: "default"}}>
         <Box flex="1 1 0" minWidth="0px" mr={1}>
           {/* PRODUCT NAME / TITLE */}
           <ProductTitle title={brand + " " + title} slug={slug} />
-
+          <div style={{paddingTop: "10px", paddingBottom: "2px", fontSize: "13px", fontFamily: "sans-serif"}}>{description}</div>
           {/* PRODUCT SIZE IF AVAILABLE */}
           {showProductSize ? (
             <Span color="grey.600" mb={1} display="block">

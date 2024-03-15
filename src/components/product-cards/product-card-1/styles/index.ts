@@ -3,7 +3,7 @@ import styled from "@mui/material/styles/styled";
 import BazaarCard from "components/BazaarCard";
 
 export const StyledBazaarCard = styled(BazaarCard)({
-  height: "100%",
+  maxHeight: "100%",
   margin: "auto",
   display: "flex",
   overflow: "hidden",

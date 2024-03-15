@@ -29,7 +29,7 @@ export default function SearchInputWithCategory() {
         justifyContent="center"
         borderRight="1px solid"
         borderColor="grey.400">
-        <Search sx={{ fontSize: 17, color: "grey.600" }} />
+        <Search sx={{ fontSize: 17, color: "grey.600", cursor:"default" }} />
       </Box>
     ),
     endAdornment: <CategoryDropdown title={categoryTitle} handleChange={handleCategoryChange} stateTitle={stateTitle} handleChangeStateTitle={handleChangeStateTitle} />
