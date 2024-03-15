@@ -32,7 +32,7 @@ export default function ProductsGridView({ products }: Props) {
       </Grid>
 
       <FlexBetween flexWrap="wrap" mt={4}>
-        <Span color="grey.600">Showing 1-9 of 1.3k Products</Span>
+        <Span color="grey.600">Prikaz 1-9 od svih proizvoda</Span>
         <Pagination count={Math.ceil(products.length / 10)} variant="outlined" color="primary" />
       </FlexBetween>
     </Fragment>

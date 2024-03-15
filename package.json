@@ -10,6 +10,7 @@
     "fix:prettier": "prettier --write . '!.next' '!.node_modules' '!tools/output/**/.next'"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.2.4",
     "@auth0/nextjs-auth0": "^3.5.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",

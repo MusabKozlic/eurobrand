@@ -37,7 +37,7 @@ export default function ShopsPageView({ shops }: Props) {
 
       {/* PAGINATION AREA */}
       <FlexBetween flexWrap="wrap" mt={4}>
-        <Span color="grey.600">Showing 1-9 of 300 Shops</Span>
+        <Span color="grey.600">Prikaz 1-9 od svih proizvoda</Span>
         <Pagination count={shops.length} variant="outlined" color="primary" />
       </FlexBetween>
     </Container>

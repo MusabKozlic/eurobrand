@@ -1,20 +1,20 @@
-import { Button, Typography } from '@mui/material'
-import Link from 'next/link'
-import auth0Service from '../api/auth/auth0-service';
+import { useUser } from '@auth0/nextjs-auth0/client';
+
 
 export default function Login() {
+  const { user, error, isLoading } = useUser();
 
-  return (
-    <div>
-        <Typography>
-                Welcome to admin dashboard!!!!
-            </Typography>
 
-            <Button onClick={auth0Service.login}>
-                <Typography>
-                    Login
-                </Typography>
-            </Button>
-    </div>
-  )
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+
+  if (user) {
+    return (
+      <div>
+        Welcome {user.name}! <a href="/dashboard/api/auth/logout">Logout</a>
+      </div>
+    );
+  }
+
+  return <a href="/dashboard/api/auth/login">Login</a>;
 }
