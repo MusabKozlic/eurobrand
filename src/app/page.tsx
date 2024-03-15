@@ -11,8 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function IndexPage() {
-  return <IndexPageView />;
- // <UserProvider>
-     
- // </UserProvider>
+  return (
+    <UserProvider>
+     <IndexPageView />
+</UserProvider>
+  )
 }
