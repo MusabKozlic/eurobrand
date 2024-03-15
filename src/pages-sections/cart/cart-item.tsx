@@ -24,17 +24,18 @@ type Props = {
   price: number;
   imgUrl?: string;
   id: string | number;
+  brand: string;
 };
 // =========================================================
 
-export default function CartItem({ id, name, qty, price, imgUrl, slug }: Props) {
+export default function CartItem({ id, name, qty, price, imgUrl, slug, brand }: Props) {
   const { dispatch } = useCart();
 
   // HANDLE CHANGE CART PRODUCT QUANTITY
   const handleCartAmountChange = (amount: number) => () => {
     dispatch({
       type: "CHANGE_CART_AMOUNT",
-      payload: { id, name, price, imgUrl, qty: amount, slug }
+      payload: { id, name, price, imgUrl, qty: amount, slug, brand }
     });
   };
 

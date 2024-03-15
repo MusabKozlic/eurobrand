@@ -56,7 +56,7 @@ export default function ProductIntro({ product }: Props) {
   const handleCartAmountChange = (amount: number) => () => {
     dispatch({
       type: "CHANGE_CART_AMOUNT",
-      payload: { price, qty: amount, name: brand, imgUrl: images[0].imageUrl, id }
+      payload: { price, qty: amount, name: brand, imgUrl: images[0].imageUrl, id, brand }
     });
   };
 
