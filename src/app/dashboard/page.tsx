@@ -9,7 +9,7 @@ const Dashboard = () => {
 
     return (
         <UserProvider>
-            <Login></Login>
+            <Login />
         </UserProvider>
     );
 };

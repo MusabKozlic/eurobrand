@@ -1,11 +1,8 @@
-import { Typography } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import Link from 'next/link'
-import React from 'react'
-import { useUser } from "@auth0/nextjs-auth0/client";
-
+import auth0Service from '../api/auth/auth0-service';
 
 export default function Login() {
-    const { user, error, isLoading } = useUser();
 
   return (
     <div>
@@ -13,11 +10,11 @@ export default function Login() {
                 Welcome to admin dashboard!!!!
             </Typography>
 
-            <Link href={"/api/auth/login"}>
+            <Button onClick={auth0Service.login}>
                 <Typography>
                     Login
                 </Typography>
-            </Link>
+            </Button>
     </div>
   )
 }
