@@ -66,7 +66,7 @@ export default function MiniCart({ toggleSidenav }: Props) {
 
       {/* CART BOTTOM ACTION BUTTONS */}
       {cartList.length > 0 ? (
-        <BottomActions total={currency(getTotalPrice())} handleNavigate={handleNavigate} />
+        <BottomActions total={getTotalPrice().toFixed(2)} handleNavigate={handleNavigate} />
       ) : null}
     </Box>
   );

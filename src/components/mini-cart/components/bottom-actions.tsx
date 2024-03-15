@@ -17,7 +17,7 @@ export default function BottomActions({ total, handleNavigate }: Props) {
         variant="contained"
         sx={{ mb: "0.75rem", height: "40px" }}
         onClick={handleNavigate("/checkout-alternative")}>
-        Naruči ({total})
+        Naruči ({total}KM)
       </Button>
 
       <Button
