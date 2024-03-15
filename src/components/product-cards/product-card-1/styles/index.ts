@@ -4,6 +4,7 @@ import BazaarCard from "components/BazaarCard";
 
 export const StyledBazaarCard = styled(BazaarCard)({
   maxHeight: "100%",
+  height: "100%",
   margin: "auto",
   display: "flex",
   overflow: "hidden",
