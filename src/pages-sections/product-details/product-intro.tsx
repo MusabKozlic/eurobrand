@@ -29,7 +29,7 @@ type Props = { product: Product };
 // ================================================================
 
 export default function ProductIntro({ product }: Props) {
-  const { id, price, title, images, slug, thumbnail } = product || {};
+  const { id, price, brand, images } = product || {};
 
   const { state, dispatch } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
@@ -56,28 +56,29 @@ export default function ProductIntro({ product }: Props) {
   const handleCartAmountChange = (amount: number) => () => {
     dispatch({
       type: "CHANGE_CART_AMOUNT",
-      payload: { price, qty: amount, name: title, imgUrl: thumbnail, id, slug }
+      payload: { price, qty: amount, name: brand, imgUrl: images[0].imageUrl, id }
     });
   };
 
   return (
+    //@TODO
     <Box width="100%">
       <Grid container spacing={3} justifyContent="space-around">
         {/* IMAGE GALLERY AREA */}
         <Grid item md={6} xs={12} alignItems="center">
           <FlexBox justifyContent="center" mb={6}>
             <LazyImage
-              alt={title}
+              alt={brand}
               width={300}
               height={300}
               loading="eager"
-              src={product.images[selectedImage]}
+              src={"products/laptops/Lenovo/G780/Lenovo_G780_5.jpg"}
               sx={{ objectFit: "contain" }}
             />
           </FlexBox>
 
           <FlexBox overflow="auto">
-            {images.map((url, ind) => (
+            {images.map((imageUrl, ind) => (
               <FlexRowCenter
                 key={ind}
                 width={64}
@@ -91,7 +92,7 @@ export default function ProductIntro({ product }: Props) {
                 onClick={handleImageClick(ind)}
                 mr={ind === images.length - 1 ? "auto" : "10px"}
                 borderColor={selectedImage === ind ? "primary.main" : "grey.400"}>
-                <Avatar alt="product" src={url} variant="square" sx={{ height: 40 }} />
+                <Avatar alt="product" src={"products/laptops/Lenovo/G780/Lenovo_G780_5.jpg"} variant="square" sx={{ height: 40 }} />
               </FlexRowCenter>
             ))}
           </FlexBox>
@@ -100,7 +101,7 @@ export default function ProductIntro({ product }: Props) {
         {/* PRODUCT INFO AREA */}
         <Grid item md={6} xs={12} alignItems="center">
           {/* PRODUCT NAME */}
-          <H1 mb={1}>{title}</H1>
+          <H1 mb={1}>{brand}</H1>
 
           {/* PRODUCT BRAND */}
           <FlexBox alignItems="center" mb={1}>

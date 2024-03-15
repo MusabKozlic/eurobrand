@@ -21,15 +21,14 @@ export default function RelatedProducts({ products }: Props) {
         {products.map((item, ind) => (
           <Grid item lg={3} md={4} sm={6} xs={12} key={ind}>
             <ProductCard1
-              hoverEffect
-              id={item.id}
-              slug={item.slug}
-              title={item.title}
-              price={item.price}
-              rating={item.rating}
-              imgUrl={item.thumbnail}
-              discount={item.discount}
-            />
+            id={item.id}
+            slug={item.images[0]?.imageUrl}
+            title={item.model}
+            price={item.price}
+            imgUrl={item.images[0]?.imageUrl}
+            description={item.description}
+            brand={item.brand}
+          />
           </Grid>
         ))}
       </Grid>

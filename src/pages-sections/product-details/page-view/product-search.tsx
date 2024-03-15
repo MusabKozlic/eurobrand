@@ -23,6 +23,7 @@ import ProductsGridView from "components/products-view/products-grid-view";
 import ProductsListView from "components/products-view/products-list-view";
 // PRODUCT DATA
 import productDatabase from "data/product-database";
+import useSales from "pages-sections/sales/use-sales";
 
 const SORT_OPTIONS = [
   { label: "Relevance", value: "Relevance" },
@@ -37,7 +38,11 @@ export default function ProductSearchPageView() {
 
   const toggleView = useCallback((v: string) => () => setView(v), []);
 
-  const PRODUCTS = productDatabase.slice(95, 104);
+  const {
+    productList
+  } = useSales("racunari", 1);
+
+  const PRODUCTS = productList;
 
   return (
     <Container className="mt-2 mb-3">

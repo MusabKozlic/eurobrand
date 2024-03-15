@@ -24,7 +24,6 @@ const tableHeading = [
   { id: "category", label: "Category", align: "left" },
   { id: "brand", label: "Brand", align: "left" },
   { id: "price", label: "Price", align: "left" },
-  { id: "published", label: "Published", align: "left" },
   { id: "action", label: "Action", align: "center" }
 ];
 
@@ -38,12 +37,9 @@ const ProductsPageView = ({ products }: Props) => {
   // RESHAPE THE PRODUCT LIST BASED TABLE HEAD CELL ID
   const filteredProducts = productList.map((item) => ({
     id: item.id,
-    slug: item.slug,
-    name: item.title,
     brand: item.brand,
     price: item.price,
-    image: item.thumbnail,
-    published: item.published,
+    image: "products/laptops/Lenovo/G780/Lenovo_G780_5.jpg",
     category: item.categories[0]
   }));
 

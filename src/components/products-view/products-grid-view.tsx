@@ -19,14 +19,14 @@ export default function ProductsGridView({ products }: Props) {
         {products.map((item: Product) => (
           <Grid item lg={4} sm={6} xs={12} key={item.id}>
             <ProductCard1
-              id={item.id}
-              slug={item.slug}
-              title={item.title}
-              price={item.price}
-              rating={item.rating}
-              imgUrl={item.thumbnail}
-              discount={item.discount}
-            />
+            id={item.id}
+            slug={item.images[0]?.imageUrl}
+            title={item.model}
+            price={item.price}
+            imgUrl={item.images[0]?.imageUrl}
+            description={item.description}
+            brand={item.brand}
+          />
           </Grid>
         ))}
       </Grid>

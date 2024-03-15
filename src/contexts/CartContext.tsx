@@ -8,7 +8,7 @@ type InitialState = { cart: CartItem[] };
 export type CartItem = {
   qty: number;
   name: string;
-  slug: string;
+  slug?: string;
   price: number;
   imgUrl?: string;
   id: string | number;
