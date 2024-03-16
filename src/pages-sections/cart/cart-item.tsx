@@ -15,6 +15,8 @@ import useCart from "hooks/useCart";
 import { currency } from "lib";
 // STYLED COMPONENT
 import { Wrapper } from "./styles";
+import Images from "models/Images.model";
+import Category from "models/Category.model";
 
 // =========================================================
 type Props = {
@@ -25,17 +27,31 @@ type Props = {
   imgUrl?: string;
   id: string | number;
   brand: string;
+  model: string;
+  stock: number;
+  images: Images[];
+  category: Category;
+  description: string;
 };
 // =========================================================
 
-export default function CartItem({ id, name, qty, price, imgUrl, slug, brand }: Props) {
+export default function CartItem({ id, name, qty, price, imgUrl, slug, brand,
+  model,
+  stock,
+  images,
+  category,
+  description}: Props) {
   const { dispatch } = useCart();
 
   // HANDLE CHANGE CART PRODUCT QUANTITY
   const handleCartAmountChange = (amount: number) => () => {
     dispatch({
       type: "CHANGE_CART_AMOUNT",
-      payload: { id, name, price, imgUrl, qty: amount, slug, brand }
+      payload: { id, name, price, imgUrl, qty: amount, slug, brand, model,
+        stock,
+        images,
+        category,
+        description }
     });
   };
 

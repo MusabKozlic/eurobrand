@@ -14,7 +14,7 @@ export default function CartPageView() {
     <Grid container spacing={3}>
       {/* CART PRODUCT LIST */}
       <Grid item md={8} xs={12}>
-        {state.cart.map(({ name, id, price, qty, slug, imgUrl, brand }) => (
+        {state.cart.map(({ name, id, price, qty, slug, imgUrl, brand, model, stock, description, category, images }) => (
           <CartItem
             id={id}
             key={id}
@@ -24,6 +24,11 @@ export default function CartPageView() {
             price={price}
             imgUrl={imgUrl}
             brand={brand}
+            model={model}
+            stock={stock}
+            description={description}
+            category={category}
+            images={images}
           />
         ))}
       </Grid>

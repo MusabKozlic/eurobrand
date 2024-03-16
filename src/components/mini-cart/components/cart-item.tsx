@@ -55,13 +55,13 @@ export default function MiniCartItem({ item, handleCartAmountChange }: Props) {
       </FlexBox>
 
       <Link href={`/products/${item.id}`} style={{cursor: "default"}}>
-        <Avatar alt={item.name} src={item.imgUrl} sx={{ mx: 1, width: 75, height: 75 }} />
+        <Avatar alt={item.model} src={item.images[0].imageUrl} sx={{ mx: 1, width: 75, height: 75 }} />
       </Link>
 
       <Box flex="1" textOverflow="ellipsis" whiteSpace="nowrap" overflow="hidden" style={{cursor: "default"}}>
         <Link href={`/products/${item.slug}`}>
           <H6 ellipsis className="title" style={{cursor: "default"}}>
-            {item.brand} {item.name}
+            {item.brand} {item.model}
           </H6>
         </Link>
 

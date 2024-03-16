@@ -40,7 +40,7 @@ const ProductsPageView = ({ products }: Props) => {
     brand: item.brand,
     price: item.price,
     image: "products/laptops/Lenovo/G780/Lenovo_G780_5.jpg",
-    category: item.categories[0]
+    category: item.category
   }));
 
   const {

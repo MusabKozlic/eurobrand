@@ -7,7 +7,6 @@ type Props = { title: string; slug: string };
 
 export default function ProductTitle({ title, slug }: Props) {
   return (
-    <Link href={`/products/${slug}`}>
       <H3
         mb={1}
         ellipsis
@@ -18,6 +17,5 @@ export default function ProductTitle({ title, slug }: Props) {
         color="text.secondary">
         {title}
       </H3>
-    </Link>
   );
 }

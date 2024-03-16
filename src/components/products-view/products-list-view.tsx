@@ -23,6 +23,11 @@ export default function ProductsListView({ products }: Props) {
         imgUrl={item.images[0]?.imageUrl}
         description={item.description}
         brand={item.brand}
+        model={item.model}
+            stock={item.stock}
+            images={item.images}
+            category={item.category}
+            name={item.name}
       />
       ))}
 

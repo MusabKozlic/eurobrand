@@ -1,5 +1,7 @@
 "use client";
 
+import Category from "models/Category.model";
+import Images from "models/Images.model";
 import { createContext, PropsWithChildren, useMemo, useReducer } from "react";
 
 // =================================================================================
@@ -13,6 +15,11 @@ export type CartItem = {
   price: number;
   imgUrl?: string;
   id: string | number;
+  model: string;
+  stock: number;
+  images: Images[];
+  category: Category;
+  description: string;
 };
 
 type CartActionType = {

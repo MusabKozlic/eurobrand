@@ -8,8 +8,11 @@ interface Product {
   description: string;
   stock: number;
   images?: Images[];
-  categories: Category;
+  category: Category;
   price: number;
+  name: string;
+  slug: string;
+  title: string;
 }
 
 export default Product;

@@ -18,6 +18,9 @@ import QuantityButtons from "./components/quantity-buttons";
 // STYLED COMPONENTS
 import { ImageWrapper, ContentWrapper, StyledBazaarCard } from "./styles";
 import { Typography } from "@mui/material";
+import Images from "models/Images.model";
+import Category from "models/Category.model";
+import { useState } from "react";
 
 // ========================================================
 type Props = {
@@ -25,12 +28,17 @@ type Props = {
   slug: string;
   price: number;
   imgUrl: string;
-  id: string | number;
+  id: string;
   hideRating?: boolean;
   hoverEffect?: boolean;
   showProductSize?: boolean;
   description: string;
   brand: string;
+  model: string;
+  stock: number;
+  images: Images[];
+  category: Category;
+  name: string;
 };
 // ========================================================
 
@@ -43,10 +51,26 @@ export default function ProductCard1({
   hoverEffect,
   showProductSize,
   description,
-  brand
+  brand,
+  model,
+  stock,
+  images,
+  category,
+  name
 }: Props) {
-  const { isFavorite, openModal, cartItem, toggleDialog, toggleFavorite, handleCartAmountChange } =
+  const { isFavorite, openModal, cartItem, toggleFavorite, handleCartAmountChange } =
     useProduct(slug);
+
+    const [dialogOpen, setDialogOpen] = useState(false);
+
+  const toggleDialog = () => {
+    setDialogOpen(!dialogOpen);
+  };
+
+  const openProductDialog = () => {
+    setDialogOpen(true);
+  };
+
   const handleIncrementQuantity = () => {
     const product = {
       id,
@@ -55,7 +79,12 @@ export default function ProductCard1({
       imgUrl,
       name: title,
       qty: (cartItem?.qty || 0) + 1,
-      brand
+      brand,
+      model,
+      stock,
+      images,
+      category,
+      description
     };
     handleCartAmountChange(product);
   };
@@ -68,38 +97,67 @@ export default function ProductCard1({
       imgUrl,
       name: title,
       qty: (cartItem?.qty || 0) - 1,
-      brand
+      brand,
+      model,
+      stock,
+      images,
+      category,
+      description
     };
     handleCartAmountChange(product, "remove");
   };
 
   return (
-    <StyledBazaarCard hoverEffect={hoverEffect} style={{cursor: "default"}}>
-      <ImageWrapper>
-        {/* HOVER ACTION ICONS */}
-        <HoverActions
-          isFavorite={isFavorite}
-          toggleView={toggleDialog}
-          toggleFavorite={toggleFavorite}
-        />
-
+    <>{dialogOpen && (
+      <ProductViewDialog
+        openDialog={dialogOpen}
+        handleCloseDialog={toggleDialog}
+        product={{
+          id,
+          brand,
+          model,
+          description,
+          stock,
+          images,
+          category,
+          price,
+          title,
+          slug,
+          name
+        }}
+      />
+    )}
+    <StyledBazaarCard hoverEffect={hoverEffect} style={{cursor: "pointer"}}>
+      <ImageWrapper onClick={openProductDialog}>
         {/* PRODUCT IMAGE / THUMBNAIL */}
-        <Link href={`/products/${slug}`}>
+        <div>
           <LazyImage priority src={`/${imgUrl}`} width={500} height={500} alt={title} />
-        </Link>
+        </div>
       </ImageWrapper>
 
       {/* PRODUCT VIEW DIALOG BOX */}
       <ProductViewDialog
         openDialog={openModal}
         handleCloseDialog={toggleDialog}
-        product={{ title, price, id, slug, imgGroup: [imgUrl, imgUrl] }}
+        product={{ id,
+          brand,
+          model,
+          description,
+          stock,
+          images,
+          category,
+          price,
+          title,
+          slug,
+          name }}
       />
 
-      <ContentWrapper style={{cursor: "default"}}>
-        <Box flex="1 1 0" minWidth="0px" mr={1}>
+      <ContentWrapper style={{cursor: "pointer"}}>
+        <Box onClick={openProductDialog} flex="1 1 0" minWidth="0px" mr={1}>
+          <div style={{cursor:"pointer"}}>
           {/* PRODUCT NAME / TITLE */}
           <ProductTitle title={brand + " " + title} slug={slug} />
+          </div>
           <div style={{paddingTop: "10px", paddingBottom: "2px", fontSize: "13px", fontFamily: "sans-serif"}}>{description}</div>
           {/* PRODUCT SIZE IF AVAILABLE */}
           {showProductSize ? (
@@ -111,7 +169,6 @@ export default function ProductCard1({
           {/* PRODUCT PRICE WITH DISCOUNT */}
           <ProductPrice price={price} />
         </Box>
-
         {/* PRODUCT QUANTITY HANDLER BUTTONS */}
         <QuantityButtons
           quantity={cartItem?.qty || 0}
@@ -120,5 +177,6 @@ export default function ProductCard1({
         />
       </ContentWrapper>
     </StyledBazaarCard>
+    </>
   );
 }

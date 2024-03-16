@@ -29,7 +29,7 @@ type Props = { product: Product };
 // ================================================================
 
 export default function ProductIntro({ product }: Props) {
-  const { id, price, brand, images } = product || {};
+  const { id, price, brand, images, model, stock, category, description } = product || {};
 
   const { state, dispatch } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
@@ -56,7 +56,7 @@ export default function ProductIntro({ product }: Props) {
   const handleCartAmountChange = (amount: number) => () => {
     dispatch({
       type: "CHANGE_CART_AMOUNT",
-      payload: { price, qty: amount, name: brand, imgUrl: images[0].imageUrl, id, brand }
+      payload: { price, qty: amount, name: brand, imgUrl: images[0].imageUrl, id, brand, model, stock, images, category, description }
     });
   };
 

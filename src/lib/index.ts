@@ -27,7 +27,7 @@ function renderProductCount(page: number, perPageProduct: number, totalProduct: 
   if (endNumber > totalProduct) {
     endNumber = totalProduct;
   }
-  return `Showing ${startNumber - 1}-${endNumber} of ${totalProduct} products`;
+  return `Prikaz ${startNumber - 1}-${endNumber} od ${totalProduct} proizvoda`;
 }
 
 /**
