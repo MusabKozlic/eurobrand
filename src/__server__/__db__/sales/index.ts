@@ -4,7 +4,8 @@
 // CONTACT US AT support@ui-lib.com
 import axios from "axios";
 
-const url = process.env.URL || "http://localhost:8080";
+//TODO switch this to http://localhost:8080 before using on locale machine
+const url = "www.eurobrand.ba/api";
 
 export const SalesEndpoints = (Mock) => {
 
