@@ -8,10 +8,9 @@ import Container from "@mui/material/Container";
 import Stepper from "./stepper";
 
 const STEPPER_LIST = [
-  { title: "Cart", disabled: false },
-  { title: "Details", disabled: false },
-  { title: "Payment", disabled: false },
-  { title: "Review", disabled: true }
+  { title: "Korpa", disabled: false },
+  { title: "Podaci za narudžbu", disabled: false },
+  { title: "Kraj", disabled: true }
 ];
 
 export default function PageStepper({ children }: PropsWithChildren) {
@@ -29,10 +28,7 @@ export default function PageStepper({ children }: PropsWithChildren) {
         router.push("/checkout");
         break;
       case 2:
-        router.push("/payment");
-        break;
-      case 3:
-        router.push("/orders");
+        router.push("/order");
         break;
       default:
         break;
@@ -47,7 +43,7 @@ export default function PageStepper({ children }: PropsWithChildren) {
       case "/checkout":
         setSelectedStep(2);
         break;
-      case "/payment":
+      case "/order":
         setSelectedStep(3);
         break;
       default:

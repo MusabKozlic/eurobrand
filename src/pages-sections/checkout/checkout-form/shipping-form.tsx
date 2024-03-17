@@ -28,14 +28,16 @@ export default function ShippingForm({
 }: Props) {
   return (
     <Card sx={{ mb: 4, p: 3 }}>
-      <H6 mb={2}>Shipping Address</H6>
+      <H6 mb={2}>Podaci o naručiocu</H6>
 
       <Grid container spacing={6}>
         <Grid item sm={6} xs={12}>
           <TextField
             fullWidth
+            autoComplete="off"
+            required
             sx={{ mb: 2 }}
-            label="Full Name"
+            label="Ime"
             onBlur={handleBlur}
             name="shipping_name"
             onChange={handleChange}
@@ -46,9 +48,11 @@ export default function ShippingForm({
 
           <TextField
             fullWidth
+            autoComplete="off"
+            required
             sx={{ mb: 2 }}
             onBlur={handleBlur}
-            label="Phone Number"
+            label="Broj telefona"
             onChange={handleChange}
             name="shipping_contact"
             value={values.shipping_contact}
@@ -58,9 +62,10 @@ export default function ShippingForm({
 
           <TextField
             fullWidth
-            type="number"
+            autoComplete="off"
+            required
             sx={{ mb: 2 }}
-            label="Zip Code"
+            label="Adresa"
             name="shipping_zip"
             onBlur={handleBlur}
             onChange={handleChange}
@@ -71,7 +76,9 @@ export default function ShippingForm({
 
           <TextField
             fullWidth
-            label="Address 1"
+            autoComplete="off"
+            required
+            label="Poštanski broj"
             onBlur={handleBlur}
             onChange={handleChange}
             name="shipping_address1"
@@ -84,11 +91,12 @@ export default function ShippingForm({
         <Grid item sm={6} xs={12}>
           <TextField
             fullWidth
-            type="email"
+            autoComplete="off"
+            required
             sx={{ mb: 2 }}
             onBlur={handleBlur}
             name="shipping_email"
-            label="Email Address"
+            label="Prezime"
             onChange={handleChange}
             value={values.shipping_email}
             error={!!touched.shipping_email && !!errors.shipping_email}
@@ -97,8 +105,11 @@ export default function ShippingForm({
 
           <TextField
             fullWidth
+            autoComplete="off"
+            required
+            type="email"
             sx={{ mb: 2 }}
-            label="Company"
+            label="Email"
             onBlur={handleBlur}
             onChange={handleChange}
             name="shipping_company"
@@ -107,28 +118,11 @@ export default function ShippingForm({
             helperText={(touched.shipping_company && errors.shipping_company) as string}
           />
 
-          <Autocomplete
-            fullWidth
-            sx={{ mb: 2 }}
-            options={countryList}
-            value={values.shipping_country}
-            getOptionLabel={(option) => option.label}
-            onChange={(_, value) => setFieldValue("shipping_country", value)}
-            renderInput={(params) => (
-              <TextField
-                label="Country"
-                variant="outlined"
-                placeholder="Select Country"
-                error={!!touched.shipping_country && !!errors.shipping_country}
-                helperText={(touched.shipping_country && errors.shipping_country) as string}
-                {...params}
-              />
-            )}
-          />
-
           <TextField
             fullWidth
-            label="Address 2"
+            autoComplete="off"
+            required
+            label="Grad"
             onBlur={handleBlur}
             onChange={handleChange}
             name="shipping_address2"

@@ -76,18 +76,18 @@ export default function CartItem({ id, name, qty, price, imgUrl, slug, brand,
       <FlexBox p={2} rowGap={2} width="100%" flexDirection="column">
         <Link href={`/products/${slug}`}>
           <Span ellipsis fontWeight="600" fontSize={18}>
-            {name}
+            {brand} {name}
           </Span>
         </Link>
 
         {/* PRODUCT PRICE SECTION */}
         <FlexBox gap={1} flexWrap="wrap" alignItems="center">
           <Span color="grey.600">
-            {currency(price)} x {qty}
+            {price}KM x {qty}
           </Span>
 
           <Span fontWeight={600} color="primary.main">
-            {currency(price * qty)}
+            {price * qty}KM
           </Span>
         </FlexBox>
 

@@ -28,18 +28,18 @@ export default function CheckoutForm() {
 
   return (
     <Card sx={{ padding: 3 }}>
-      <FlexBetween mb={2}>
-        <Span color="grey.600">Total:</Span>
+      <FlexBetween mb={2} style={{cursor: "default"}}>
+        <Span color="grey.600">Ukupno:</Span>
 
         <Span fontSize={18} fontWeight={600} lineHeight="1">
-          {currency(getTotalPrice())}
+          {getTotalPrice()}KM
         </Span>
       </FlexBetween>
 
       <Divider sx={{ mb: 2 }} />
 
-      <FlexBox alignItems="center" columnGap={1} mb={2}>
-        <Span fontWeight="600">Additional Comments</Span>
+      <FlexBox alignItems="center" columnGap={1} mb={2} style={{cursor: "default"}}>
+        <Span fontWeight="600">Napomena</Span>
 
         <Span
           p="6px 10px"
@@ -48,7 +48,7 @@ export default function CheckoutForm() {
           borderRadius="3px"
           color="primary.main"
           bgcolor="primary.light">
-          Note
+          Bilješka
         </Span>
       </FlexBox>
 
@@ -57,67 +57,12 @@ export default function CheckoutForm() {
 
       <Divider sx={{ mb: 2 }} />
 
-      {/* APPLY VOUCHER TEXT FIELD */}
-      <TextField fullWidth size="small" label="Voucher" variant="outlined" placeholder="Voucher" />
-
-      <Button variant="outlined" color="primary" fullWidth sx={{ mt: 2, mb: 4 }}>
-        Apply Voucher
-      </Button>
-
       <Divider sx={{ mb: 2 }} />
 
-      <Span fontWeight={600} mb={2} display="block">
-        Shipping Estimates
-      </Span>
-
-      {/* COUNTRY TEXT FIELD */}
-      <Autocomplete
-        fullWidth
-        sx={{ mb: 2 }}
-        options={countryList}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            size="small"
-            label="Country"
-            variant="outlined"
-            placeholder="Select Country"
-          />
-        )}
-      />
-
-      {/* STATE/CITY TEXT FIELD */}
-      <TextField
-        select
-        fullWidth
-        size="small"
-        label="State"
-        variant="outlined"
-        placeholder="Select State"
-        defaultValue="new-york">
-        {STATE_LIST.map(({ label, value }) => (
-          <MenuItem value={value} key={label}>
-            {label}
-          </MenuItem>
-        ))}
-      </TextField>
-
-      {/* ZIP-CODE TEXT FIELD */}
-      <TextField
-        fullWidth
-        size="small"
-        label="Zip Code"
-        placeholder="3100"
-        variant="outlined"
-        sx={{ mt: 2 }}
-      />
-
-      <Button variant="outlined" color="primary" fullWidth sx={{ my: 2 }}>
-        Calculate Shipping
-      </Button>
+      <Button></Button>
 
       <Button fullWidth color="primary" href="/checkout" variant="contained" LinkComponent={Link}>
-        Checkout Now
+        Dalje
       </Button>
     </Card>
   );

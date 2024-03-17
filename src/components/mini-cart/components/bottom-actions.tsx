@@ -11,19 +11,11 @@ interface Props {
 export default function BottomActions({ total, handleNavigate }: Props) {
   return (
     <Box p={2.5}>
+      <div style={{ height: 40, paddingTop: "5%", paddingLeft: "1%", fontWeight: 600, cursor: "default"}} >Ukupno: {total}KM</div>
       <Button
         fullWidth
         color="primary"
         variant="contained"
-        sx={{ mb: "0.75rem", height: "40px" }}
-        onClick={handleNavigate("/checkout-alternative")}>
-        Naruči ({total}KM)
-      </Button>
-
-      <Button
-        fullWidth
-        color="primary"
-        variant="outlined"
         sx={{ height: 40 }}
         onClick={handleNavigate("/cart")}>
         Pogledaj korpu

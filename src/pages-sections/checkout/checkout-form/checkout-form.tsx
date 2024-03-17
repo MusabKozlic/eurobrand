@@ -16,7 +16,7 @@ export default function CheckoutForm() {
   const [sameAsShipping, setSameAsShipping] = useState(false);
 
   const handleFormSubmit = async (values: typeof initialValues) => {
-    router.push("/payment");
+    router.push("/order");
   };
 
   return (
@@ -32,47 +32,38 @@ export default function CheckoutForm() {
         };
 
         return (
-          <form onSubmit={handleSubmit}>
-            <ShippingForm
-              values={values}
-              errors={errors}
-              touched={touched}
-              handleBlur={handleBlur}
-              handleChange={handleChange}
-              setFieldValue={setFieldValue}
-            />
+          <div style={{display: "flex", justifyContent: "center", textAlign:"center"}}>
+            <form onSubmit={handleSubmit} style={{width: "70%"}}>
+              <ShippingForm
+                values={values}
+                errors={errors}
+                touched={touched}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                setFieldValue={setFieldValue}
+              />
 
-            <BillingAddressForm
-              errors={errors}
-              handleBlur={handleBlur}
-              handleChange={handleChange}
-              handleCheckboxChange={handleCheckboxChange}
-              sameAsShipping={sameAsShipping}
-              setFieldValue={setFieldValue}
-              touched={touched}
-              values={values}
-            />
+              <Grid container spacing={6}>
+                <Grid item sm={6} xs={12}>
+                  <Button
+                    LinkComponent={Link}
+                    variant="outlined"
+                    color="primary"
+                    type="button"
+                    href="/cart"
+                    fullWidth>
+                    Povratak na korpu
+                  </Button>
+                </Grid>
 
-            <Grid container spacing={6}>
-              <Grid item sm={6} xs={12}>
-                <Button
-                  LinkComponent={Link}
-                  variant="outlined"
-                  color="primary"
-                  type="button"
-                  href="/cart"
-                  fullWidth>
-                  Back to Cart
-                </Button>
+                <Grid item sm={6} xs={12}>
+                  <Button LinkComponent={Link} variant="contained" color="primary" type="submit" fullWidth>
+                    Pošalji narudžbu
+                  </Button>
+                </Grid>
               </Grid>
-
-              <Grid item sm={6} xs={12}>
-                <Button variant="contained" color="primary" type="submit" fullWidth>
-                  Proceed to Payment
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
+            </form>    
+          </div>
         );
       }}
     </Formik>
