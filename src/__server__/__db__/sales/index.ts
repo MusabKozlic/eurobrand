@@ -4,7 +4,7 @@
 // CONTACT US AT support@ui-lib.com
 import axios from "axios";
 
-const url = process.env.URL || "http://localhost:8080";
+const url = "http://localhost:8080";
 
 export const SalesEndpoints = (Mock) => {
 
