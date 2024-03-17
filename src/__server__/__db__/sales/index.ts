@@ -4,7 +4,7 @@
 // CONTACT US AT support@ui-lib.com
 import axios from "axios";
 
-const url = process.env.NODE_ENV === 'production' ? "https://www.eurobrand.ba" : "http://localhost:8080";
+const url = process.env.NODE_ENV === 'production' ? "https://www.eurobrand.ba/api" : "http://localhost:8080";
 export const SalesEndpoints = (Mock) => {
 
   Mock.onGet("/api/sales-2/categories").reply(async () => {
