@@ -2,6 +2,7 @@ import { cache } from "react";
 import axios from "../../utils/axiosInstance";
 import Product from "models/Product.model";
 import Category from "models/Category.model";
+import OrderDetails from "models/OrderDetails.model";
 
 
 const getCategoriesTwo = cache(async (): Promise<Category[]> => {
@@ -16,4 +17,12 @@ const getProducts = cache(async (page: number = 1): Promise<Product[]> => {
   return products;
 });
 
-export default { getProducts, getCategoriesTwo };
+const saveOrderDetails = cache(async (order: OrderDetails): Promise<OrderDetails> => {
+  console.log("step 3");
+  const products = (await axios.get("/api/sales-2/save-order")).data;
+
+  // @ts-ignore
+  return products;
+});
+
+export default { getProducts, getCategoriesTwo, saveOrderDetails };

@@ -15,16 +15,25 @@ import { FlexBetween, FlexBox } from "components/flex-box";
 import countryList from "data/countryList";
 // CUSTOM UTILS LIBRARY FUNCTION
 import { currency } from "lib";
+import { useState } from "react";
+import useOrderDetails from "hooks/orderContext";
 
 export default function CheckoutForm() {
   const { state } = useCart();
+  const [noteText, setNoteText] = useState<string>();
+  const { setNote } = useOrderDetails();
+  const { setTotalPrice } = useOrderDetails();
 
   const getTotalPrice = () => state.cart.reduce((acc, item) => acc + item.price * item.qty, 0);
 
-  const STATE_LIST = [
-    { value: "new-york", label: "New York" },
-    { value: "chicago", label: "Chicago" }
-  ];
+  const handleChangeNote = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNoteText(event.target.value);
+  };
+
+  const handleSaveNote = () => {
+    setTotalPrice(getTotalPrice);
+    setNote(noteText);
+  };
 
   return (
     <Card sx={{ padding: 3 }}>
@@ -53,7 +62,7 @@ export default function CheckoutForm() {
       </FlexBox>
 
       {/* COMMENTS TEXT FIELD */}
-      <TextField variant="outlined" rows={6} fullWidth multiline />
+      <TextField onInput={handleChangeNote} value={noteText} variant="outlined" rows={6} fullWidth multiline />
 
       <Divider sx={{ mb: 2 }} />
 
@@ -61,7 +70,7 @@ export default function CheckoutForm() {
 
       <Button></Button>
 
-      <Button fullWidth color="primary" href="/checkout" variant="contained" LinkComponent={Link}>
+      <Button onClick={handleSaveNote} fullWidth color="primary" href="/checkout" variant="contained" LinkComponent={Link}>
         Dalje
       </Button>
     </Card>

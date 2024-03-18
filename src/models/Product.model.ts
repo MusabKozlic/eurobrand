@@ -2,7 +2,7 @@ import Category from "./Category.model";
 import Images from "./Images.model";
 
 interface Product {
-  id: string;
+  id: number;
   brand?: string;
   model: string;
   description: string;

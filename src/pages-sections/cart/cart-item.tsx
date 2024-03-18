@@ -25,7 +25,7 @@ type Props = {
   slug: string;
   price: number;
   imgUrl?: string;
-  id: string | number;
+  id: number;
   brand: string;
   model: string;
   stock: number;

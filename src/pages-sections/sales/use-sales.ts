@@ -4,6 +4,7 @@ import Category from "models/Category.model";
 import Product from "models/Product.model";
 // SALES API FUNCTIONS
 import api from "utils/__api__/sales";
+import OrderDetails from "models/OrderDetails.model";
 
 export default function useSales(defaultSelectCategory = "racunari", fetchCategory = 0) {
   const PRODUCT_PER_PAGE = 28;
@@ -20,6 +21,11 @@ export default function useSales(defaultSelectCategory = "racunari", fetchCatego
   const handleCategoryChange = (category: string) => () => {
     setSelectedCategory(category)
   };
+
+  const handleSaveOrder = (order: OrderDetails) => () => {
+    console.log("step 2");
+    api.saveOrderDetails(order);
+  }
 
   // FETCH CATEGORIES FROM SERVER
   useEffect(() => {
@@ -40,6 +46,7 @@ export default function useSales(defaultSelectCategory = "racunari", fetchCatego
     selectedCategory,
     PRODUCT_PER_PAGE,
     handlePageChange,
-    handleCategoryChange
+    handleCategoryChange,
+    handleSaveOrder
   };
 }

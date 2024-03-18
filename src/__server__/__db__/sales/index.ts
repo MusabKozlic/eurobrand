@@ -26,4 +26,16 @@ export const SalesEndpoints = (Mock) => {
       return [500, { message: "Internal server error" }];
     }
   });
+
+  Mock.onGet("/api/sales-2/save-order").reply(async (config) => {
+    console.log("step 4");
+    try {
+      const orderDetails = JSON.parse(config.data); // Assuming data is passed in the request body
+      const response = await axios.post(url + "/orders", orderDetails);
+      return [response.status, response.data];
+    } catch (err) {
+      console.error(err);
+      return [500, { message: "Internal server error" }];
+    }
+  });
 }

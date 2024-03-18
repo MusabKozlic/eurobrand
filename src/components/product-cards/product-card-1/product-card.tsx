@@ -28,7 +28,7 @@ type Props = {
   slug: string;
   price: number;
   imgUrl: string;
-  id: string;
+  id: number;
   hideRating?: boolean;
   hoverEffect?: boolean;
   showProductSize?: boolean;

@@ -15,6 +15,7 @@ import ProgressBar from "components/progress";
 
 // IMPORT i18n SUPPORT FILE
 import "i18n";
+import OrderProvider from "contexts/OrderContext";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -22,10 +23,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={openSans.className}>
         <CartProvider>
           <SettingsProvider>
+            <OrderProvider>
             <ThemeProvider>
               <ProgressBar />
               <RTL>{children}</RTL>
             </ThemeProvider>
+            </OrderProvider>
           </SettingsProvider>
         </CartProvider>
       </body>

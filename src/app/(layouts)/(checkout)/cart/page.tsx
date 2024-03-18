@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { CartPageView } from "pages-sections/cart/page-view";
-
 export const metadata: Metadata = {
   title: "Cart - Bazaar Next.js E-commerce Template",
   description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
