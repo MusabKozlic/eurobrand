@@ -23,7 +23,6 @@ export default function useSales(defaultSelectCategory = "racunari", fetchCatego
   };
 
   const handleSaveOrder = (order: OrderDetails) => () => {
-    console.log("step 2");
     api.saveOrderDetails(order);
   }
 

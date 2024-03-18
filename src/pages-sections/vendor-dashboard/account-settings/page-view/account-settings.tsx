@@ -35,7 +35,7 @@ const AccountSettingsPageView = () => {
   };
 
   const handleFormSubmit = async (values: typeof INITIAL_VALUES) => {
-    console.log(values.city);
+   
   };
 
   return (

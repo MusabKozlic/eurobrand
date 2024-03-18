@@ -18,7 +18,6 @@ const ProductCreatePageView = () => {
   };
 
   const handleFormSubmit = (values: typeof INITIAL_VALUES) => {
-    console.log(values);
   };
 
   return (

@@ -28,7 +28,6 @@ export const SalesEndpoints = (Mock) => {
   });
 
   Mock.onGet("/api/sales-2/save-order").reply(async (config) => {
-    console.log("step 4");
     try {
       const orderDetails = JSON.parse(config.data); // Assuming data is passed in the request body
       const response = await axios.post(url + "/orders", orderDetails);

@@ -37,7 +37,6 @@ const BannerSlider = () => {
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(e);
   };
 
   const deleteNewImage = (name: string) => {

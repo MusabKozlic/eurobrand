@@ -33,7 +33,6 @@ export default function ProfileEditForm({ user }: Props) {
   });
 
   const handleFormSubmit = async (values: typeof INITIAL_VALUES) => {
-    console.log(values);
   };
 
   return (

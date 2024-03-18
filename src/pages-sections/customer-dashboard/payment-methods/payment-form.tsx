@@ -22,7 +22,6 @@ export default function PaymentForm() {
   });
 
   const handleFormSubmit = async (values: typeof INITIAL_VALUES) => {
-    console.log(values);
   };
 
   return (

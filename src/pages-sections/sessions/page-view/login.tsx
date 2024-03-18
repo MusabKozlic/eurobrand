@@ -32,7 +32,6 @@ const LoginPageView = ({ closeDialog }: Props) => {
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      console.log(values);
       closeDialog?.();
     }
   });

@@ -25,7 +25,6 @@ export default function AddressForm({ address }: Props) {
 
   // HANDLE FORM SUBMIT
   const handleSubmit = async (values: typeof INITIAL_VALUES) => {
-    console.log(values);
   };
 
   return (

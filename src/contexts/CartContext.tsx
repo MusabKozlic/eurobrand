@@ -22,6 +22,10 @@ export type CartItem = {
   description: string;
 };
 
+type ClearCartActionType = {
+  type: "CLEAR_CART";
+};
+
 type CartActionType = {
   type: "CHANGE_CART_AMOUNT";
   payload: CartItem;
@@ -29,21 +33,23 @@ type CartActionType = {
 
 // =================================================================================
 
-const INITIAL_CART = [
-];
+const INITIAL_CART = [];
 
 const INITIAL_STATE = { cart: INITIAL_CART };
 
 // ==============================================================
 interface ContextProps {
   state: InitialState;
-  dispatch: (args: CartActionType) => void;
+  dispatch: (args: CartActionType | ClearCartActionType) => void;
 }
 // ==============================================================
 
 export const CartContext = createContext<ContextProps>({} as ContextProps);
 
-const reducer = (state: InitialState, action: CartActionType) => {
+const reducer = (
+  state: InitialState,
+  action: CartActionType | ClearCartActionType
+) => {
   switch (action.type) {
     case "CHANGE_CART_AMOUNT":
       let cartList = state.cart;
@@ -66,6 +72,9 @@ const reducer = (state: InitialState, action: CartActionType) => {
 
       return { ...state, cart: [...cartList, cartItem] };
 
+    case "CLEAR_CART":
+      return { ...state, cart: [] };
+
     default: {
       return state;
     }
@@ -77,5 +86,7 @@ export default function CartProvider({ children }: PropsWithChildren) {
 
   const contextValue = useMemo(() => ({ state, dispatch }), [state, dispatch]);
 
-  return <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
+  );
 }

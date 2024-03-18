@@ -55,7 +55,6 @@ const RegisterPageView = () => {
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      console.log(values);
     }
   });
 

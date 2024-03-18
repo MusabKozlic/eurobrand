@@ -10,12 +10,61 @@ import countryList from "data/countryList";
 // LOCAL CUSTOM COMPONENTS
 import ShippingForm from "./shipping-form";
 import BillingAddressForm from "./billing-address-form";
+import OrderDetails from "models/OrderDetails.model";
+import axios from "axios";
+import useOrderDetails from "hooks/orderContext";
+import useCart from "hooks/useCart";
 
 export default function CheckoutForm() {
+  const url = process.env.NODE_ENV === 'production' ? "https://www.eurobrand.ba/api" : "http://localhost:8080";
   const router = useRouter();
   const [sameAsShipping, setSameAsShipping] = useState(false);
+  const { state, dispatch } = useCart();
+  const { firstName, lastName, phoneNumber, address, postalCode, email, city, note, totalPrice } = useOrderDetails();
+
+    const handleSaveOrder = async (order: OrderDetailsBody) => {
+      const response = (await axios.post(url + "/orders", order)).data;
+    }
+
+    interface ProductBody {
+      productId: number;
+      quantity: number;
+    }
+
+    interface OrderDetailsBody {
+      order: OrderDetails;
+      products: ProductBody[];
+    }
+
+    const handleSave = () => {
+      const newOrder: OrderDetails = {
+        firstName,
+        lastName,
+        phoneNumber,
+        address,
+        postalCode,
+        email,
+        city,
+        note,
+        totalPrice
+      };
+
+      const products: ProductBody[] = state.cart.map(item => ({
+        productId: item.id,
+        quantity: item.qty,
+      }));
+      
+      const orderBody : OrderDetailsBody = {
+        order: newOrder,
+        products: products
+      }
+  
+      handleSaveOrder(orderBody); // Assuming handleSaveOrder exists and you pass the new order to it
+    };
 
   const handleFormSubmit = async (values: typeof initialValues) => {
+    handleSave();
+    dispatch({ type: "CLEAR_CART" });
     router.push("/order");
   };
 

@@ -18,7 +18,6 @@ const getProducts = cache(async (page: number = 1): Promise<Product[]> => {
 });
 
 const saveOrderDetails = cache(async (order: OrderDetails): Promise<OrderDetails> => {
-  console.log("step 3");
   const products = (await axios.get("/api/sales-2/save-order")).data;
 
   // @ts-ignore
