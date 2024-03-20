@@ -21,6 +21,7 @@ import { Button, Typography } from "@mui/material";
 import Images from "models/Images.model";
 import Category from "models/Category.model";
 import { useState } from "react";
+import ProductStatus from "models/ProductStatus.model";
 
 // ========================================================
 type Props = {
@@ -39,6 +40,7 @@ type Props = {
   images: Images[];
   category: Category;
   name: string;
+  productStatus: ProductStatus;
 };
 // ========================================================
 
@@ -56,7 +58,8 @@ export default function ProductCard1({
   stock,
   images,
   category,
-  name
+  name,
+  productStatus
 }: Props) {
   const { isFavorite, openModal, cartItem, toggleFavorite, handleCartAmountChange } =
     useProduct(slug);
@@ -125,7 +128,8 @@ export default function ProductCard1({
           price,
           title,
           slug,
-          name
+          name,
+          productStatus
         }}
       />
     )}
@@ -151,7 +155,9 @@ export default function ProductCard1({
           price,
           title,
           slug,
-          name }}
+          name,
+          productStatus
+         }}
       />
 
       <ContentWrapper style={{cursor: "pointer"}}>

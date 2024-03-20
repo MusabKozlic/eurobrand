@@ -110,7 +110,7 @@ export default function ProductViewDialog(props: Props) {
               <H1 color="primary.main">{product.price}KM</H1>
 
               <Paragraph py={1} color="grey.500" fontWeight={600} fontSize={13}>
-                STANJE: 
+                STANJE: {product.productStatus.status}
               </Paragraph>
 
               <Paragraph my={2}>{product.description}</Paragraph>

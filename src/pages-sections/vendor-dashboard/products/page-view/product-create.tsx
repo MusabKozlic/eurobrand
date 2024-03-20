@@ -5,19 +5,34 @@ import Box from "@mui/material/Box";
 import { H3 } from "components/Typography";
 // Local CUSTOM COMPONENT
 import ProductForm from "../product-form";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import Cookies from 'js-cookie';
 
 const ProductCreatePageView = () => {
+
+  const router = useRouter();
+
+  useEffect(() => {
+    // Retrieve user information from cookie
+    const userCookie = Cookies.get('user');
+    if (!userCookie) {
+      router.push("/login/api/auth/login")
+    }
+  }, []);
+
   const INITIAL_VALUES = {
-    name: "",
-    tags: "",
-    stock: "",
+    brand: "",
+    model: "",
+    status: "",
+    stock: 0,
     price: "",
-    category: [],
-    sale_price: "",
+    category: "",
     description: "",
   };
 
   const handleFormSubmit = (values: typeof INITIAL_VALUES) => {
+    console.log(values);
   };
 
   return (

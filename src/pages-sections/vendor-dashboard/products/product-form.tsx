@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -12,16 +12,18 @@ import DropZone from "components/DropZone";
 import { FlexBox } from "components/flex-box";
 // STYLED COMPONENTS
 import { UploadImageBox, StyledClear } from "../styles";
+import api from "utils/__api__/sales";
+import Category from "models/Category.model";
 
 // FORM FIELDS VALIDATION SCHEMA
 const VALIDATION_SCHEMA = yup.object().shape({
-  name: yup.string().required("Name is required!"),
-  category: yup.array().min(1).required("Category is required!"),
+  brand: yup.string().required("Brand is required!"),
+  model: yup.string().required("Model is required!"),
+  category: yup.string().required("Category is required!"),
   description: yup.string().required("Description is required!"),
   stock: yup.number().required("Stock is required!"),
   price: yup.number().required("Price is required!"),
-  sale_price: yup.number().optional(),
-  tags: yup.string().required("Tags is required!"),
+  status: yup.string().required("Status is required!"),
 });
 
 // ================================================================
@@ -33,13 +35,17 @@ interface Props {
 
 const ProductForm: FC<Props> = (props) => {
   const { initialValues, handleFormSubmit } = props;
-
+  const [categories, setCategories] = useState<Category[]>([]);
   const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    api.getCategoriesTwo().then((data) => setCategories(data));
+  }, []);
 
   // HANDLE UPDATE NEW IMAGE VIA DROP ZONE
   const handleChangeDropZone = (files: File[]) => {
     files.forEach((file) =>
-      Object.assign(file, { preview: URL.createObjectURL(file) }),
+      Object.assign(file, { preview: URL.createObjectURL(file) })
     );
     setFiles(files);
   };
@@ -66,14 +72,14 @@ const ProductForm: FC<Props> = (props) => {
         }) => (
           <form onSubmit={handleSubmit}>
             <Grid container spacing={3}>
-              <Grid item sm={6} xs={12}>
+              <Grid item sm={4} xs={12}>
                 <TextField
                   fullWidth
-                  name="name"
-                  label="Name"
+                  name="brand"
+                  label="Brand"
                   color="info"
                   size="medium"
-                  placeholder="Name"
+                  placeholder="Brand"
                   value={values.name}
                   onBlur={handleBlur}
                   onChange={handleChange}
@@ -82,24 +88,44 @@ const ProductForm: FC<Props> = (props) => {
                 />
               </Grid>
 
-              <Grid item sm={6} xs={12}>
+              <Grid item sm={4} xs={12}>
                 <TextField
-                  select
                   fullWidth
+                  name="model"
+                  label="Model"
                   color="info"
                   size="medium"
-                  name="category"
+                  placeholder="Model"
+                  value={values.name}
                   onBlur={handleBlur}
-                  placeholder="Category"
                   onChange={handleChange}
-                  value={values.category}
-                  label="Select Category"
-                  SelectProps={{ multiple: true }}
+                  error={!!touched.name && !!errors.name}
+                  helperText={(touched.name && errors.name) as string}
+                />
+              </Grid>
+
+              <Grid item sm={4} xs={12}>
+              <TextField
+                  select
+                  fullWidth
+                  name="category"
+                  label="Category"
+                  color="info"
+                  size="medium"
+                  placeholder="Category"
+                  onBlur={handleBlur}
+                  value={values.category || ""} // Use default value if values.tags is undefined
+                  onChange={handleChange}
                   error={!!touched.category && !!errors.category}
                   helperText={(touched.category && errors.category) as string}
                 >
-                  <MenuItem value="electronics">Electronics</MenuItem>
-                  <MenuItem value="fashion">Fashion</MenuItem>
+                  <MenuItem value={8}>Racunari</MenuItem>
+                  <MenuItem value={9}>Laptopi</MenuItem>
+                  <MenuItem value={10}>Konzole</MenuItem>
+                  <MenuItem value={11}>Mobiteli</MenuItem>
+                  <MenuItem value={12}>Monitori</MenuItem>
+                  <MenuItem value={13}>Racunarska oprema</MenuItem>
+                  <MenuItem value={14}>Printeri</MenuItem>
                 </TextField>
               </Grid>
 
@@ -156,21 +182,25 @@ const ProductForm: FC<Props> = (props) => {
 
               <Grid item sm={6} xs={12}>
                 <TextField
+                  select
                   fullWidth
-                  name="tags"
-                  label="Tags"
+                  name="status"
+                  label="Status"
                   color="info"
                   size="medium"
-                  placeholder="Tags"
+                  placeholder="Status"
                   onBlur={handleBlur}
-                  value={values.tags}
+                  value={values.status || ""} // Use default value if values.tags is undefined
                   onChange={handleChange}
-                  error={!!touched.tags && !!errors.tags}
-                  helperText={(touched.tags && errors.tags) as string}
-                />
+                  error={!!touched.status && !!errors.status}
+                  helperText={(touched.status && errors.status) as string}
+                >
+                  <MenuItem value={1}>Novo</MenuItem>
+                  <MenuItem value={2}>Polovno</MenuItem>
+                </TextField>
               </Grid>
 
-              <Grid item sm={6} xs={12}>
+              <Grid item sm={6} xs={6}>
                 <TextField
                   fullWidth
                   name="price"
@@ -181,32 +211,13 @@ const ProductForm: FC<Props> = (props) => {
                   value={values.price}
                   label="Regular Price"
                   onChange={handleChange}
-                  placeholder="Regular Price"
+                  placeholder="Regular Price in KM, enter only value"
                   error={!!touched.price && !!errors.price}
                   helperText={(touched.price && errors.price) as string}
                 />
               </Grid>
 
-              <Grid item sm={6} xs={12}>
-                <TextField
-                  fullWidth
-                  color="info"
-                  size="medium"
-                  type="number"
-                  name="sale_price"
-                  label="Sale Price"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  placeholder="Sale Price"
-                  value={values.sale_price}
-                  error={!!touched.sale_price && !!errors.sale_price}
-                  helperText={
-                    (touched.sale_price && errors.sale_price) as string
-                  }
-                />
-              </Grid>
-
-              <Grid item sm={6} xs={12}>
+              <Grid item sm={12} xs={12}>
                 <Button variant="contained" color="info" type="submit">
                   Save product
                 </Button>

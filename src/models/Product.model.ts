@@ -1,5 +1,6 @@
 import Category from "./Category.model";
 import Images from "./Images.model";
+import ProductStatus from "./ProductStatus.model";
 
 interface Product {
   id: number;
@@ -13,6 +14,7 @@ interface Product {
   name: string;
   slug: string;
   title: string;
+  productStatus: ProductStatus;
 }
 
 export default Product;

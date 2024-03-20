@@ -32,6 +32,7 @@
     "dotenv": "^16.4.5",
     "formik": "^2.4.5",
     "i18next": "^23.8.1",
+    "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "next": "14.1.0",
     "next-i18next": "^15.2.0",
@@ -55,6 +56,7 @@
   },
   "devDependencies": {
     "@types/auth0-js": "^9.21.5",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "20.11.10",
     "@types/nprogress": "^0.2.3",
     "@types/react": "18.2.48",

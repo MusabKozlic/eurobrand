@@ -21,36 +21,28 @@ import {
 
 // ========================================================================
 interface Product {
-  id: string;
+  id: number;
   slug: string;
   name: string;
   price: number;
   brand: string;
   image: string;
   category: string;
-  published: boolean;
 }
 
 type Props = { product: Product };
 // ========================================================================
 
 const ProductRow: FC<Props> = ({ product }) => {
-  const { category, name, price, image, brand, id, published, slug } =
+  const { category, name, price, image, brand, id, slug } =
     product || {};
 
   const router = useRouter();
-  const [productPublish, setProductPublish] = useState(published);
-
   return (
     <StyledTableRow tabIndex={-1} role="checkbox">
       <StyledTableCell align="left">
         <FlexBox alignItems="center" gap={1.5}>
           <Avatar alt={name} src={image} sx={{ borderRadius: 2 }} />
-
-          <div>
-            <Paragraph fontWeight={600}>{name}</Paragraph>
-            <Small color="grey.600">#{id.split("-")[0]}</Small>
-          </div>
         </FlexBox>
       </StyledTableCell>
 
@@ -66,14 +58,6 @@ const ProductRow: FC<Props> = ({ product }) => {
       </StyledTableCell>
 
       <StyledTableCell align="left">{currency(price)}</StyledTableCell>
-
-      <StyledTableCell align="left">
-        <BazaarSwitch
-          color="info"
-          checked={productPublish}
-          onChange={() => setProductPublish((state) => !state)}
-        />
-      </StyledTableCell>
 
       <StyledTableCell align="center">
         <StyledIconButton
