@@ -17,7 +17,7 @@ import DiscountChip from "../discount-chip";
 import QuantityButtons from "./components/quantity-buttons";
 // STYLED COMPONENTS
 import { ImageWrapper, ContentWrapper, StyledBazaarCard } from "./styles";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import Images from "models/Images.model";
 import Category from "models/Category.model";
 import { useState } from "react";
@@ -86,7 +86,9 @@ export default function ProductCard1({
       category,
       description
     };
-    handleCartAmountChange(product);
+    if((cartItem?.qty || 0) < product.stock) {
+      handleCartAmountChange(product);
+    }
   };
 
   const handleDecrementQuantity = () => {
@@ -131,7 +133,7 @@ export default function ProductCard1({
       <ImageWrapper onClick={openProductDialog}>
         {/* PRODUCT IMAGE / THUMBNAIL */}
         <div>
-          <LazyImage priority src={`/${imgUrl}`} width={500} height={500} alt={title} />
+          <LazyImage priority src={`${imgUrl}`} width={500} height={500} alt={title} />
         </div>
       </ImageWrapper>
 
@@ -168,13 +170,21 @@ export default function ProductCard1({
 
           {/* PRODUCT PRICE WITH DISCOUNT */}
           <ProductPrice price={price} />
+          {stock <= 0 ? <Button 
+                        variant="contained" 
+                        disabled
+                        >
+          Nema na stanju
+          </Button> : ""}
         </Box>
         {/* PRODUCT QUANTITY HANDLER BUTTONS */}
-        <QuantityButtons
+        {stock > 0 &&  <QuantityButtons
           quantity={cartItem?.qty || 0}
+          stock = {stock}
           handleIncrement={handleIncrementQuantity}
           handleDecrement={handleDecrementQuantity}
-        />
+        />}
+       
       </ContentWrapper>
     </StyledBazaarCard>
     </>

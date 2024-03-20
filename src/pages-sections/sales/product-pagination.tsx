@@ -23,7 +23,7 @@ export default function ProductPagination({
 }: Props) {
   return (
     <FlexBetween flexWrap="wrap" my={8}>
-      <Span>{renderProductCount(page, perPage, totalProducts)}</Span>
+      <Span style={{cursor: "default"}}>{renderProductCount(page, perPage, totalProducts)}</Span>
 
       <Pagination
         page={page}

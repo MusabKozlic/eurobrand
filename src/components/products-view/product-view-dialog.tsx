@@ -61,7 +61,7 @@ export default function ProductViewDialog(props: Props) {
       sx={{ zIndex: 1501 }}
     >
       <DialogContent sx={{ maxWidth: 900, width: "100%" }}>
-        <div>
+        <div style={{cursor: "default"}}>
           <Grid container spacing={3}>
             <Grid item md={6} xs={12}>
               {/* Carousel component */}
@@ -110,14 +110,14 @@ export default function ProductViewDialog(props: Props) {
               <H1 color="primary.main">{product.price}KM</H1>
 
               <Paragraph py={1} color="grey.500" fontWeight={600} fontSize={13}>
-                STANJE:
+                STANJE: 
               </Paragraph>
 
               <Paragraph my={2}>{product.description}</Paragraph>
 
               <Divider sx={{ mb: 2 }} />
 
-              {!cartItem?.qty ? (
+              {!cartItem?.qty && product.stock > 0 && (
                 <Button
                   size="large"
                   color="primary"
@@ -127,7 +127,18 @@ export default function ProductViewDialog(props: Props) {
                 >
                   Dodaj u korpu
                 </Button>
-              ) : (
+              )}
+
+              {product.stock === 0 &&
+              <Button 
+                variant="contained" 
+                disabled
+              >
+                Nema na stanju
+              </Button>
+              }
+
+            {cartItem?.qty > 0 ?            
                 <FlexBox alignItems="center">
                   <Button
                     size="small"
@@ -143,17 +154,26 @@ export default function ProductViewDialog(props: Props) {
                     {cartItem?.qty.toString().padStart(2, "0")}
                   </H3>
 
-                  <Button
-                    size="small"
-                    color="primary"
-                    variant="outlined"
-                    sx={{ p: ".6rem", height: 45 }}
-                    onClick={handleCartAmountChange(cartItem?.qty + 1)}
-                  >
-                    <Add fontSize="small" />
-                  </Button>
+                  { cartItem?.qty  == cartItem.stock ?
+                    <Button 
+                      variant="contained" 
+                      disabled
+                      style={{width: "50px", height: "50px", fontSize: "8px", fontWeight: "bold"}}
+                    >
+                    Maksimum
+                    </Button> : 
+                    <Button
+                      size="small"
+                      color="primary"
+                      variant="outlined"
+                      sx={{ p: ".6rem", height: 45 }}
+                      onClick={handleCartAmountChange(cartItem?.qty + 1)}
+                    >          
+                      <Add fontSize="small" />
+                    </Button>
+                  }
                 </FlexBox>
-              )}
+            : ""}
             </Grid>
           </Grid>
         </div>

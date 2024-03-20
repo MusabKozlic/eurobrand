@@ -74,14 +74,14 @@ export default function CartItem({ id, name, qty, price, imgUrl, slug, brand,
       </IconButton>
 
       <FlexBox p={2} rowGap={2} width="100%" flexDirection="column">
-        <Link href={`/products/${slug}`}>
+        <div style={{cursor: "default"}}>
           <Span ellipsis fontWeight="600" fontSize={18}>
             {brand} {name}
           </Span>
-        </Link>
+        </div>
 
         {/* PRODUCT PRICE SECTION */}
-        <FlexBox gap={1} flexWrap="wrap" alignItems="center">
+        <FlexBox gap={1} flexWrap="wrap" alignItems="center" style={{cursor: "default"}}>
           <Span color="grey.600">
             {price}KM x {qty}
           </Span>
@@ -92,7 +92,7 @@ export default function CartItem({ id, name, qty, price, imgUrl, slug, brand,
         </FlexBox>
 
         {/* PRODUCT QUANTITY INC/DEC BUTTONS */}
-        <FlexBox alignItems="center">
+        <FlexBox alignItems="center" style={{cursor: "default"}}>
           <Button
             color="primary"
             sx={{ p: "5px" }}
@@ -106,13 +106,25 @@ export default function CartItem({ id, name, qty, price, imgUrl, slug, brand,
             {qty}
           </Span>
 
-          <Button
-            color="primary"
-            sx={{ p: "5px" }}
-            variant="outlined"
-            onClick={handleCartAmountChange(qty + 1)}>
-            <Add fontSize="small" />
-          </Button>
+          { qty  == stock ?
+            <Button 
+              variant="contained" 
+              disabled
+              style={{width: "50px", height: "50px", fontSize: "8px", fontWeight: "bold"}}
+            >
+              Maksimum
+            </Button> : 
+            <Button
+              size="small"
+              color="primary"
+              variant="outlined"
+              sx={{ p: "5px" }}
+              onClick={handleCartAmountChange(qty + 1)}
+            >          
+              <Add fontSize="small" />
+            </Button>
+          }
+
         </FlexBox>
       </FlexBox>
     </Wrapper>

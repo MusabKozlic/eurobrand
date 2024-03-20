@@ -10,24 +10,34 @@ import { Paragraph } from "components/Typography";
 // ==============================================================
 interface Props {
   quantity: number;
+  stock: number;
   handleDecrement: () => void;
   handleIncrement: () => void;
 }
 // ==============================================================
 
 export default function QuantityButtons(props: Props) {
-  const { quantity, handleDecrement, handleIncrement } = props || {};
+  const { quantity, handleDecrement, handleIncrement, stock } = props || {};
 
   return (
-    <FlexBox
+    <FlexBox style={{cursor: "default"}}
       width="30px"
       alignItems="center"
       className="add-cart"
       flexDirection="column-reverse"
       justifyContent={quantity ? "space-between" : "flex-start"}>
-      <Button color="primary" variant="outlined" onClick={handleIncrement} sx={{ padding: "3px" }}>
-        <Add fontSize="small" />
-      </Button>
+      { quantity == stock ?
+        <Button 
+          variant="contained" 
+          disabled
+          style={{width: "50px", height: "50px", fontSize: "8px", fontWeight: "bold"}}
+        >
+        Maksimum
+        </Button> : 
+        <Button color="primary" variant="outlined" onClick={handleIncrement} sx={{ padding: "3px" }}>
+          <Add fontSize="small" />
+        </Button>
+      }
 
       {quantity ? (
         <Fragment>

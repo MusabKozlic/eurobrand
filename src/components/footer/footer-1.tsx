@@ -31,7 +31,6 @@ export default function Footer1() {
           
           {/* MAP */}
           <Grid item lg={4} md={6} sm={6} xs={12}>
-            <MyMap/>
           </Grid>
         </Grid>
       </Box>

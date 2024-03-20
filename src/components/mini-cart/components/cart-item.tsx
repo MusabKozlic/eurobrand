@@ -31,16 +31,25 @@ export default function MiniCartItem({ item, handleCartAmountChange }: Props) {
       alignItems="center"
       borderBottom="1px solid"
       borderColor="divider">
-      <FlexBox alignItems="center" flexDirection="column">
-        <Button
+      <FlexBox alignItems="center" flexDirection="column" style={{cursor: "default"}}>
+        {item.qty < item.stock ?
+          <Button
           size="small"
           color="primary"
           variant="outlined"
           onClick={handleCartAmountChange(item.qty + 1, item)}
           sx={{ height: 28, width: 28, borderRadius: 50 }}>
           <Add fontSize="small" />
-        </Button>
-
+          </Button> : 
+          <Button 
+          variant="contained" 
+          disabled
+          style={{width: "50px", height: "50px", fontSize: "8px", fontWeight: "bold"}}
+          >
+          Maksimum
+          </Button>
+        }
+        
         <H6 my="3px">{item.qty}</H6>
 
         <Button
@@ -54,16 +63,16 @@ export default function MiniCartItem({ item, handleCartAmountChange }: Props) {
         </Button>
       </FlexBox>
 
-      <Link href={`/products/${item.id}`} style={{cursor: "default"}}>
+      <div style={{cursor: "default"}}>
         <Avatar alt={item.model} src={item.images[0].imageUrl} sx={{ mx: 1, width: 75, height: 75 }} />
-      </Link>
+      </div>
 
       <Box flex="1" textOverflow="ellipsis" whiteSpace="nowrap" overflow="hidden" style={{cursor: "default"}}>
-        <Link href={`/products/${item.slug}`}>
+        <div>
           <H6 ellipsis className="title" style={{cursor: "default"}}>
             {item.brand} {item.model}
           </H6>
-        </Link>
+        </div>
 
         <Tiny color="grey.600">
           {item.price}KM x {item.qty}

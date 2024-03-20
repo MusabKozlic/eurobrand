@@ -14,6 +14,7 @@ import Scrollbar from "components/scrollbar";
 import { currency } from "lib";
 // CUSTOM DATA MODEL
 import { CartItem } from "contexts/CartContext";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 // =========================================================
 type Props = { toggleSidenav: () => void };
@@ -25,6 +26,7 @@ export default function MiniCart({ toggleSidenav }: Props) {
   const cartList = state.cart;
 
   const handleCartAmountChange = (amount: number, product: CartItem) => () => {
+    console.log(amount)
     dispatch({
       type: "CHANGE_CART_AMOUNT",
       payload: { ...product, qty: amount }
