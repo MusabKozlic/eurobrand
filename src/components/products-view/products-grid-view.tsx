@@ -31,6 +31,7 @@ export default function ProductsGridView({ products }: Props) {
             images={item.images}
             category={item.category}
             name={item.name}
+            productStatus={item.productStatus}
           />
           </Grid>
         ))}

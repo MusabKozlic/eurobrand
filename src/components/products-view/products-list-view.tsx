@@ -15,20 +15,21 @@ export default function ProductsListView({ products }: Props) {
     <div>
       {products.map((item) => (
         <ProductCard1
-        key={item.id}
-        id={item.id}
-        slug={item.images[0]?.imageUrl}
-        title={item.model}
-        price={item.price}
-        imgUrl={item.images[0]?.imageUrl}
-        description={item.description}
-        brand={item.brand}
-        model={item.model}
-            stock={item.stock}
-            images={item.images}
-            category={item.category}
-            name={item.name}
-      />
+          key={item.id}
+          id={item.id}
+          slug={item.images[0]?.imageUrl}
+          title={item.model}
+          price={item.price}
+          imgUrl={item.images[0]?.imageUrl}
+          description={item.description}
+          brand={item.brand}
+          model={item.model}
+          stock={item.stock}
+          images={item.images}
+          category={item.category}
+          name={item.name}
+          productStatus={item.productStatus}
+        />
       ))}
 
       <FlexBetween flexWrap="wrap" mt={4}>
