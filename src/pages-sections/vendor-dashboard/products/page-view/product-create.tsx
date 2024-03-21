@@ -19,7 +19,7 @@ const ProductCreatePageView = () => {
     if (!userCookie) {
       router.push("/login/api/auth/login")
     }
-  }, []);
+  }, [router]);
 
   const INITIAL_VALUES = {
     brand: "",

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
@@ -18,6 +18,8 @@ import SearchArea from "../../search-box";
 // CUSTOM DATA MODEL
 import Product from "models/Product.model";
 import ProductTable from "./product-table";
+import { useRouter } from "next/navigation";
+import Cookies from 'js-cookie';
 
 // TABLE HEADING DATA LIST
 const tableHeading = [
@@ -34,6 +36,16 @@ type Props = { products: Product[] };
 
 const ProductsPageView = ({ products }: Props) => {
   const [productList, setProductList] = useState([...products]);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    // Retrieve user information from cookie
+    const userCookie = Cookies.get('user');
+    if (!userCookie) {
+      router.push("/login/api/auth/login")
+    }
+  }, [router]);
 
   return (
     <Box py={4}>
