@@ -17,6 +17,6 @@
     "plugins": [{ "name": "next" }],
     "baseUrl": "./src"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/myMap.js", "src/app/dashboard/api/auth/callback.js", "src/app/dashboard/api/auth/me/page.ts", "src/app/dashboard/api/auth/[auth0]/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/myMap.js", "src/app/dashboard/api/auth/callback.js", "src/app/dashboard/api/auth/me/page.ts", "src/app/dashboard/api/auth/[auth0]/route.js", "pages-sections/vendor-dashboard/products/page-view", "components/flex-box", "components/Typography", "components/topbar"],
   "exclude": ["node_modules"]
 }
