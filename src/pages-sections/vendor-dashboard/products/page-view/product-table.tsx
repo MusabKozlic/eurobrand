@@ -60,7 +60,7 @@ const ProductTable: React.FC<Props> = ({ products }) => {
           </TableHead>
           <TableBody>
             {products
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((product) => (
                 <TableRow key={product.id}>
                   <TableCell>
