@@ -119,12 +119,12 @@ const ProductForm: FC<Props> = (props) => {
                   error={!!touched.category && !!errors.category}
                   helperText={(touched.category && errors.category) as string}
                 >
-                  <MenuItem value={8}>Racunari</MenuItem>
+                  <MenuItem value={8}>Računari</MenuItem>
                   <MenuItem value={9}>Laptopi</MenuItem>
                   <MenuItem value={10}>Konzole</MenuItem>
                   <MenuItem value={11}>Mobiteli</MenuItem>
                   <MenuItem value={12}>Monitori</MenuItem>
-                  <MenuItem value={13}>Racunarska oprema</MenuItem>
+                  <MenuItem value={13}>Računarska oprema</MenuItem>
                   <MenuItem value={14}>Printeri</MenuItem>
                 </TextField>
               </Grid>
