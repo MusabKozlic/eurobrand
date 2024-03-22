@@ -5,7 +5,6 @@ import FlexBetween from "components/flex-box/flex-between";
 import { useLayout } from "../dashboard-layout-context";
 // STYLED COMPONENT
 import { ChevronLeftIcon } from "./styles";
-import { Link } from "@mui/material";
 import LazyImage from "components/LazyImage";
 
 export default function LogoArea() {
@@ -16,7 +15,9 @@ export default function LogoArea() {
       p={2}
       maxHeight={TOP_HEADER_AREA}
       justifyContent={COMPACT ? "center" : "space-between"}>
-        <LazyImage src={require("../../../../../public/assets/eurobrand-logo/logo.jpg")} alt="logo"/>
+        <LazyImage src={require("../../../../../public/assets/eurobrand-logo/logo.jpg")} alt="logo"
+        sx={{ width: "130px" }}
+        />
 
       <ChevronLeftIcon
         color="disabled"

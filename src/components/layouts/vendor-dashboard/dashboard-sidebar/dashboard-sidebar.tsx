@@ -10,7 +10,6 @@ import MultiLevelMenu from "./multi-level-menu";
 import { useLayout } from "../dashboard-layout-context";
 // STYLED COMPONENT
 import { SidebarWrapper } from "./styles";
-import { Link } from "@mui/material";
 import LazyImage from "components/LazyImage";
 
 export default function DashboardSidebar() {
@@ -28,7 +27,9 @@ export default function DashboardSidebar() {
     return (
       <LayoutDrawer open={showMobileSideBar ? true : false} onClose={handleCloseMobileSidebar}>
         <Box p={2} maxHeight={TOP_HEADER_AREA}>
-          <LazyImage src={require("../../../../../public/assets/eurobrand-logo/logo.jpg")} alt="logo"/>
+        <LazyImage src={require("../../../../../public/assets/eurobrand-logo/logo.jpg")} alt="logo"
+        sx={{ width: "105px" }}
+        />
         </Box>
 
         <MultiLevelMenu />
