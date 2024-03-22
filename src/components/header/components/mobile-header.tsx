@@ -53,7 +53,7 @@ export default function MobileHeader() {
 
       {/* SEARCH FORM DRAWER */}
       <Drawer open={searchBarOpen} anchor="top" onClose={toggleSearchBar} sx={{ zIndex: 9999 }}>
-        <Box width="auto" padding={2} height="100vh">
+      <Box width="100vw" padding={2} minHeight="100vh" display="flex" flexDirection="column" justifyContent="space-between">
           <FlexBetween mb={1}>
 
             <IconButton onClick={toggleSearchBar}>

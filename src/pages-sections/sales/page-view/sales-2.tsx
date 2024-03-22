@@ -46,7 +46,7 @@ export default function SalesTwoPageView() {
           page={page}
           perPage={PRODUCT_PER_PAGE}
           handlePageChange={handlePageChange}
-          totalProducts={productDatabase.length}
+          totalProducts={productList.length}
         />
       </Container>
     </SalesLayout>
