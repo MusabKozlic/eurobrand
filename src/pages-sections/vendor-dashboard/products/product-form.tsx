@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -12,8 +12,10 @@ import DropZone from "components/DropZone";
 import { FlexBox } from "components/flex-box";
 // STYLED COMPONENTS
 import { UploadImageBox, StyledClear } from "../styles";
-import api from "utils/__api__/sales";
-import Category from "models/Category.model";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import uploadImage from "./firbaseStoringImages";
+
 
 // FORM FIELDS VALIDATION SCHEMA
 const VALIDATION_SCHEMA = yup.object().shape({
@@ -26,21 +28,32 @@ const VALIDATION_SCHEMA = yup.object().shape({
   status: yup.string().required("Status is required!"),
 });
 
+const INITIAL_VALUES = {
+  brand: "",
+  model: "",
+  status: "",
+  stock: 0,
+  price: "",
+  category: "",
+  description: "",
+  images: [] as string[],
+};
+
 // ================================================================
+
 interface Props {
-  initialValues: any;
-  handleFormSubmit: (values: any) => void;
+  product?: typeof INITIAL_VALUES;
 }
-// ================================================================
 
 const ProductForm: FC<Props> = (props) => {
-  const { initialValues, handleFormSubmit } = props;
-  const [categories, setCategories] = useState<Category[]>([]);
+  const {product} = props;
   const [files, setFiles] = useState([]);
-
-  useEffect(() => {
-    api.getCategoriesTwo().then((data) => setCategories(data));
-  }, []);
+  const [formValues, setFormValues] = useState(product != null ? product : INITIAL_VALUES); // Separate state for form values
+  const url =
+    process.env.NODE_ENV === "production"
+      ? "https://www.eurobrand.ba/api"
+      : "http://localhost:8080";
+  const router = useRouter();
 
   // HANDLE UPDATE NEW IMAGE VIA DROP ZONE
   const handleChangeDropZone = (files: File[]) => {
@@ -48,18 +61,44 @@ const ProductForm: FC<Props> = (props) => {
       Object.assign(file, { preview: URL.createObjectURL(file) })
     );
     setFiles(files);
+
+    // Extract image URLs from the files and update the images array in formValues
+    const imageUrls = files.map((file) => URL.createObjectURL(file));
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      images: imageUrls,
+    }));
+  };
+
+  const handleFormSubmit = async (values: typeof INITIAL_VALUES) => {
+    let images: string[] = [];
+    const uploadedImages = await Promise.all(files.map(file => uploadImage(file)));
+
+
+    values.images = uploadedImages;
+
+    const response = await axios.post(url + "/products/save", values);
+    if (response.status === 200) {
+      router.push("/admin/products");
+    }
   };
 
   // HANDLE DELETE UPLOAD IMAGE
   const handleFileDelete = (file: File) => () => {
     setFiles((files) => files.filter((item) => item.name !== file.name));
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      images: prevValues.images.filter(
+        (imageUrl) => imageUrl !== URL.createObjectURL(file)
+      ),
+    }));
   };
 
   return (
     <Card sx={{ p: 6 }}>
       <Formik
         onSubmit={handleFormSubmit}
-        initialValues={initialValues}
+        initialValues={formValues}
         validationSchema={VALIDATION_SCHEMA}
       >
         {({
@@ -80,11 +119,11 @@ const ProductForm: FC<Props> = (props) => {
                   color="info"
                   size="medium"
                   placeholder="Brand"
-                  value={values.name}
+                  value={values.brand}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.name && !!errors.name}
-                  helperText={(touched.name && errors.name) as string}
+                  error={!!touched.brand && !!errors.brand}
+                  helperText={(touched.brand && errors.brand) as string}
                 />
               </Grid>
 
@@ -96,16 +135,16 @@ const ProductForm: FC<Props> = (props) => {
                   color="info"
                   size="medium"
                   placeholder="Model"
-                  value={values.name}
+                  value={values.model}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.name && !!errors.name}
-                  helperText={(touched.name && errors.name) as string}
+                  error={!!touched.model && !!errors.model}
+                  helperText={(touched.model && errors.model) as string}
                 />
               </Grid>
 
               <Grid item sm={4} xs={12}>
-              <TextField
+                <TextField
                   select
                   fullWidth
                   name="category"
