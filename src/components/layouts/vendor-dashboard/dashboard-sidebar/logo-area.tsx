@@ -5,6 +5,8 @@ import FlexBetween from "components/flex-box/flex-between";
 import { useLayout } from "../dashboard-layout-context";
 // STYLED COMPONENT
 import { ChevronLeftIcon } from "./styles";
+import { Link } from "@mui/material";
+import LazyImage from "components/LazyImage";
 
 export default function LogoArea() {
   const { TOP_HEADER_AREA, COMPACT, sidebarCompact, handleSidebarCompactToggle } = useLayout();
@@ -14,11 +16,7 @@ export default function LogoArea() {
       p={2}
       maxHeight={TOP_HEADER_AREA}
       justifyContent={COMPACT ? "center" : "space-between"}>
-      <Avatar
-        alt="Bazaar Logo"
-        src={COMPACT ? "/assets/images/bazaar-white-sm.svg" : "/assets/images/logo.svg"}
-        sx={{ borderRadius: 0, width: "auto", marginLeft: COMPACT ? 0 : 1 }}
-      />
+        <LazyImage src={require("../../../../../public/assets/eurobrand-logo/logo.jpg")} alt="logo"/>
 
       <ChevronLeftIcon
         color="disabled"
