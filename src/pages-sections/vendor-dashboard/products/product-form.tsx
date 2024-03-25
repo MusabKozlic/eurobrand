@@ -26,7 +26,7 @@ const VALIDATION_SCHEMA = yup.object().shape({
   stock: yup.number().required("Stock is required!"),
   price: yup.number().required("Price is required!"),
   status: yup.string().required("Status is required!"),
-  images: yup.array().min(1, "At least one image is required!"),
+  images: yup.array().required("At least one image is required!"),
 });
 
 const INITIAL_VALUES = {
