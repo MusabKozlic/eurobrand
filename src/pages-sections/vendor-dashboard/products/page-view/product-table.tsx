@@ -20,12 +20,14 @@ import LazyImage from "components/LazyImage";
 
 interface Props {
   products: Product[];
+  handleDeleteProduct
 }
 
-const ProductTable: React.FC<Props> = ({ products }) => {
+const ProductTable: React.FC<Props> = ({ products, handleDeleteProduct }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const router = useRouter();
+
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -89,7 +91,9 @@ const ProductTable: React.FC<Props> = ({ products }) => {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div>
+                    <div onClick={() => {
+                      handleDeleteProduct(product.id);
+                    }}>
                       <Delete />
                     </div>
                   </TableCell>

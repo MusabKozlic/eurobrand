@@ -1,53 +1,35 @@
 "use client";
 
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import Stack from "@mui/material/Stack";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
 // GLOBAL CUSTOM COMPONENTS
 import { H3 } from "components/Typography";
-import Scrollbar from "components/scrollbar";
-import { TableHeader, TablePagination } from "components/data-table";
-// GLOBAL CUSTOM HOOK
-import useMuiTable from "hooks/useMuiTable";
-// Local CUSTOM COMPONENT
-import OrderRow from "../order-row";
 import SearchArea from "../../search-box";
-// CUSTOM DATA MODEL
-import Order from "models/Order.model";
-// TABLE HEAD COLUMN DATA
-import { tableHeading } from "../table-heading";
+
+import OrderDetails from "models/OrderDetails.model";
+import OrderTable from "pages-sections/vendor-dashboard/products/page-view/order-table";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 // =============================================================================
-type Props = { orders: Order[] };
+type Props = { orders: OrderDetails[] };
 // =============================================================================
 
-const OrdersPageView = ({ orders }: Props) => {
-  // RESHAPE THE ORDER LIST BASED TABLE HEAD CELL ID
-  const filteredOrders = orders.map((item) => ({
-    id: item.id,
-    qty: item.items.length,
-    purchaseDate: item.createdAt,
-    billingAddress: item.shippingAddress,
-    amount: item.totalPrice,
-    status: item.status
-  }));
+const OrdersPageView = () => {
+  const [orders, setOrders] = useState<OrderDetails[]>();
+  const url =
+  process.env.NODE_ENV === "production"
+    ? "https://www.eurobrand.ba/api"
+    : "http://localhost:8080";
 
-  const {
-    order,
-    orderBy,
-    selected,
-    rowsPerPage,
-    filteredList,
-    handleChangePage,
-    handleRequestSort
-  } = useMuiTable({
-    listData: filteredOrders,
-    defaultSort: "purchaseDate",
-    defaultOrder: "desc"
-  });
+    const handleFetchData = async () => {
+      const orders: OrderDetails[] = (await axios.get(`${url}/orders`)).data;
+
+      setOrders(orders);
+    }
+
+    useEffect(() => {
+      handleFetchData();
+    }, []);
 
   return (
     <Box py={4}>
@@ -60,36 +42,7 @@ const OrdersPageView = ({ orders }: Props) => {
         searchPlaceholder="Search Order..."
       />
 
-      <Card>
-        <Scrollbar>
-          <TableContainer sx={{ minWidth: 900 }}>
-            <Table>
-              <TableHeader
-                order={order}
-                hideSelectBtn
-                orderBy={orderBy}
-                heading={tableHeading}
-                numSelected={selected.length}
-                rowCount={filteredList.length}
-                onRequestSort={handleRequestSort}
-              />
-
-              <TableBody>
-                {filteredList.map((order) => (
-                  <OrderRow order={order} key={order.id} />
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Scrollbar>
-
-        <Stack alignItems="center" my={4}>
-          <TablePagination
-            onChange={handleChangePage}
-            count={Math.ceil(filteredList.length / rowsPerPage)}
-          />
-        </Stack>
-      </Card>
+      {orders && <OrderTable orders={orders} />}
     </Box>
   );
 };

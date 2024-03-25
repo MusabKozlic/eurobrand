@@ -1,8 +1,11 @@
 "use client";
 
+import { OrderDetailsStatus } from "models/OrderDetails.model";
 import { Dispatch, PropsWithChildren, SetStateAction, createContext, useState } from "react";
 
 interface OrderState {
+  id: number | null;
+  setId: Dispatch<SetStateAction<number | null>>;
   firstName: string;
   setFirstName: Dispatch<SetStateAction<string>>;
   lastName: string;
@@ -23,6 +26,8 @@ interface OrderState {
   setTotalPrice: Dispatch<SetStateAction<number>>;
   products: string;
   setProducts: Dispatch<SetStateAction<string>>;
+  orderStatus: OrderDetailsStatus;
+  setOrderStatus: Dispatch<SetStateAction<OrderDetailsStatus>>
 }
 
 export const OrderContext = createContext<OrderState>({
@@ -45,7 +50,11 @@ export const OrderContext = createContext<OrderState>({
   totalPrice: 0,
   setTotalPrice: () => {},
   products: '',
-  setProducts: () => {}
+  setProducts: () => {},
+  orderStatus: {id: 1, status: "Pending"},
+  setOrderStatus: () => {},
+  id: null,
+  setId: () => {}
 });
 
 export default function OrderProvider({children}: PropsWithChildren) {
@@ -59,8 +68,8 @@ export default function OrderProvider({children}: PropsWithChildren) {
   const [note, setNote] = useState<string>('');
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [products, setProducts] = useState<string>('');
-  
-
+  const [orderStatus, setOrderStatus] = useState<OrderDetailsStatus>({id: 1, status: "Pending"});
+  const [id, setId] = useState(null);
 
     return (
         <OrderContext.Provider value={{
@@ -73,7 +82,9 @@ export default function OrderProvider({children}: PropsWithChildren) {
           postalCode, setPostalCode,
           note, setNote,
           totalPrice, setTotalPrice,
-          products, setProducts
+          products, setProducts,
+          orderStatus, setOrderStatus,
+          id, setId
           }}>
             {children}
         </OrderContext.Provider>

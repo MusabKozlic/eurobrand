@@ -26,6 +26,7 @@ const VALIDATION_SCHEMA = yup.object().shape({
   stock: yup.number().required("Stock is required!"),
   price: yup.number().required("Price is required!"),
   status: yup.string().required("Status is required!"),
+  images: yup.array().min(1, "At least one image is required!"),
 });
 
 const INITIAL_VALUES = {
@@ -46,9 +47,8 @@ interface Props {
 }
 
 const ProductForm: FC<Props> = (props) => {
-  const {product} = props;
   const [files, setFiles] = useState([]);
-  const [formValues, setFormValues] = useState(product != null ? product : INITIAL_VALUES); // Separate state for form values
+  const [formValues, setFormValues] = useState(INITIAL_VALUES); // Separate state for form values
   const url =
     process.env.NODE_ENV === "production"
       ? "https://www.eurobrand.ba/api"
@@ -71,9 +71,7 @@ const ProductForm: FC<Props> = (props) => {
   };
 
   const handleFormSubmit = async (values: typeof INITIAL_VALUES) => {
-    let images: string[] = [];
-    const uploadedImages = await Promise.all(files.map(file => uploadImage(file)));
-
+    const uploadedImages = await Promise.all(files.map(file => uploadImage(file, formValues.brand, formValues.model)));
 
     values.images = uploadedImages;
 
@@ -181,6 +179,7 @@ const ProductForm: FC<Props> = (props) => {
                     );
                   })}
                 </FlexBox>
+                {!!touched.images && errors.images && <div style={{color: "red"}}>Unos slika je obavezan</div>}
               </Grid>
 
               <Grid item xs={12}>

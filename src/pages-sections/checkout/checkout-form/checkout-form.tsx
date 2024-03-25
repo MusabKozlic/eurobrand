@@ -20,7 +20,7 @@ export default function CheckoutForm() {
   const router = useRouter();
   const [sameAsShipping, setSameAsShipping] = useState(false);
   const { state, dispatch } = useCart();
-  const { firstName, lastName, phoneNumber, address, postalCode, email, city, note, totalPrice } = useOrderDetails();
+  const { firstName, lastName, phoneNumber, address, postalCode, email, city, note, totalPrice, orderStatus, id } = useOrderDetails();
 
     const handleSaveOrder = async (order: OrderDetailsBody) => {
       const response = (await axios.post(url + "/orders", order)).data;
@@ -38,6 +38,7 @@ export default function CheckoutForm() {
 
     const handleSave = () => {
       const newOrder: OrderDetails = {
+        id,
         firstName,
         lastName,
         phoneNumber,
@@ -46,7 +47,8 @@ export default function CheckoutForm() {
         email,
         city,
         note,
-        totalPrice
+        totalPrice,
+        orderStatus
       };
 
       const products: ProductBody[] = state.cart.map(item => ({

@@ -27,9 +27,9 @@ export default function ShopLayout1({ children }: PropsWithChildren) {
       <Topbar />
 
       {/* HEADER */}
-      <Sticky fixedOn={0} onSticky={toggleIsFixed} scrollDistance={300}>
-        <Header isFixed={isFixed} midSlot={<SearchInputWithCategory />} />
-      </Sticky>
+      {/*<Sticky fixedOn={0} onSticky={toggleIsFixed} scrollDistance={300}>
+        <Header isFixed={isFixed} midSlot={<SearchInputWithCategory />} /> 
+      </Sticky>*/}
 
       {/* NAVIGATION BAR */}
       <Navbar elevation={0} border={1} />

@@ -136,8 +136,10 @@ export default function ProductCard1({
     <StyledBazaarCard hoverEffect={hoverEffect} style={{cursor: "pointer"}}>
       <ImageWrapper onClick={openProductDialog}>
         {/* PRODUCT IMAGE / THUMBNAIL */}
-        <div>
-          <LazyImage priority src={`${imgUrl}`} width={500} height={500} alt={title} />
+        <div className="image-container" style={{ width: "100%",
+  height: "280px", /* Set your desired height here */
+  overflow: "hidden"}}>
+          <LazyImage priority src={`${imgUrl}`} width={500} height={500} alt={title} className="card-image"/>
         </div>
       </ImageWrapper>
 

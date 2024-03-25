@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, ReactNode } from "react";
+import { ChangeEventHandler, Fragment, ReactNode } from "react";
 import Divider from "@mui/material/Divider";
 // CUSTOM GLOBAL COMPONENTS
 import Topbar from "components/topbar";
@@ -18,19 +18,25 @@ interface withOutCategory {
   type?: "one";
   categoryNav?: never;
   children: ReactNode;
+  handleSearch: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  handleStatus: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  status: string;
 }
 
 interface withCategory {
   type?: "two";
   children: ReactNode;
   categoryNav: ReactNode;
+  handleSearch: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  handleStatus: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  status: string;
 }
 
 type SaleLayoutProps = withOutCategory | withCategory;
 // =============================================================
 
 export default function SalesLayout(props: SaleLayoutProps) {
-  const { children, type = "one", categoryNav } = props;
+  const { children, type = "one", categoryNav, handleSearch, handleStatus, status } = props;
 
   let CONTENT = null;
 
@@ -61,7 +67,7 @@ export default function SalesLayout(props: SaleLayoutProps) {
       <Topbar />
 
       {/* HEADER AREA */}
-      <Header midSlot={<SearchInputWithCategory />} />
+      <Header midSlot={<SearchInputWithCategory handleSearch={handleSearch} handleStatus={handleStatus} status={status} />} />
 
       {/* RENDER MAIN CONTENT AREA */}
       {CONTENT}

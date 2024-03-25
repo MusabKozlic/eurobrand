@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEventHandler, useEffect, useState } from "react";
 // TYPESCRIPT INTERFACE FOR DATA SHAPE
 import Category from "models/Category.model";
 import Product from "models/Product.model";
@@ -13,13 +13,24 @@ export default function useSales(defaultSelectCategory = "racunari", fetchCatego
   const [categories, setCategories] = useState<Category[]>([]);
   const [productList, setProductList] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState(defaultSelectCategory);
+  const [search, setSearch] = useState<string>('');
+  const [status, setStatus] = useState<string>('');
 
   // HANDLE CHANGE PAGE
   const handlePageChange = (_, page: number) => setPage(page);
 
+
+  const handleSearch: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (event) => {
+    setSearch(event.target.value);
+  }
+
+  const handleStatus = (event) => {
+    setStatus(event);
+  }
+
   // HANDLE THE CHANGE CATEGORY
   const handleCategoryChange = (category: string) => () => {
-    setSelectedCategory(category)
+    setSelectedCategory(category);
   };
 
   const handleSaveOrder = (order: OrderDetails) => () => {
@@ -46,6 +57,10 @@ export default function useSales(defaultSelectCategory = "racunari", fetchCatego
     PRODUCT_PER_PAGE,
     handlePageChange,
     handleCategoryChange,
-    handleSaveOrder
+    handleSaveOrder,
+    handleSearch,
+    search,
+    handleStatus,
+    status
   };
 }

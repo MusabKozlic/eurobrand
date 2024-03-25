@@ -7,9 +7,19 @@ import CategoryDropdown from "./components/category-dropdown";
 import useSearch from "./hooks/use-search";
 // CUSTOM ICON COMPONENT
 import Search from "icons/Search";
+import useSales from "pages-sections/sales/use-sales";
+import { ChangeEventHandler } from "react";
 
-export default function SearchInputWithCategory() {
-  const { categoryTitle, parentRef, resultList, handleCategoryChange, handleSearch, handleChangeStateTitle, stateTitle } = useSearch();
+interface SearchProps {
+  handleSearch: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  handleStatus: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  status: string;
+}
+
+export default function SearchInputWithCategory(props: SearchProps) {
+  const { categoryTitle, parentRef, resultList, handleCategoryChange, handleChangeStateTitle, stateTitle } = useSearch();
+
+  const {handleSearch, handleStatus, status } = props;
 
   const INPUT_PROPS = {
     sx: {
@@ -32,13 +42,14 @@ export default function SearchInputWithCategory() {
         <Search sx={{ fontSize: 17, color: "grey.600", cursor:"default" }} />
       </Box>
     ),
-    endAdornment: <CategoryDropdown title={categoryTitle} handleChange={handleCategoryChange} stateTitle={stateTitle} handleChangeStateTitle={handleChangeStateTitle} />
+    endAdornment: <CategoryDropdown title={categoryTitle} handleChange={handleCategoryChange} stateTitle={stateTitle} handleChangeStateTitle={handleChangeStateTitle} handleStatus={handleStatus} status={status} />
   };
 
   return (
     <Box position="relative" flex="1 1 0" maxWidth="670px" mx="auto" {...{ ref: parentRef }}>
       <TextField
         fullWidth
+        color="success"
         variant="outlined"
         placeholder="Pretraga..."
         onChange={handleSearch}
