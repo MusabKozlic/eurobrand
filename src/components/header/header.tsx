@@ -33,8 +33,18 @@ export default function Header({ isFixed, className, midSlot }: Props) {
     <Fragment>
       {/* LEFT CONTENT - LOGO AND CATEGORY */}
       <FlexBox minWidth={100} alignItems="center">
-        <Link href="/" style={{ width: '110px', height: '50px' }}>
-          <LazyImage src={require("../../../public/assets/eurobrand-logo/logo.jpg")} alt="logo"/>
+        <Link href="/" >
+          <div className="logoContainer" style={{display: "flex",
+            flexDirection: "column",
+            alignItems: "center"}}>
+            <div className="logoText" style={{fontSize: "20px",
+              fontWeight: "bold",  fontFamily: "Arial, sans-serif", color: "#555"}}>
+              Eurobrand
+            </div>
+            <div className="subText" style={{fontSize: "12px", fontFamily: "Arial, sans-serif", color: "#808080"}}>
+              Prodaja računara i računarske opreme
+            </div>
+          </div>
         </Link>
 
         {/* SHOW DROP DOWN CATEGORY BUTTON WHEN HEADER FIXED */}

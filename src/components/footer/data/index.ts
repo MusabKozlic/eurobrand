@@ -8,8 +8,10 @@ import PlayStore from "icons/PlayStore";
 import AppleStore from "icons/AppleStore";
 
 export const ABOUT_US = [
-  "Broj telefona: 062 - 229 - 813",
-  "Email: info@eurobrand.ba",
+  "Broj telefona: 032-454-104",
+  "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0061-178-741",
+  "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0062-789-733",
+  "Email: eurobrand@gmail.com",
   "Adresa: Trg Alije Izetbegovića 69, Zenica"
 ];
 

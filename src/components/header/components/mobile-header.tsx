@@ -34,7 +34,17 @@ export default function MobileHeader() {
 
         {/* LOGO */}
         <Link href="/">
-          <Image height={44} src="/assets/eurobrand-logo/logo.jpg" alt="logo" />
+          <div className="logoContainer" style={{display: "flex",
+            flexDirection: "column",
+            alignItems: "center"}}>
+            <div className="logoText" style={{fontSize: "20px",
+              fontWeight: "bold",  fontFamily: "Arial, sans-serif", color: "#555"}}>
+              Eurobrand
+            </div>
+            <div className="subText" style={{fontSize: "12px", fontFamily: "Arial, sans-serif", color: "#808080"}}>
+              Prodaja računara i računarske opreme
+            </div>
+          </div>
         </Link>
 
         {/* RIGHT CONTENT - CART, SEARCH BUTTON */}
