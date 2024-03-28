@@ -1,3 +1,7 @@
-import { handleAuth } from '@auth0/nextjs-auth0';
+import { handleAuth, getSession } from '@auth0/nextjs-auth0';
 
-export const GET = handleAuth();
+export const GET = handleAuth({
+    cookies: {
+      appSession: getSession(),
+    },
+  });
