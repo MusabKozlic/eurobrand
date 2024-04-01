@@ -107,8 +107,8 @@ const ProductsPageView = () => {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title">
-          {"Use Google's location service?"}
+        <DialogTitle color={"red"} id="responsive-dialog-title">
+          {"PAZNJA, UKOLIKO IZBRISETE, OVAJ ARTIKAL VISE NECE BITI DOSTUPAN!"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
