@@ -3,7 +3,7 @@ import IconButton from "@mui/material/IconButton";
 // MUI ICON COMPONENT
 import PersonOutline from "@mui/icons-material/PersonOutline";
 // CUSTOM ICON COMPONENT
-import ShoppingBagOutlined from "icons/ShoppingBagOutlined";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 // GLOBAL CUSTOM HOOK
 import useCart from "hooks/useCart";
 
@@ -23,7 +23,7 @@ export default function LoginCartButtons({ toggleDialog, toggleSidenav }: Props)
     <div>
       <Badge badgeContent={state.cart.length} color="primary">
         <IconButton onClick={toggleSidenav}>
-          <ShoppingBagOutlined sx={ICON_COLOR} />
+          <ShoppingCartIcon sx={ICON_COLOR} />
         </IconButton>
       </Badge>
     </div>

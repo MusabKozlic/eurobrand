@@ -15,9 +15,17 @@ export default function LogoArea() {
       p={2}
       maxHeight={TOP_HEADER_AREA}
       justifyContent={COMPACT ? "center" : "space-between"}>
-        <LazyImage src={require("../../../../../public/assets/eurobrand-logo/logo.jpg")} alt="logo"
-        sx={{ width: "130px" }}
-        />
+       <div className="logoContainer" style={{display: "flex",
+            flexDirection: "column",
+            alignItems: "center"}}>
+            <div className="logoText" style={{fontSize: "20px",
+              fontWeight: "bold",  fontFamily: "Arial, sans-serif", cursor: "default"}}>
+              Eurobrand
+            </div>
+            <div className="subText" style={{fontSize: "12px", fontFamily: "Arial, sans-serif", cursor: "default"}}>
+              Prodaja računara i računarske opreme
+            </div>
+          </div>
 
       <ChevronLeftIcon
         color="disabled"

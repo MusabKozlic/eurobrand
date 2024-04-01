@@ -99,6 +99,20 @@ export default function ShippingForm({
             required
             sx={{ mb: 2 }}
             onBlur={handleBlur}
+            name="shipping_email"
+            label="Prezime"
+            onChange={handleChangeLastName}
+            value={values.shipping_email}
+            error={!!touched.shipping_email && !!errors.shipping_email}
+            helperText={(touched.shipping_email && errors.shipping_email) as string}
+          />
+
+          <TextField
+            fullWidth
+            autoComplete="off"
+            required
+            sx={{ mb: 2 }}
+            onBlur={handleBlur}
             label="Broj telefona"
             onChange={handleChangePhoneNumber}
             name="shipping_contact"
@@ -125,6 +139,20 @@ export default function ShippingForm({
             fullWidth
             autoComplete="off"
             required
+            sx={{ mb: 2 }}
+            label="Grad"
+            onBlur={handleBlur}
+            onChange={handleChangeCity}
+            name="shipping_address2"
+            value={values.shipping_address2}
+            error={!!touched.shipping_address2 && !!errors.shipping_address2}
+            helperText={(touched.shipping_address2 && errors.shipping_address2) as string}
+          />
+
+          <TextField
+            fullWidth
+            autoComplete="off"
+            required
             label="Poštanski broj"
             onBlur={handleBlur}
             onChange={handleChangePostalCode}
@@ -136,24 +164,10 @@ export default function ShippingForm({
         </Grid>
 
         <Grid item sm={6} xs={12}>
-          <TextField
-            fullWidth
-            autoComplete="off"
-            required
-            sx={{ mb: 2 }}
-            onBlur={handleBlur}
-            name="shipping_email"
-            label="Prezime"
-            onChange={handleChangeLastName}
-            value={values.shipping_email}
-            error={!!touched.shipping_email && !!errors.shipping_email}
-            helperText={(touched.shipping_email && errors.shipping_email) as string}
-          />
 
           <TextField
             fullWidth
             autoComplete="off"
-            required
             type="email"
             sx={{ mb: 2 }}
             label="Email"
@@ -162,21 +176,8 @@ export default function ShippingForm({
             name="shipping_company"
             value={values.shipping_company}
             error={!!touched.shipping_company && !!errors.shipping_company}
-            helperText={(touched.shipping_company && errors.shipping_company) as string}
-          />
+            helperText={(touched.shipping_company && errors.shipping_company) ? errors.shipping_company : "Ovo polje nije obavezno"}          />
 
-          <TextField
-            fullWidth
-            autoComplete="off"
-            required
-            label="Grad"
-            onBlur={handleBlur}
-            onChange={handleChangeCity}
-            name="shipping_address2"
-            value={values.shipping_address2}
-            error={!!touched.shipping_address2 && !!errors.shipping_address2}
-            helperText={(touched.shipping_address2 && errors.shipping_address2) as string}
-          />
         </Grid>
       </Grid>
     </Card>
