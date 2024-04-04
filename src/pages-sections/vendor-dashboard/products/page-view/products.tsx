@@ -71,12 +71,15 @@ const ProductsPageView = () => {
     setOpen(true);
   };
 
+  
+
   useEffect(() => {
-    fetchProducts();
     // Retrieve user information from cookie
     const userCookie = Cookies.get("user");
     if (!userCookie) {
-      router.push("/login/api/auth/login");
+      router.push("/login");
+    }else {
+      fetchProducts();
     }
   }, [router]);
 

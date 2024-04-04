@@ -1,22 +1,34 @@
-import { useUser } from '@auth0/nextjs-auth0/client';
-import { PropsWithChildren } from 'react';
-import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
+"use client";
+import { Button } from "@mui/material";
+import Cookies from "js-cookie";
+import { signInWithGoogle } from "../../../auth";
+import { useRouter } from "next/navigation";
 
 
 export default function Login() {
-  const { user, error, isLoading } = useUser();
   const router = useRouter();
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
+  const handleLogin = async () => {
+    try {
+      const userCookie = Cookies.get("user");
+      if(!userCookie){
+        const user = await signInWithGoogle();
+        console.log(user);
+        if(user){
+          Cookies.set('user', JSON.stringify(user.email), { expires: 2 });
+          Cookies.set('photoUrl', JSON.stringify(user.photoURL), { expires: 2 })
+          router.push("/admin/products");
+        }else {
+          router.push("/");
+        }
+      }
+      // Redirect or handle successful login
+    } catch (error) {
+      console.log("error: " + error)
+    }
+  };
 
-  if (user) {
-    Cookies.set('user', JSON.stringify(user), { expires: 7 });
-    router.push("/admin/products");
-  }else {
-    router.push("/login/api/auth/login");
-  }
-
-  return <></>;
+  return <>
+      <Button onClick={() => {handleLogin()}}>LOGIN</Button>
+  </>;
 }

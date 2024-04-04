@@ -1,3 +1,4 @@
+import ProductList from "pages-sections/sales/product-list";
 import { ChangeEvent, useEffect, useRef, useState, useTransition } from "react";
 import api from "utils/__api__/products";
 
@@ -32,10 +33,9 @@ export default function useSearch() {
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     startTransition(() => {
       const value = e.target?.value;
-
       if (!value) setResultList([]);
-      else if (value && category !== "*") getProducts(value, category);
       else getProducts(value);
+      console.log(resultList)
     });
   };
 

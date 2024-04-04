@@ -8,6 +8,7 @@ import styled from "@mui/material/styles/styled";
 import IconButton from "@mui/material/IconButton";
 // GLOBAL CUSTOM COMPONENTS
 import { H6, Small } from "components/Typography";
+import Cookies from "js-cookie";
 
 // STYLED COMPONENT
 const Divider = styled("div")(({ theme }) => ({
@@ -20,7 +21,7 @@ export default function AccountPopover() {
   const open = Boolean(anchorEl);
 
   const handleClose = () => setAnchorEl(null);
-
+  const photoUrl = Cookies.get("photoUrl");
   return (
     <div>
       <IconButton
@@ -29,7 +30,7 @@ export default function AccountPopover() {
         onClick={(e) => setAnchorEl(e.currentTarget)}
         aria-expanded={open ? "true" : undefined}
         aria-controls={open ? "account-menu" : undefined}>
-        <Avatar alt="Remy Sharp" src="/assets/images/avatars/001-man.svg" />
+        <Avatar alt="Remy Sharp" src={photoUrl || "/assets/images/avatars/001-man.svg"} />
       </IconButton>
 
       <Menu
