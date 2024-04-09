@@ -69,7 +69,7 @@ const EditProductPageView = () => {
     <Box py={4}>
       <H3 mb={2}>Edit Product</H3>
 
-      {product && <ProductFormUpdate product={product}/>}
+      {product && <ProductFormUpdate product={product} setProduct={setProduct} />}
     </Box>
   );
 };

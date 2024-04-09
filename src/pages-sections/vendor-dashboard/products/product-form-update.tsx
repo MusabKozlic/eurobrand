@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { Dispatch, FC, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
@@ -45,10 +45,11 @@ const INITIAL_VALUES = {
 
 interface Props {
   product?: typeof INITIAL_VALUES;
+  setProduct: Dispatch<typeof INITIAL_VALUES>;
 }
 
 const ProductFormUpdate: FC<Props> = (props) => {
-  const { product } = props;
+  const { product, setProduct } = props;
   const [files, setFiles] = useState([]);
   const [formValues, setFormValues] = useState(product); // Separate state for form values
   const url =
@@ -60,14 +61,20 @@ const ProductFormUpdate: FC<Props> = (props) => {
   // HANDLE UPDATE NEW IMAGE VIA DROP ZONE
   const handleChangeDropZone = (newFiles: File[]) => {
     // Combine existing files with newly added files
-    const updatedFiles = [...files, ...newFiles];
+    const updatedFiles = [...files];
+    newFiles.forEach((newFile) => {
+      if (!updatedFiles.some((file) => file.name === newFile.name)) {
+        updatedFiles.push(newFile);
+      }
+    });
 
+    console.log(updatedFiles);
     // Update the files state with the combined files
     setFiles(updatedFiles);
 
     // Extract image URLs from all files (existing and newly added)
     const updatedImageUrls = [
-      ...product.images,
+      ...formValues.images,
       ...updatedFiles.map((file) => URL.createObjectURL(file)),
     ];
 
@@ -80,7 +87,7 @@ const ProductFormUpdate: FC<Props> = (props) => {
 
   const handleExistingFileDelete = (image: string) => () => {
     // Filter out the deleted image from the product's images
-    const updatedImages = product.images.filter((img) => img !== image);
+    const updatedImages = formValues.images.filter((img) => img !== image);
 
     // Update the product state with the updated images
     setFormValues((prevProduct) => ({
@@ -94,13 +101,13 @@ const ProductFormUpdate: FC<Props> = (props) => {
       files.map((file) => uploadImage(file, product.brand, product.model))
     );
 
-    const images = [
-        ...product.images,
-        ...uploadedImages
-    ]
-    values.images = images;
-    
-    const response = await axios.post(url + "/products/save", values);
+    const updatedImageUrls = [...formValues.images, ...uploadedImages];
+
+    formValues.images = updatedImageUrls;
+
+    //console.log(formValues.images);
+
+    const response = await axios.post(url + "/products/save", formValues);
     if (response.status === 200) {
       router.push("/admin/products");
     }
@@ -214,7 +221,9 @@ const ProductFormUpdate: FC<Props> = (props) => {
                         );
                       })}
                     </FlexBox>
-                    {!!touched.images && errors.images && <div style={{color: "red"}}>Unos slika je obavezan</div>}
+                    {!!touched.images && errors.images && (
+                      <div style={{ color: "red" }}>Unos slika je obavezan</div>
+                    )}
                   </Grid>
                 </Grid>
 
