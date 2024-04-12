@@ -81,6 +81,9 @@ export default function CartItem({ id, name, qty, price, imgUrl, slug, brand,
         </div>
 
         {/* PRODUCT PRICE SECTION */}
+        <Span ellipsis fontWeight="600" fontSize={12} color="grey.600" style={{marginTop: "-2%"}}>
+            {description}
+        </Span>
         <FlexBox gap={1} flexWrap="wrap" alignItems="center" style={{cursor: "default"}}>
           <Span color="grey.600">
             {price}KM x {qty}
