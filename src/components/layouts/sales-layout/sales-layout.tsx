@@ -64,7 +64,7 @@ export default function SalesLayout(props: SaleLayoutProps) {
   return (
     <Fragment>
       {/* TOP BAR AREA */}
-      <Topbar />
+      
 
       {/* HEADER AREA */}
       <Header midSlot={<SearchInputWithCategory handleSearch={handleSearch} handleStatus={handleStatus} status={status} />} />
