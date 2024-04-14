@@ -70,6 +70,7 @@ export default function ProductCard1({
   } = useProduct(slug);
 
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const toggleDialog = () => {
     setDialogOpen(!dialogOpen);
@@ -140,7 +141,13 @@ export default function ProductCard1({
         />
       )}
       <StyledBazaarCard hoverEffect={hoverEffect} style={{ cursor: "pointer" }}>
-        <ImageWrapper onClick={openProductDialog}>
+        <ImageWrapper onClick={openProductDialog} 
+          style={{
+            transition: 'transform 0.3s ease-in-out, width 2s, height 2s',
+            transform: isHovered ? 'scale(1.4)' : 'scale(1)'
+          }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)} >
           {/* PRODUCT IMAGE / THUMBNAIL */}
           <div
             className="image-container"
@@ -148,6 +155,7 @@ export default function ProductCard1({
               width: "100%",
               height: "280px" /* Set your desired height here */,
               overflow: "hidden",
+              
             }}
           >
             <LazyImage

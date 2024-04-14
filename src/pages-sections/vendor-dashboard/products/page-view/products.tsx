@@ -71,8 +71,6 @@ const ProductsPageView = () => {
     setOpen(true);
   };
 
-  
-
   useEffect(() => {
     // Retrieve user information from cookie
     const userCookie = Cookies.get("user");

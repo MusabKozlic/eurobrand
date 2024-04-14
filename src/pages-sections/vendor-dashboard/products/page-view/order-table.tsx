@@ -8,6 +8,7 @@ import {
     TablePagination,
     TableRow
 } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 import Eye from "icons/Eye";
 import OrderDetails from "models/OrderDetails.model";
 import { useRouter } from "next/navigation";
@@ -15,9 +16,10 @@ import React from "react";
 
 interface Props {
   orders: OrderDetails[];
+  handleDeleteOrder
 }
 
-const OrderTable: React.FC<Props> = ({ orders }) => {
+const OrderTable: React.FC<Props> = ({ orders, handleDeleteOrder }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const router = useRouter();
@@ -50,6 +52,7 @@ const OrderTable: React.FC<Props> = ({ orders }) => {
               <TableCell>City</TableCell>
               <TableCell>Total price</TableCell>
               <TableCell>Visit order</TableCell>
+              <TableCell>Delete</TableCell>
               <TableCell>Delivery</TableCell>
             </TableRow>
           </TableHead>
@@ -71,6 +74,13 @@ const OrderTable: React.FC<Props> = ({ orders }) => {
                       }
                     >
                       <Eye />
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div onClick={() => {
+                      handleDeleteOrder(order.id);
+                    }}>
+                      <Delete />
                     </div>
                   </TableCell>
                   <TableCell

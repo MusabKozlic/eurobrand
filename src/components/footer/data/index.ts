@@ -11,7 +11,7 @@ export const ABOUT_US = [
   "Broj telefona: 032-454-104",
   "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0061-178-741",
   "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0062-789-733",
-  "Email: eurobrand@gmail.com",
+  "Email: prodajaeurobrand@gmail.com",
   "Adresa: Trg Alije Izetbegovića 69, Zenica"
 ];
 
