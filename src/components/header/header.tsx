@@ -33,15 +33,26 @@ export default function Header({ isFixed, className, midSlot }: Props) {
     <Fragment>
       {/* LEFT CONTENT - LOGO AND CATEGORY */}
       <FlexBox minWidth={100} alignItems="center">
+        <img src="/assets/eurobrand-logo/eurobrandLogo.png" alt="logo" width={150} height={100} style={{
+          padding: "2%"
+        }}/>
         <Link href="/" >
           <div className="logoContainer" style={{display: "flex",
             flexDirection: "column",
             alignItems: "center"}}>
-            <div className="logoText" style={{fontSize: "20px",
-              fontWeight: "bold",  fontFamily: "Arial, sans-serif", color: "#555"}}>
+            <div className="logoText" style={{
+              fontSize: "24px",
+              fontWeight: "bold",
+              fontFamily: "Arial, sans-serif",
+              color: "#848484",
+              textDecoration: "none",
+              textShadow: "1px 1px 2px rgba(0,0,0,0.2)",
+              letterSpacing: "1px",
+              lineHeight: "1.2"
+            }} >
               Eurobrand
             </div>
-            <div className="subText" style={{fontSize: "12px", fontFamily: "Arial, sans-serif", color: "#808080"}}>
+            <div className="subText" style={{fontSize: "12px", fontFamily: "Arial, sans-serif", color: "#808080", letterSpacing: "1px", lineHeight: "1.2"}}>
               Prodaja računara i računarske opreme
             </div>
           </div>

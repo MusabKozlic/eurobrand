@@ -105,7 +105,7 @@ const OrderDetailsPageView = (props: Props) => {
                   {order.address}, {order.city}, {order.postalCode}
                 </TableCell>
                 <TableCell>{order.note}</TableCell>
-                <TableCell>${order.totalPrice.toFixed(2)}</TableCell>
+                <TableCell>{order.totalPrice.toFixed(2)}KM</TableCell>
                 <TableCell
                   sx={{
                     backgroundColor:

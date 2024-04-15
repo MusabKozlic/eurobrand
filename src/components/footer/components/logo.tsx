@@ -12,11 +12,14 @@ export default function LogoSection() {
           flexDirection: "column",
           alignItems: "center"}}>
           <div className="logoText" style={{fontSize: "24px",
-            fontWeight: "bold",  fontFamily: "Arial, sans-serif"}}>
+            fontWeight: "bold",  fontFamily: "Arial, sans-serif", textDecoration: "none",
+            textShadow: "1px 1px 2px rgba(0,0,0,0.2)",
+            letterSpacing: "1px",
+            lineHeight: "1.2"}}>
             Eurobrand
           </div>
           <div className="subText" style={{fontSize: "16px", 
-            fontFamily: "Arial, sans-serif", marginBottom: "4%"}}>
+            fontFamily: "Arial, sans-serif", marginBottom: "4%", letterSpacing: "1px", lineHeight: "1.2"}}>
             Prodaja računara i računarske opreme
           </div>
         </div>     

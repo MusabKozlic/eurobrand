@@ -63,34 +63,49 @@ export default function ProductViewDialog(props: Props) {
       <DialogContent sx={{ maxWidth: 900, width: "100%" }}>
         <div style={{cursor: "default"}}>
           <Grid container spacing={3}>
-            <Grid item md={6} xs={12}>
-              {/* Carousel component */}
-              <Carousel
-                slidesToShow={1}
-                arrowStyles={{
-                  boxShadow: 0,
-                  color: "secondary.main",
-                  backgroundColor: "white",
-                  fontWeight: "bolder"
-                }}
-              >
-                {/* Mapping through product images */}
-                {product.images &&
-                  product.images.map((image, index) => (
-                    <BazaarImage
-                      key={index}
-                      src={image.imageUrl}
-                      alt={`product-${index}`}
-                      sx={{
-                        mx: "auto",
-                        width: "100%",
-                        objectFit: "contain",
-                        height: { sm: 400, xs: 250 },
-                      }}
-                    />
-                  ))}
-              </Carousel>
-            </Grid>
+          <Grid item md={6} xs={12}>
+  {/* Conditionally render the Carousel component */}
+  {product.images && product.images.length > 1 ? (
+    <Carousel
+      slidesToShow={1}
+      arrowStyles={{
+        boxShadow: 0,
+        color: "secondary.main",
+        backgroundColor: "white",
+        fontWeight: "bolder"
+      }}
+    >
+      {/* Mapping through product images */}
+      {product.images.map((image, index) => (
+        <BazaarImage
+          key={index}
+          src={image.imageUrl}
+          alt={`product-${index}`}
+          sx={{
+            mx: "auto",
+            width: "100%",
+            objectFit: "contain",
+            height: { sm: 400, xs: 250 },
+          }}
+        />
+      ))}
+    </Carousel>
+  ) : (
+    // Render single image without Carousel
+    product.images && product.images.length === 1 && (
+      <BazaarImage
+        src={product.images[0].imageUrl}
+        alt={`product-0`}
+        sx={{
+          mx: "auto",
+          width: "100%",
+          objectFit: "contain",
+          height: { sm: 400, xs: 250 },
+        }}
+      />
+    )
+  )}
+</Grid>
 
             <Grid item md={6} xs={12} alignSelf="center">
               <H2>

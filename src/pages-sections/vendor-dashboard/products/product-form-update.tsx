@@ -68,7 +68,6 @@ const ProductFormUpdate: FC<Props> = (props) => {
       }
     });
 
-    console.log(updatedFiles);
     // Update the files state with the combined files
     setFiles(updatedFiles);
 
@@ -104,8 +103,7 @@ const ProductFormUpdate: FC<Props> = (props) => {
     const updatedImageUrls = [...formValues.images, ...uploadedImages];
 
     formValues.images = updatedImageUrls;
-
-    //console.log(formValues.images);
+    formValues.stock = values.stock;
 
     const response = await axios.post(url + "/products/save", formValues);
     if (response.status === 200) {

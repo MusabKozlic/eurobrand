@@ -17,11 +17,12 @@ import DiscountChip from "../discount-chip";
 import QuantityButtons from "./components/quantity-buttons";
 // STYLED COMPONENTS
 import { ImageWrapper, ContentWrapper, StyledBazaarCard } from "./styles";
-import { Button, Typography } from "@mui/material";
+import { Button, Dialog, Typography } from "@mui/material";
 import Images from "models/Images.model";
 import Category from "models/Category.model";
 import { useState } from "react";
 import ProductStatus from "models/ProductStatus.model";
+import DialogDrawer from "components/header/components/dialog-drawer";
 
 // ========================================================
 type Props = {
@@ -72,6 +73,14 @@ export default function ProductCard1({
   const [dialogOpen, setDialogOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  const [dialogCartOpen, setDialogCartOpen] = useState(false);
+  const [sidenavOpen, setSidenavOpen] = useState(false);
+
+  const toggleCartDialog = () => {
+    setDialogCartOpen(!dialogCartOpen);
+    setSidenavOpen(true);
+  };
+
   const toggleDialog = () => {
     setDialogOpen(!dialogOpen);
   };
@@ -117,6 +126,11 @@ export default function ProductCard1({
     };
     handleCartAmountChange(product, "remove");
   };
+
+  const openCart = () => {
+    handleIncrementQuantity();
+    toggleCartDialog();
+  }
 
   return (
     <>
@@ -224,19 +238,14 @@ export default function ProductCard1({
           </Box>
           {/* PRODUCT QUANTITY HANDLER BUTTONS */}
           {stock > 0 && cartItem?.qty > 0 ? (
-            <QuantityButtons
-              quantity={cartItem?.qty || 0}
-              stock={stock}
-              handleIncrement={handleIncrementQuantity}
-              handleDecrement={handleDecrementQuantity}
-            />
+            <></>
           ) : (
             stock > 0 && (
               <Button
                 size="small"
                 color="primary"
                 variant="contained"
-                onClick={handleIncrementQuantity}
+                onClick={openCart}
                 sx={{ height: 45 }}
               >
                 Dodaj u korpu
@@ -245,6 +254,12 @@ export default function ProductCard1({
           )}
         </ContentWrapper>
       </StyledBazaarCard>
+      <DialogDrawer
+        dialogOpen={dialogOpen}
+        toggleDialog={toggleCartDialog}
+        toggleSidenav={() => {setSidenavOpen(false)}} // Placeholder function if not required
+        sidenavOpen={sidenavOpen} // Placeholder value if not required
+      />
     </>
   );
 }

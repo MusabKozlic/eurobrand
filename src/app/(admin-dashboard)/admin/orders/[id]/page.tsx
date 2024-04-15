@@ -5,10 +5,10 @@ import { OrderDetailsPageView } from "pages-sections/vendor-dashboard/orders/pag
 import api from "utils/__api__/dashboard";
 
 export const metadata: Metadata = {
-  title: "Order Details - Bazaar Next.js E-commerce Template",
-  description: `Bazaar is a React Next.js E-commerce template. Build SEO friendly Online store, delivery app and Multi vendor store`,
-  authors: [{ name: "UI-LIB", url: "https://ui-lib.com" }],
-  keywords: ["e-commerce", "e-commerce template", "next.js", "react"]
+  title: "Eurobrand",
+  description: `Prodaja i servis novih i polovnih računara i računarske opreme,laptopa,mobitela`,
+  keywords: ["eurobrand", "prodaja i servis racunara", "laptopi", "racunari", "mobiteli", "racunarska oprema", "polovni racunari"],
+  icons: "/assets/eurobrand-logo/eurobrandLogo.png"
 };
 
 export default async function OrderDetails({ params }: { params: { id: number } }) {

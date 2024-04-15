@@ -37,7 +37,7 @@ export default function OrderedProducts({ order }: Props) {
             <div>
               <H6>{item.product_name}</H6>
               <Paragraph color="grey.600">
-                {currency(item.product_price)} x {item.product_quantity}
+                {item.product_price} x {item.product_quantity}KM
               </Paragraph>
             </div>
           </FlexBox>

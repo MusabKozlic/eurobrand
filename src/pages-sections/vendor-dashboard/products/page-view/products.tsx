@@ -109,7 +109,7 @@ const ProductsPageView = () => {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle color={"red"} id="responsive-dialog-title">
-          {"PAZNJA, UKOLIKO IZBRISETE, OVAJ ARTIKAL VISE NECE BITI DOSTUPAN!"}
+          {"PAŽNJA, UKOLIKO IZBRIŠETE OVAJ ARTIKAL VIŠE NEĆE BITI DOSTUPAN!"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
