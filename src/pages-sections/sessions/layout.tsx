@@ -44,8 +44,8 @@ export default function AuthLayout({ children }: PropsWithChildren) {
   return (
     <FlexRowCenter flexDirection="column" minHeight="100vh" px={2}>
       <Wrapper elevation={3}>
-        {/* LOGO WITH TITLE AREA */}
-        <LogoWithTitle />
+        {/* LOGO WITH TITLE AREA 
+        <LogoWithTitle />*/}
 
         {/* FORM AREA */}
         {children}

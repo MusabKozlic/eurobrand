@@ -29,7 +29,7 @@ export default function DialogDrawer(props: Props) {
 
   return (
     <Fragment>
-      <Dialog
+      {/*<Dialog
         scroll="body"
         open={dialogOpen}
         fullWidth={isMobile}
@@ -41,7 +41,7 @@ export default function DialogDrawer(props: Props) {
           <SocialButtons />
           <LoginBottom />
         </Wrapper>
-      </Dialog>
+      </Dialog>*/}
 
       <Drawer open={sidenavOpen} anchor="right" onClose={toggleSidenav} sx={{ zIndex: 9999 }}>
         <MiniCart toggleSidenav={toggleSidenav} />
