@@ -21,7 +21,26 @@ export const metadata: Metadata = {
 export default function IndexPage() {
   return (
     <UserProvider>
+      <Head>
+        <title>{metadata.title as React.ReactNode}</title>
+        <meta name="description" content={metadata.description} />
+        <meta name="keywords" content={metadata.keywords.toString()} />
+        <link rel="icon" href={metadata.icons.toString()} />
+      </Head>
       <IndexPageView />
+      {/* Place your script tags outside of the Head component */}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-X9VS5T767Q"></script>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+        
+            gtag('config', 'G-X9VS5T767Q');
+          `,
+        }}
+      />
     </UserProvider>
   );
 }
