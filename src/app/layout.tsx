@@ -24,10 +24,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <CartProvider>
           <SettingsProvider>
             <OrderProvider>
-            <ThemeProvider>
-              <ProgressBar />
-              <RTL>{children}</RTL>
-            </ThemeProvider>
+              <ThemeProvider>
+                <ProgressBar />
+                <RTL>{children}</RTL>
+              </ThemeProvider>
             </OrderProvider>
           </SettingsProvider>
         </CartProvider>

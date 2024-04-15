@@ -102,8 +102,14 @@ const ProductFormUpdate: FC<Props> = (props) => {
 
     const updatedImageUrls = [...formValues.images, ...uploadedImages];
 
+    formValues.brand = values.brand;
+    formValues.model = values.model;
+    formValues.category = values.category;
     formValues.images = updatedImageUrls;
+    formValues.description = values.description;
     formValues.stock = values.stock;
+    formValues.status = values.status;
+    formValues.price = values.price;
 
     const response = await axios.post(url + "/products/save", formValues);
     if (response.status === 200) {

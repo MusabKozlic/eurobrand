@@ -1,4 +1,5 @@
 // LOCAL CUSTOM COMPONENTS
+import ImageSlider from "./banner";
 import Categories from "./categories";
 import NavigationList from "./nav-list";
 // STYLED COMPONENTS
@@ -15,6 +16,8 @@ interface Props {
 
 export default function Navbar({ border, elevation = 2, hideCategories = false }: Props) {
   return (
+    <>
+    <ImageSlider />
     <NavBarWrapper hoverEffect={false} elevation={elevation} border={border}>
       {hideCategories ? (
         <InnerContainer sx={{ justifyContent: "center" }}>
@@ -30,5 +33,6 @@ export default function Navbar({ border, elevation = 2, hideCategories = false }
         </InnerContainer>
       )}
     </NavBarWrapper>
+    </>
   );
 }

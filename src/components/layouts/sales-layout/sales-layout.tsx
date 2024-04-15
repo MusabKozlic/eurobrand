@@ -9,6 +9,7 @@ import { Navbar } from "components/navbar";
 import { Footer1 } from "components/footer";
 import { SearchInputWithCategory } from "components/search-box";
 import { MobileNavigationBar } from "components/mobile-navigation";
+import ImageSlider from "components/navbar/banner";
 
 /** USED: SALES-1 & SALES-2 PAGES */
 
@@ -56,6 +57,7 @@ export default function SalesLayout(props: SaleLayoutProps) {
       <Fragment>
         <Divider />
         {categoryNav}
+        {/* <ImageSlider /> */}
         <div className="section-after-sticky">{children}</div>
       </Fragment>
     );
