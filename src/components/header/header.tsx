@@ -33,9 +33,11 @@ export default function Header({ isFixed, className, midSlot }: Props) {
     <Fragment>
       {/* LEFT CONTENT - LOGO AND CATEGORY */}
       <FlexBox minWidth={100} alignItems="center">
-        <img src="/assets/eurobrand-logo/eurobrandLogo.png" alt="logo" width={150} height={100} style={{
-          padding: "2%"
-        }}/>
+        <Link href="/">
+          <img src="/assets/eurobrand-logo/eurobrandLogo.png" alt="logo" width={150} height={100} style={{
+            padding: "2%"
+          }}/>
+        </Link>
         <Link href="/" >
           <div className="logoContainer" style={{display: "flex",
             flexDirection: "column",

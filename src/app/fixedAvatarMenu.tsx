@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from 'react';
-import PhoneForwardedIcon from '@mui/icons-material/PhoneForwarded';
+import React, { useState, useEffect } from 'react';
 import { Avatar } from '@mui/material';
 import { green, purple, red } from '@mui/material/colors';
 import CallIcon from '@mui/icons-material/Call';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import MessageIcon from '@mui/icons-material/Message';
+import CloseIcon from '@mui/icons-material/Close';
 
 const FixedAvatarMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,16 +20,29 @@ const FixedAvatarMenu: React.FC = () => {
   };
 
   const LiveChat = () => {
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/661e4ab41ec1082f04e2f69e/1hrj57ke5';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
-    })();
-  }
+    if (window.Tawk_API) {
+      window.Tawk_API.toggle();
+    }
+  };
+
+  useEffect(() => {
+    // Load Tawk.to script when component mounts
+    const script = document.createElement('script');
+    script.src = 'https://embed.tawk.to/661e4ab41ec1082f04e2f69e/1hrj57ke5';
+    script.async = true;
+    script.onload = () => {
+      if (window.Tawk_API) {
+        // Hide chat widget initially
+        window.Tawk_API.hideWidget();
+      }
+    };
+    document.body.appendChild(script);
+
+    // Cleanup function to remove script element
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="fixed-avatar-menu" style={{ position: 'fixed', bottom: '20px', left: '20px', zIndex: 999 }}>
@@ -38,24 +51,28 @@ const FixedAvatarMenu: React.FC = () => {
       </div>
       {isOpen && (
         <div className="menu" style={{ position: 'absolute', bottom: '50px', backgroundColor: "white", color: "black", boxShadow: '0px 0px 20px rgba(0, 0, 0, 2)', borderRadius: '8px', padding: '10px', width: '200px', fontSize: "16px" }}>
-          <ul style={{ listStyle: "none", cursor: "default" }}>
-            <li onClick={() => handleMenuItemClick('tel:061306145')} style={{display: "flex", paddingBottom: "10px"}}>
-                <Avatar sx={{bgcolor: green[500] }}><CallIcon/></Avatar>
-                <span style={{margin: "auto"}}>Pozovite nas!</span>
-            </li>
-            <li style={{display: "flex", paddingBottom: "10px"}} onClick={() => handleMenuItemClick('https://api.whatsapp.com/send?phone=061306145&text=Hello')}>
-                <Avatar sx={{bgcolor: green[500] }}><WhatsAppIcon/></Avatar>
-                <span style={{margin: "auto"}}>WhatsApp</span></li>
-            <li style={{display: "flex", paddingBottom: "10px"}} onClick={() => handleMenuItemClick('viber://add?number=061306145')}>
-                <Avatar sx={{bgcolor: purple[500] }}><WhatsAppIcon/></Avatar>
-                <span style={{margin: "auto"}}>Viber</span></li>
-            <li style={{display: "flex", paddingBottom: "10px"}} onClick={() => handleMenuItemClick('mailto:prodajaeurobrand@gmail.com')}>
-                <Avatar sx={{bgcolor: red[500] }}><EmailIcon/></Avatar>
-                <span style={{margin: "auto"}}>Email</span></li>
-            <li style={{display: "flex", paddingBottom: "10px"}} onClick={() => LiveChat()}>
-                <Avatar sx={{bgcolor: red[500] }}><MessageIcon/></Avatar>
-                <span style={{margin: "auto", paddingBottom: "10px"}}>Pišite nam!</span></li>
-          </ul>
+            <ul style={{ listStyle: "none", cursor: "default" }}>
+                <div style={{float: "right"}}>
+                    <CloseIcon onClick={toggleMenu}/>
+                </div>
+                <br/>
+                <li onClick={() => handleMenuItemClick('tel:062789733')} style={{display: "flex", paddingBottom: "10px"}}>
+                    <Avatar sx={{bgcolor: green[500] }}><CallIcon/></Avatar>
+                    <span style={{margin: "auto"}}>Pozovite nas!</span>
+                </li>
+                <li style={{display: "flex", paddingBottom: "10px"}} onClick={() => handleMenuItemClick('https://api.whatsapp.com/send?phone=062789733&text=Pozdrav')}>
+                    <Avatar sx={{bgcolor: green[500] }}><WhatsAppIcon/></Avatar>
+                    <span style={{margin: "auto"}}>WhatsApp</span></li>
+                <li style={{display: "flex", paddingBottom: "10px"}} onClick={() => handleMenuItemClick('viber://add?number=38762789733')}>
+                    <Avatar sx={{bgcolor: purple[500] }}><WhatsAppIcon/></Avatar>
+                    <span style={{margin: "auto"}}>Viber</span></li>
+                <li style={{display: "flex", paddingBottom: "10px"}} onClick={() => handleMenuItemClick('mailto:prodajaeurobrand@gmail.com')}>
+                    <Avatar sx={{bgcolor: red[500] }}><EmailIcon/></Avatar>
+                    <span style={{margin: "auto"}}>Email</span></li>
+                <li style={{display: "flex", paddingBottom: "10px"}} onClick={LiveChat}>
+                    <Avatar sx={{bgcolor: red[500] }}><MessageIcon/></Avatar>
+                    <span style={{margin: "auto", paddingBottom: "10px"}}>Pišite nam!</span></li>
+            </ul>
         </div>
       )}
     </div>
@@ -63,3 +80,4 @@ const FixedAvatarMenu: React.FC = () => {
 };
 
 export default FixedAvatarMenu;
+
