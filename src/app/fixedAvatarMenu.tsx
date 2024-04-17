@@ -20,8 +20,8 @@ const FixedAvatarMenu: React.FC = () => {
   };
 
   const LiveChat = () => {
-    if (window.Tawk_API) {
-      window.Tawk_API.toggle();
+    if ((window as any).Tawk_API) {
+        (window as any).Tawk_API.toggle();
     }
   };
 
@@ -31,9 +31,9 @@ const FixedAvatarMenu: React.FC = () => {
     script.src = 'https://embed.tawk.to/661e4ab41ec1082f04e2f69e/1hrj57ke5';
     script.async = true;
     script.onload = () => {
-      if (window.Tawk_API) {
+      if ((window as any).Tawk_API) {
         // Hide chat widget initially
-        window.Tawk_API.hideWidget();
+        (window as any).Tawk_API.hideWidget();
       }
     };
     document.body.appendChild(script);
