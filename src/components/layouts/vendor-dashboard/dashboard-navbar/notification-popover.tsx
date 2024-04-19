@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import TabContext from "@mui/lab/TabContext";
@@ -20,55 +20,10 @@ import TruckFast from "icons/TruckFast";
 // GLOBAL CUSTOM COMPONENTS
 import { FlexBox } from "components/flex-box";
 import { H6, Paragraph } from "components/Typography";
-
-// dummy  data
-const orders = [
-  {
-    id: "5e8883f1b51cc1956a5a1ec0",
-    createdAt: new Date("6/21/2022"),
-    title: "New order received",
-    type: "new_message",
-    icon: CartCheck
-  },
-  {
-    id: "5e8883f7ed1486d665d8be1e",
-    createdAt: new Date("6/20/2022"),
-    title: "Order Delivered Successfully",
-    type: "new_message",
-    icon: TruckFast
-  },
-  {
-    id: "5e8883fca0e8612044248ecf",
-    createdAt: new Date("6/19/2022"),
-    title: "Order Cancellation Request",
-    type: "item_shipped",
-    icon: CartX
-  }
-];
-
-const archives = [
-  {
-    id: "5e8883f1b51cc1956a5a1ec0",
-    createdAt: new Date("6/21/2022"),
-    title: "New order received",
-    type: "new_message",
-    icon: CartCheck
-  },
-  {
-    id: "5e8883f7ed1486d665d8be1e",
-    createdAt: new Date("6/20/2022"),
-    title: "Order Delivered Successfully",
-    type: "new_message",
-    icon: TruckFast
-  },
-  {
-    id: "5e8883fca0e8612044248ecf",
-    createdAt: new Date("6/19/2022"),
-    title: "Order Cancellation Request",
-    type: "item_shipped",
-    icon: CartX
-  }
-];
+import OrderDetails from "models/OrderDetails.model";
+import axios from "axios";
+import { Icon, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 // styled components
 const StyledTabList = styled(TabList)(({ theme }) => ({
@@ -94,6 +49,30 @@ export default function NotificationsPopover() {
   const [open, setOpen] = useState(false);
   const [tabValue, setTabValue] = useState("1");
   const [anchorEl, setAnchorEl] = useState(null);
+  const [orders, setOrders] = useState<OrderDetails[]>([]);
+  const router = useRouter();
+
+  const url =
+  process.env.NODE_ENV === "production"
+    ? "https://www.eurobrand.ba/api"
+    : "http://localhost:8080";
+
+
+  const handleFetch = async () => {
+    const orders: OrderDetails[] = (await axios.get(`${url}/orders/newOrders`)).data;
+
+    setOrders(orders);
+  }
+
+  const handleRedirectToOrder = async (orderId: number) => {
+    setOpen(false);
+    await axios.put(`${url}/orders/markSeen/${orderId}`);
+    router.push(`/admin/orders/${orderId}`);
+  }
+
+  useEffect(() => {
+    handleFetch();
+  }, [handleRedirectToOrder]);
 
   const handleClick = (event) => {
     setOpen((state) => !state);
@@ -113,7 +92,7 @@ export default function NotificationsPopover() {
     <ClickAwayListener onClickAway={handleClose}>
       <div>
         <IconButton onClick={handleClick}>
-          <Badge color="secondary" variant="dot" badgeContent={1}>
+          <Badge color="secondary" variant="standard" badgeContent={orders.length}>
             <Notifications sx={{ color: "grey.500" }} />
           </Badge>
         </IconButton>
@@ -151,8 +130,7 @@ export default function NotificationsPopover() {
               <Paper>
                 <TabContext value={tabValue}>
                   <StyledTabList onChange={handleTabChange}>
-                    <StyledTab disableRipple value="1" label={`Unread (2)`} />
-                    <StyledTab disableRipple value="2" label="Archived" />
+                    <StyledTab disableRipple value="1" label={`Notifications`} />
                   </StyledTabList>
 
                   {orders.length === 0 ? (
@@ -163,29 +141,12 @@ export default function NotificationsPopover() {
                     <TabPanel value="1" sx={{ p: 0 }}>
                       {orders.map((order) => (
                         <ListItem
-                          key={order.id}
-                          type={order.type}
-                          Icon={order.icon}
-                          title={order.title}
-                          createdAt={order.createdAt}
-                        />
-                      ))}
-                    </TabPanel>
-                  )}
-
-                  {archives.length === 0 ? (
-                    <Paragraph fontWeight="500" textAlign="center" p={2}>
-                      There are no archives
-                    </Paragraph>
-                  ) : (
-                    <TabPanel value="2" sx={{ p: 0 }}>
-                      {archives.map((item) => (
-                        <ListItem
-                          key={item.id}
-                          type={item.type}
-                          Icon={item.icon}
-                          title={item.title}
-                          createdAt={item.createdAt}
+                          id={order.id}
+                          firstName={order.firstName}
+                          lastName={order.lastName}
+                          timestamp={order.timestamp}
+                          price={order.totalPrice}
+                          handleClick={handleRedirectToOrder}
                         />
                       ))}
                     </TabPanel>
@@ -202,23 +163,28 @@ export default function NotificationsPopover() {
 
 // ListItem component props
 type ListItemProps = {
-  type: string;
-  title: string;
-  createdAt: Date;
-  Icon: (props: SvgIconProps) => JSX.Element;
+  id: number;
+  firstName: string;
+  lastName: string;
+  timestamp: Date;
+  price: number;
+  handleClick: (orderId: number) => Promise<void>;
 };
 
 function ListItem(props: ListItemProps) {
-  const { Icon, title, createdAt } = props;
+  const { id, firstName, lastName, timestamp, price, handleClick } = props;
+  const date = new Date(timestamp);
+
 
   return (
-    <ListItemWrapper p={2} gap={2} alignItems="center">
+    <ListItemWrapper p={2} gap={2} alignItems="center" onClick={() => {handleClick(id)}}>
       <Icon color="info" />
 
       <div>
-        <H6 fontSize={13}>{title}</H6>
+        <H6 fontSize={13}>#{id} - {firstName} - {lastName} </H6>
+        <H6>{price} KM</H6>
         <Paragraph fontSize={11}>
-          {formatDistance(createdAt, new Date(), { addSuffix: true })}
+          <Typography>{timestamp && date.toLocaleDateString()}</Typography>
         </Paragraph>
       </div>
     </ListItemWrapper>

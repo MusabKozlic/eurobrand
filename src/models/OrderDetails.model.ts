@@ -9,7 +9,8 @@ interface OrderDetails {
     postalCode: string;
     note: string;
     totalPrice: number;
-    orderStatus: OrderDetailsStatus
+    orderStatus: OrderDetailsStatus;
+    timestamp?: Date;
   }
 
   export interface OrderDetailsStatus {

@@ -30,18 +30,6 @@ export default function SearchInputWithCategory(props: SearchProps) {
       backgroundColor: "grey.200",
       "& .MuiOutlinedInput-notchedOutline": { border: 0 }
     },
-    startAdornment: (
-      <Box
-        mr={2}
-        px={2}
-        display="grid"
-        alignItems="center"
-        justifyContent="center"
-        borderRight="1px solid"
-        borderColor="grey.400">
-        <Search sx={{ fontSize: 17, color: "grey.600", cursor:"default" }} />
-      </Box>
-    ),
     endAdornment: <CategoryDropdown title={categoryTitle} handleChange={handleCategoryChange} stateTitle={stateTitle} handleChangeStateTitle={handleChangeStateTitle} handleStatus={handleStatus} status={status} />
   };
 
