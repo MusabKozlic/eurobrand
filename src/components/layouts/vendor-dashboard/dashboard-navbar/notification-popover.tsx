@@ -141,6 +141,7 @@ export default function NotificationsPopover() {
                     <TabPanel value="1" sx={{ p: 0 }}>
                       {orders.map((order) => (
                         <ListItem
+                          key={order.id}
                           id={order.id}
                           firstName={order.firstName}
                           lastName={order.lastName}
