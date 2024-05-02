@@ -10,6 +10,7 @@ import { Footer1 } from "components/footer";
 import { SearchInputWithCategory } from "components/search-box";
 import { MobileNavigationBar } from "components/mobile-navigation";
 import ImageSlider from "components/navbar/banner";
+import Banner from "components/header/Banner";
 
 /** USED: SALES-1 & SALES-2 PAGES */
 
@@ -65,8 +66,10 @@ export default function SalesLayout(props: SaleLayoutProps) {
 
   return (
     <Fragment>
-      {/* TOP BAR AREA */}
+      {/* BANNER */}
       
+      <Banner />
+
 
       {/* HEADER AREA */}
       <Header midSlot={<SearchInputWithCategory handleSearch={handleSearch} handleStatus={handleStatus} status={status} />} />

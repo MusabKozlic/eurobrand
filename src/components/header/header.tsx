@@ -34,24 +34,38 @@ export default function Header({ isFixed, className, midSlot }: Props) {
       {/* LEFT CONTENT - LOGO AND CATEGORY */}
       <FlexBox minWidth={100} alignItems="center">
         <Link href="/">
-          <img src="/assets/eurobrand-logo/eurobrandLogo.png" alt="logo" width={150} height={100} style={{
-            padding: "2%"
-          }}/>
+          <img
+            src="/assets/eurobrand-logo/eurobrandLogo.png"
+            alt="logo"
+            width={130}
+            height={80}
+            style={{
+              padding: "2%",
+            }}
+          />
         </Link>
-        <Link href="/" >
-          <div className="logoContainer" style={{display: "flex",
-            flexDirection: "column",
-            alignItems: "center"}}>
-            <div className="logoText" style={{
-              fontSize: "24px",
-              fontWeight: "bold",
-              fontFamily: "Arial, sans-serif",
-              color: "#848484",
-              textDecoration: "none",
-              textShadow: "1px 1px 2px rgba(0,0,0,0.2)",
-              letterSpacing: "1px",
-              lineHeight: "1.2"
-            }} >
+        <Link href="/">
+          <div
+            className="logoContainer"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <div
+              className="logoText"
+              style={{
+                fontSize: "24px",
+                fontWeight: "bold",
+                fontFamily: "Arial, sans-serif",
+                color: "#848484",
+                textDecoration: "none",
+                textShadow: "1px 1px 2px rgba(0,0,0,0.2)",
+                letterSpacing: "1px",
+                lineHeight: "1.2",
+              }}
+            >
               Eurobrand
             </div>
             <div
@@ -94,39 +108,81 @@ export default function Header({ isFixed, className, midSlot }: Props) {
 
   const CONTENT_FOR_SMALL_DEVICE = (
     <Fragment>
-      {/* LEFT CONTENT - LOGO AND CATEGORY */}
-      <FlexBox minWidth={100} alignItems="center">
-        <img
-          src="/assets/eurobrand-logo/eurobrandLogo.png"
-          alt="logo"
-          width={150}
-          height={100}
-          style={{
-            padding: "2%",
-          }}
-        />
+      <div style={!isFixed ? {display: "flex", flexDirection: "column", height: "25vh", width: "100%", marginTop: "70px"}: {}}>
+        {/* LEFT CONTENT - LOGO AND CATEGORY */}
+        <FlexBox minWidth={100} alignItems="center">
+          <img
+            src="/assets/eurobrand-logo/eurobrandLogo.png"
+            alt="logo"
+            width={130}
+            height={100}
+            style={{
+              padding: "2%",
+              marginTop: "12px"
+            }}
+          />
+          <Link href="/">
+          <div
+            className="logoContainer"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <div
+              className="logoText"
+              style={{
+                fontSize: "24px",
+                fontWeight: "bold",
+                fontFamily: "Arial, sans-serif",
+                color: "#848484",
+                textDecoration: "none",
+                textShadow: "1px 1px 2px rgba(0,0,0,0.2)",
+                letterSpacing: "1px",
+                lineHeight: "1.2",
+              }}
+            >
+              Eurobrand
+            </div>
+            <div
+              className="subText"
+              style={{
+                fontSize: "12px",
+                fontFamily: "Arial, sans-serif",
+                color: "#808080",
+                letterSpacing: "1px",
+                lineHeight: "1.2",
+              }}
+            >
+              Prodaja računara i računarske opreme
+            </div>
+          </div>
+        </Link>
         {/* SHOW DROP DOWN CATEGORY BUTTON WHEN HEADER FIXED */}
         {isFixed ? <CategoriesMenu /> : null}
-      </FlexBox>
+        </FlexBox>
+        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+          {/* SEARCH FORM | NAVIGATION */}
+          {midSlot}
 
-      {/* SEARCH FORM | NAVIGATION */}
-      {midSlot}
+          {/* LOGIN AND CART BUTTON */}
+          <LoginCartButtons
+            toggleDialog={toggleDialog}
+            toggleSidenav={toggleSidenav}
+          />
 
-      {/* LOGIN AND CART BUTTON */}
-      <LoginCartButtons
-        toggleDialog={toggleDialog}
-        toggleSidenav={toggleSidenav}
-      />
-
-      {/* LOGIN FORM DIALOG AND CART SIDE BAR  */}
-      <DialogDrawer
-        dialogOpen={dialogOpen}
-        sidenavOpen={sidenavOpen}
-        toggleDialog={toggleDialog}
-        toggleSidenav={toggleSidenav}
-      />
+          {/* LOGIN FORM DIALOG AND CART SIDE BAR  */}
+          <DialogDrawer
+            dialogOpen={dialogOpen}
+            sidenavOpen={sidenavOpen}
+            toggleDialog={toggleDialog}
+            toggleSidenav={toggleSidenav}
+          />
+        </div>
+      </div>
     </Fragment>
-  )
+  );
 
   return (
     <HeaderWrapper className={clsx(className)}>

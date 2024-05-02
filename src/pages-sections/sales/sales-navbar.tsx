@@ -9,6 +9,9 @@ import Category from "models/Category.model";
 // STYLED COMPONENTS
 import { StyledScrollbar, Title } from "./styles";
 
+import useTheme from "@mui/material/styles/useTheme";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 // ==========================================================================
 interface Props {
   selected: string;
@@ -18,14 +21,13 @@ interface Props {
 // ==========================================================================
 
 export default function SalesNavbar({ categories, selected, onChangeCategory }: Props) {
+  const theme = useTheme();
+  const downMd = useMediaQuery(theme.breakpoints.down(1150));
+
   return (
     <Box bgcolor="background.paper">
       <Container>
-      <StyledScrollbar autoHide={false} sx={{ 
-          '@media (max-width: 600px)': {
-            paddingLeft: "250px"
-          }
-        }}>
+      <StyledScrollbar autoHide={false} sx={downMd ? {width: "100%", paddingLeft: "300px" } : { /* Styles for larger screens */ }}>
           {categories.map((item) => {
             const Icon = appIcons[item.icon];
             const selectedItem = item.slug === selected ? 1 : 0;
