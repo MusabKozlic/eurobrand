@@ -66,9 +66,9 @@ export default function SalesLayout(props: SaleLayoutProps) {
 
   return (
     <Fragment>
-      {/* BANNER */}
+      {/* BANNER 
       
-      <Banner />
+      <Banner />*/}
 
 
       {/* HEADER AREA */}
