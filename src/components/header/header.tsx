@@ -108,14 +108,13 @@ export default function Header({ isFixed, className, midSlot }: Props) {
 
   const CONTENT_FOR_SMALL_DEVICE = (
     <Fragment>
-      <div style={!isFixed ? {display: "flex", flexDirection: "column", height: "25vh", width: "100%", marginTop: "70px"}: {}}>
         {/* LEFT CONTENT - LOGO AND CATEGORY */}
         <FlexBox minWidth={100} alignItems="center">
           <img
             src="/assets/eurobrand-logo/eurobrandLogo.png"
             alt="logo"
-            width={130}
-            height={100}
+            width={100}
+            height={80}
             style={{
               padding: "2%",
               marginTop: "12px"
@@ -130,39 +129,11 @@ export default function Header({ isFixed, className, midSlot }: Props) {
               alignItems: "center",
             }}
           >
-            <div
-              className="logoText"
-              style={{
-                fontSize: "24px",
-                fontWeight: "bold",
-                fontFamily: "Arial, sans-serif",
-                color: "#848484",
-                textDecoration: "none",
-                textShadow: "1px 1px 2px rgba(0,0,0,0.2)",
-                letterSpacing: "1px",
-                lineHeight: "1.2",
-              }}
-            >
-              Eurobrand
-            </div>
-            <div
-              className="subText"
-              style={{
-                fontSize: "12px",
-                fontFamily: "Arial, sans-serif",
-                color: "#808080",
-                letterSpacing: "1px",
-                lineHeight: "1.2",
-              }}
-            >
-              Prodaja računara i računarske opreme
-            </div>
           </div>
         </Link>
         {/* SHOW DROP DOWN CATEGORY BUTTON WHEN HEADER FIXED */}
         {isFixed ? <CategoriesMenu /> : null}
         </FlexBox>
-        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
           {/* SEARCH FORM | NAVIGATION */}
           {midSlot}
 
@@ -179,8 +150,6 @@ export default function Header({ isFixed, className, midSlot }: Props) {
             toggleDialog={toggleDialog}
             toggleSidenav={toggleSidenav}
           />
-        </div>
-      </div>
     </Fragment>
   );
 

@@ -1,3 +1,4 @@
+import { useMediaQuery, useTheme } from '@mui/material';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
@@ -7,6 +8,8 @@ const Banner = () => {
     ? "https://www.eurobrand.ba/api"
     : "http://localhost:8080";
 
+    const theme = useTheme();
+    const downMd = useMediaQuery(theme.breakpoints.down(1150));
     const [products, setProducts] = useState([]);
     const [images, setImages] = useState([]);
 
@@ -63,7 +66,7 @@ const Banner = () => {
       <style jsx>{`
         .banner-container {
           width: 100%;
-          height: 30vh; /* 10% of viewport height */
+          height: ${downMd ? "15vh" : "30vh"}; /* 10% of viewport height */
           overflow: hidden;
           position: relative;
         }
