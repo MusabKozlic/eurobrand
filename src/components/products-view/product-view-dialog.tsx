@@ -74,7 +74,7 @@ export default function ProductViewDialog(props: Props) {
         onClose={handleCloseDialog}
         sx={{ zIndex: 1501 }}
       >
-        <DialogContent sx={{ maxWidth: 900,  minWidth: 900 }}>
+        <DialogContent sx={{ maxWidth: 900 }}>
           <div style={{ cursor: "default" }}>
             <Grid container spacing={3}>
               <Grid item md={6} xs={12}>
@@ -173,7 +173,7 @@ export default function ProductViewDialog(props: Props) {
                       color="primary"
                       variant="contained"
                       onClick={handleCartAmountChange(1)}
-                      sx={{ height: 45, marginRight: "2%" }}
+                      sx={{ height: 45, marginRight: "2%", marginBottom: "2%" }}
                     >
                       Dodaj u korpu
                     </Button>
@@ -182,6 +182,7 @@ export default function ProductViewDialog(props: Props) {
                       color="secondary"
                       variant="outlined"
                       onClick={handleCloseDialog}
+                      sx={{ height: 45, marginBottom: "2%" }}
                     >
                       Zatvori prozor
                     </Button>
@@ -190,7 +191,7 @@ export default function ProductViewDialog(props: Props) {
 
                 {product.stock === 0 && (
                   <>
-                    <Button variant="contained" disabled sx={{ marginRight: "2%" }}>
+                    <Button variant="contained" disabled sx={{ marginRight: "2%", marginBottom: "2%" }}>
                       Nema na stanju
                     </Button>
                     <Button
@@ -198,6 +199,7 @@ export default function ProductViewDialog(props: Props) {
                       color="secondary"
                       variant="outlined"
                       onClick={handleCloseDialog}
+                      sx={{ height: 45, marginBottom: "2%" }}
                     >
                       Zatvori prozor
                     </Button>
