@@ -14,12 +14,26 @@ interface SearchProps {
   handleSearch: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   handleStatus: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   status: string;
+  sortStatus: string;
+  handleSortStatus: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 export default function SearchInputWithCategory(props: SearchProps) {
-  const { categoryTitle, parentRef, resultList, handleCategoryChange, handleChangeStateTitle, stateTitle } = useSearch();
+  const {
+    categoryTitle,
+    parentRef,
+    resultList,
+    handleCategoryChange,
+    handleChangeStateTitle,
+    stateTitle,
+    sortTitle,
+    handleSortChange,
+    stateSortTitle,
+    handleChangeStateSortTitle
+  } = useSearch();
 
-  const {handleSearch, handleStatus, status } = props;
+  const { handleSearch, handleStatus, status, handleSortStatus, sortStatus } =
+    props;
 
   const INPUT_PROPS = {
     sx: {
@@ -28,13 +42,40 @@ export default function SearchInputWithCategory(props: SearchProps) {
       padding: 0,
       overflow: "hidden",
       backgroundColor: "grey.200",
-      "& .MuiOutlinedInput-notchedOutline": { border: 0 }
+      "& .MuiOutlinedInput-notchedOutline": { border: 0 },
     },
-    endAdornment: <CategoryDropdown title={categoryTitle} handleChange={handleCategoryChange} stateTitle={stateTitle} handleChangeStateTitle={handleChangeStateTitle} handleStatus={handleStatus} status={status} />
+    endAdornment: (
+      <>
+        <CategoryDropdown
+          title={categoryTitle}
+          handleChange={handleCategoryChange}
+          stateTitle={stateTitle}
+          handleChangeStateTitle={handleChangeStateTitle}
+          handleStatus={handleStatus}
+          status={status}
+          type={"stanje"}
+        />
+        <CategoryDropdown
+          title={sortTitle}
+          handleChange={handleSortChange}
+          stateTitle={stateSortTitle}
+          handleChangeStateTitle={handleChangeStateSortTitle}
+          handleStatus={handleSortStatus}
+          status={sortStatus}
+          type={"sortiranje"}
+        />
+      </>
+    ),
   };
 
   return (
-    <Box position="relative" flex="1 1 0" maxWidth="670px" mx="auto" {...{ ref: parentRef }}>
+    <Box
+      position="relative"
+      flex="1 1 0"
+      maxWidth="670px"
+      mx="auto"
+      {...{ ref: parentRef }}
+    >
       <TextField
         fullWidth
         color="success"

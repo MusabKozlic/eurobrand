@@ -23,6 +23,9 @@ interface withOutCategory {
   handleSearch: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   handleStatus: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   status: string;
+  bannerProducts: any;
+  sortStatus: string;
+  handleSortStatus: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 interface withCategory {
@@ -32,13 +35,16 @@ interface withCategory {
   handleSearch: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   handleStatus: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   status: string;
+  bannerProducts: any;
+  sortStatus: string;
+  handleSortStatus: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 type SaleLayoutProps = withOutCategory | withCategory;
 // =============================================================
 
 export default function SalesLayout(props: SaleLayoutProps) {
-  const { children, type = "one", categoryNav, handleSearch, handleStatus, status } = props;
+  const { children, type = "one", categoryNav, handleSearch, handleStatus, status, bannerProducts, sortStatus, handleSortStatus } = props;
 
   let CONTENT = null;
 
@@ -66,13 +72,13 @@ export default function SalesLayout(props: SaleLayoutProps) {
 
   return (
     <Fragment>
-      {/* BANNER 
+      {/* BANNER*
       
-      <Banner />*/}
+      <Banner bannerProducts={bannerProducts} />/}
 
 
       {/* HEADER AREA */}
-      <Header midSlot={<SearchInputWithCategory handleSearch={handleSearch} handleStatus={handleStatus} status={status} />} />
+      <Header midSlot={<SearchInputWithCategory handleSearch={handleSearch} handleStatus={handleStatus} status={status} handleSortStatus={handleSortStatus} sortStatus={sortStatus} />} />
 
       {/* RENDER MAIN CONTENT AREA */}
       {CONTENT}

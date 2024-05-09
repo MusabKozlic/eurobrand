@@ -20,6 +20,7 @@ export default function ProductList({ products }: Props) {
             price={item.price}
             imgUrl={item.images && item.images[0]?.imageUrl}
             description={item.description}
+            descriptionUrl={item.descriptionUrl}
             brand={item.brand}
             model={item.model}
             stock={item.stock}

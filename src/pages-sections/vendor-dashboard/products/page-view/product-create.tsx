@@ -7,16 +7,16 @@ import { H3 } from "components/Typography";
 import ProductForm from "../product-form";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 const ProductCreatePageView = () => {
   const router = useRouter();
 
   useEffect(() => {
     // Retrieve user information from cookie
-    const userCookie = Cookies.get('user');
+    const userCookie = Cookies.get("user");
     if (!userCookie) {
-      router.push("/login/api/auth/login")
+      router.push("/login/api/auth/login");
     }
   }, [router]);
 
@@ -24,8 +24,7 @@ const ProductCreatePageView = () => {
     <Box py={4}>
       <H3 mb={2}>Add New Product</H3>
 
-      <ProductForm
-      />
+      <ProductForm />
     </Box>
   );
 };

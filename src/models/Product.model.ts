@@ -7,6 +7,7 @@ interface Product {
   brand?: string;
   model: string;
   description: string;
+  descriptionUrl?: string;
   stock: number;
   images?: Images[];
   category: Category;

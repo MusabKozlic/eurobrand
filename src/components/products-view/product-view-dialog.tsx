@@ -19,6 +19,8 @@ import useCart from "hooks/useCart";
 // CUSTOM UTILS LIBRARY FUNCTION
 import { currency } from "lib";
 import Product from "models/Product.model";
+import { Description } from "@mui/icons-material";
+import Link from "next/link";
 
 // =====================================================
 interface Props {
@@ -147,6 +149,13 @@ export default function ProductViewDialog(props: Props) {
                 </Paragraph>
 
                 <Paragraph my={2}>{product.description}</Paragraph>
+
+
+                {product.descriptionUrl != null && (
+                    <Link href={product.descriptionUrl} target="_blank">
+                    <Paragraph style={{ color: 'blue', cursor: 'pointer' }}>Link za detaljan opis</Paragraph>
+                  </Link>
+                )}
 
                 <Divider sx={{ mb: 2 }} />
 

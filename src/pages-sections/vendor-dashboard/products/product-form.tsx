@@ -37,6 +37,7 @@ const INITIAL_VALUES = {
   price: "",
   category: "",
   description: "",
+  descriptionUrl: "",
   images: [] as string[],
 };
 
@@ -158,11 +159,15 @@ const ProductForm: FC<Props> = (props) => {
                 >
                   <MenuItem value={8}>Računari</MenuItem>
                   <MenuItem value={9}>Laptopi</MenuItem>
-                  <MenuItem value={10}>Konzole</MenuItem>
+                  <MenuItem value={10}>Apple</MenuItem>
                   <MenuItem value={11}>Mobiteli</MenuItem>
                   <MenuItem value={12}>Monitori</MenuItem>
-                  <MenuItem value={13}>Računarska oprema</MenuItem>
                   <MenuItem value={14}>Printeri</MenuItem>
+                  <MenuItem value={15}>Miševi</MenuItem>
+                  <MenuItem value={16}>Adapteri</MenuItem>
+                  <MenuItem value={17}>Projektori</MenuItem>
+                  <MenuItem value={18}>Diskovi</MenuItem>
+                  <MenuItem value={19}>Tastature</MenuItem>
                 </TextField>
               </Grid>
 
@@ -198,6 +203,26 @@ const ProductForm: FC<Props> = (props) => {
                   error={!!touched.description && !!errors.description}
                   helperText={
                     (touched.description && errors.description) as string
+                  }
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  rows={2}
+                  multiline
+                  fullWidth
+                  color="info"
+                  size="medium"
+                  name="descriptionUrl"
+                  label="Description Url"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  placeholder="Description Url"
+                  value={values.descriptionUrl}
+                  error={!!touched.descriptionUrl && !!errors.descriptionUrl}
+                  helperText={
+                    (touched.descriptionUrl && errors.descriptionUrl) as string
                   }
                 />
               </Grid>

@@ -17,7 +17,6 @@ import axios from "axios";
 export default function SalesTwoPageView() {
   const {
     page,
-    categories,
     selectedCategory,
     PRODUCT_PER_PAGE,
     handlePageChange,
@@ -25,21 +24,31 @@ export default function SalesTwoPageView() {
     search,
     handleSearch,
     handleStatus,
-    status
+    status,
+    sortStatus,
+    handleSortStatus
   } = useSales("laptopi", 1);
   const url =
-  process.env.NODE_ENV === "production"
-    ? "https://www.eurobrand.ba/api"
-    : "http://localhost:8080";
+    process.env.NODE_ENV === "production"
+      ? "https://www.eurobrand.ba/api"
+      : "http://localhost:8080";
   const [productList, setProductList] = useState<Product[]>([]);
+  const [bannerProducts, setBannerProducts] = useState([]);
 
-  const fetchProductsByCategory = async (category, search, status) => {
+  const fetchImages = async () => {
+    const response = await axios.get(url + "/products/banner");
+    
+    setBannerProducts(response.data); 
+  }
+
+  const fetchProductsByCategory = async (category, search, status, sortStatus) => {
     try {
       const response = await axios.get(`${url}/products/byCategory`, {
         params: {
           category: category,
           search: search,
-          status: status
+          status: status,
+          sortStatus: sortStatus
         },
       });
       setProductList(response.data);
@@ -49,14 +58,19 @@ export default function SalesTwoPageView() {
   };
 
   useEffect(() => {
-    fetchProductsByCategory(selectedCategory, search, status);
-  }, [selectedCategory, search, status]);
+    fetchProductsByCategory(selectedCategory, search, status, sortStatus);
+    //fetchImages();
+  }, [selectedCategory, search, status, sortStatus]);
+
+  // Filter products based on the current page
+  const startIndex = (page - 1) * PRODUCT_PER_PAGE;
+  const endIndex = startIndex + PRODUCT_PER_PAGE;
+  const paginatedProducts = productList.slice(startIndex, endIndex);
 
   // CATEGORY NAV LIST
   const CATEGORY_NAV = (
     <Sticky fixedOn={0} scrollDistance={200}>
       <SaleNavbar
-        categories={categories}
         selected={selectedCategory}
         onChangeCategory={handleCategoryChange}
       />
@@ -64,10 +78,19 @@ export default function SalesTwoPageView() {
   );
 
   return (
-    <SalesLayout type="two" categoryNav={CATEGORY_NAV} handleSearch={handleSearch} handleStatus={handleStatus} status={status}>
+    <SalesLayout
+      type="two"
+      categoryNav={CATEGORY_NAV}
+      handleSearch={handleSearch}
+      handleStatus={handleStatus}
+      status={status}
+      bannerProducts={bannerProducts}
+      handleSortStatus={handleSortStatus} 
+      sortStatus={sortStatus}
+    >
       <Container className="mt-2">
         {/* PRODUCT LIST AREA */}
-        <ProductList products={productList} />
+        <ProductList products={paginatedProducts} />
 
         {/* PAGINATION AREA */}
         <ProductPagination

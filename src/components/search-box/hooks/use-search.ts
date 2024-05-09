@@ -11,6 +11,8 @@ export default function useSearch() {
   const [resultList, setResultList] = useState<string[]>([]);
   const [categoryTitle, setCategoryTitle] = useState("Sve kategorije");
   const [stateTitle, setStateTitle] = useState("Sve");
+  const [stateSortTitle, setStateSortTitle] = useState("Sortiraj");
+  const [sortTitle, setSortTitle] = useState("default");
 
   // HANDLE CHANGE THE CATEGORY
   const handleCategoryChange = (cat: { title: string; value: string }) => () => {
@@ -18,10 +20,19 @@ export default function useSearch() {
     setCategoryTitle(cat.title);
   };
 
+  const handleSortChange = (cat: { title: string; value: string }) => () => {
+    setCategory(cat.value);
+    setSortTitle(cat.title);
+  };
+
  // HANDLE CHANGE THE STATE
  const handleChangeStateTitle = (state: { title: string; value: string }) => () => {
   setState(state.value);
   setStateTitle(state.title);
+};
+
+const handleChangeStateSortTitle = (state: { title: string; value: string }) => () => {
+  setStateSortTitle(state.title);
 };
 
   // FETCH PRODUCTS VIA API
@@ -54,6 +65,10 @@ export default function useSearch() {
     categoryTitle,
     handleCategoryChange,
     handleChangeStateTitle,
-    stateTitle
+    handleSortChange,
+    handleChangeStateSortTitle,
+    stateTitle,
+    stateSortTitle,
+    sortTitle,
   };
 }

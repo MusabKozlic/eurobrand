@@ -38,7 +38,6 @@ export default function SalesOnePageView() {
       {/* CATEGORY HEADER NAV */}
       <CategoryWrapper show={isFixedHeader ? 1 : 0}>
         <SaleNavbar
-          categories={categories}
           selected={selectedCategory}
           onChangeCategory={handleCategoryChange}
         />

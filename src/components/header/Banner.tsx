@@ -1,8 +1,12 @@
 import { useMediaQuery, useTheme } from '@mui/material';
 import axios from 'axios';
+import Banner from 'models/Banner.model';
 import React, { useState, useEffect } from 'react';
 
-const Banner = () => {
+type Props = { bannerProducts: Banner[] };
+
+const Banner = (props: Props) => {
+  const { bannerProducts } = props;
     const url =
   process.env.NODE_ENV === "production"
     ? "https://www.eurobrand.ba/api"
@@ -10,40 +14,29 @@ const Banner = () => {
 
     const theme = useTheme();
     const downMd = useMediaQuery(theme.breakpoints.down(1150));
-    const [products, setProducts] = useState([]);
-    const [images, setImages] = useState([]);
+    
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const fetchImages = async () => {
-    const response = await axios.get(url + "/products");
-    
-    setProducts(response.data); 
-    // Extract image URLs from products and set them in the images state
-    const imageUrls = response.data.map((product) => product.images[0].imageUrl);
-    setImages(imageUrls); 
-  }
-
   useEffect(() => {
-    fetchImages();
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        prevIndex === bannerProducts.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000); // Change image every 5 seconds (5000 milliseconds)
 
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [bannerProducts.length]);
 
   const goToPrevious = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? bannerProducts.length - 1 : prevIndex - 1
     );
   };
 
   const goToNext = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === bannerProducts.length - 1 ? 0 : prevIndex + 1
     );
   };
 
@@ -52,12 +45,13 @@ const Banner = () => {
       <button className="arrow-button left" onClick={goToPrevious}>
         &lt;
       </button>
-      {images.map((image, index) => (
+      {bannerProducts.map((product) => (
         <img
-          key={index}
-          src={image}
-          alt={`Banner Image ${index + 1}`}
-          className={index === currentImageIndex ? 'active' : ''}
+          key={product.productId}
+          src={product.bannerImageUrl}
+          alt={`Banner Image ${product.productId + 1}`}
+          className={product.productId === currentImageIndex ? 'active' : ''}
+          //loading="lazy" // Add lazy loading attribute
         />
       ))}
       <button className="arrow-button right" onClick={goToNext}>

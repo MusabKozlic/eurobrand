@@ -10,6 +10,7 @@ import { DropDownHandler } from "../styles";
 // DATA
 import { categories } from "../categories";
 import { states } from "../state";
+import { statesSort } from "../stateSort";
 import { ChangeEventHandler, useState } from "react";
 
 // ==============================================================
@@ -20,15 +21,16 @@ interface Props {
   handleChangeStateTitle: (state: { title: string; value: string }) => () => void; 
   handleStatus: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   status: string;
+  type: string
 }
 // ==============================================================
 
-export default function CategoryDropdown({ title, stateTitle, handleChangeStateTitle, handleStatus, status }: Props) {
+export default function CategoryDropdown({ title, stateTitle, handleChangeStateTitle, handleStatus, status, type }: Props) {
   const { breakpoints } = useTheme();
   const [selectedValue, setSelectedValue] = useState(stateTitle);
 
   const handleChange = ({ title, value }) => {
-    setSelectedValue(value);
+    setSelectedValue(title);
     handleChangeStateTitle({ title, value });
     handleStatus(value);
   }
@@ -49,11 +51,16 @@ export default function CategoryDropdown({ title, stateTitle, handleChangeStateT
         {selectedValue === "" ? "SVE" : selectedValue.toUpperCase()}
         <KeyboardArrowDownOutlined fontSize="small" color="inherit" />
       </DropDownHandler>}>
-        {states.map((item) => (
+        {type === "stanje" ? states.map((item) => (
           <MenuItem key={item.value} onClick={() => handleChange(item)}>
             {item.title}
           </MenuItem>
-        ))}
+        )) : 
+        statesSort.map((item) => (
+          <MenuItem key={item.value} onClick={() => handleChange(item)}>
+            {item.title}
+          </MenuItem> ))
+        }
       </BazaarMenu></>
   );
 }

@@ -15,6 +15,7 @@ export default function useSales(defaultSelectCategory = "racunari", fetchCatego
   const [selectedCategory, setSelectedCategory] = useState(defaultSelectCategory);
   const [search, setSearch] = useState<string>('');
   const [status, setStatus] = useState<string>('');
+  const [sortStatus, setSortStatus] = useState<string>('');
 
   // HANDLE CHANGE PAGE
   const handlePageChange = (_, page: number) => setPage(page);
@@ -26,6 +27,10 @@ export default function useSales(defaultSelectCategory = "racunari", fetchCatego
 
   const handleStatus = (event) => {
     setStatus(event);
+  }
+
+  const handleSortStatus = (event) => {
+    setSortStatus(event);
   }
 
   // HANDLE THE CHANGE CATEGORY
@@ -44,10 +49,6 @@ export default function useSales(defaultSelectCategory = "racunari", fetchCatego
     }
   }, [fetchCategory]);
 
-  // FETCH PRODUCTS FROM SERVER
-  useEffect(() => {
-    api.getProducts(page).then((data) => setProductList(data));
-  }, [page]);
 
   return {
     page,
@@ -61,6 +62,8 @@ export default function useSales(defaultSelectCategory = "racunari", fetchCatego
     handleSearch,
     search,
     handleStatus,
-    status
+    status,
+    handleSortStatus,
+    sortStatus
   };
 }

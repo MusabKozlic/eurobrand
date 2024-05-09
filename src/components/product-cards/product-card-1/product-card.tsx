@@ -35,6 +35,7 @@ type Props = {
   hoverEffect?: boolean;
   showProductSize?: boolean;
   description: string;
+  descriptionUrl?: string;
   brand: string;
   model: string;
   stock: number;
@@ -54,6 +55,7 @@ export default function ProductCard1({
   hoverEffect,
   showProductSize,
   description,
+  descriptionUrl,
   brand,
   model,
   stock,
@@ -103,6 +105,7 @@ export default function ProductCard1({
       images,
       category,
       description,
+      descriptionUrl
     };
     if ((cartItem?.qty || 0) < product.stock) {
       handleCartAmountChange(product);
@@ -123,6 +126,7 @@ export default function ProductCard1({
       images,
       category,
       description,
+      descriptionUrl
     };
     handleCartAmountChange(product, "remove");
   };
@@ -143,6 +147,7 @@ export default function ProductCard1({
             brand,
             model,
             description,
+            descriptionUrl,
             stock,
             images,
             category,
