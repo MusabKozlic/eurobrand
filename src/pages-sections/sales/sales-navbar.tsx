@@ -37,7 +37,7 @@ export default function SalesNavbar({ selected, onChangeCategory }: Props) {
   return (
     <Box bgcolor="background.paper">
       <Container>
-      <StyledScrollbar autoHide={false} sx={downMd ? {width: "100%", paddingLeft: "300px", marginTop: "10vh" } : { /* Styles for larger screens */ }}>
+      <StyledScrollbar autoHide={false} sx={downMd ? {width: "100%", paddingLeft: "300px", marginTop: "8vh" } : { /* Styles for larger screens */ }}>
           {categoriesTwo.map((item) => {
             const Icon = appIcons[item.icon];
             const selectedItem = item.slug === selected ? 1 : 0;
