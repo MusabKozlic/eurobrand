@@ -11,7 +11,7 @@ export default function useSearch() {
   const [resultList, setResultList] = useState<string[]>([]);
   const [categoryTitle, setCategoryTitle] = useState("Sve kategorije");
   const [stateTitle, setStateTitle] = useState("Sve");
-  const [stateSortTitle, setStateSortTitle] = useState("Sortiraj po cijeni");
+  const [stateSortTitle, setStateSortTitle] = useState("Sortiraj");
   const [sortTitle, setSortTitle] = useState("default");
 
   // HANDLE CHANGE THE CATEGORY

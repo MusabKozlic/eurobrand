@@ -70,11 +70,6 @@ export default function SalesLayout(props: SaleLayoutProps) {
 
   return (
     <Fragment>
-      {/* BANNER*
-      
-      <Banner bannerProducts={bannerProducts} />/}
-
-
       {/* HEADER AREA */}
       <Header midSlot={<SearchInputWithCategory handleSearch={handleSearch} handleStatus={handleStatus} status={status} handleSortStatus={handleSortStatus} sortStatus={sortStatus} />} />
 
