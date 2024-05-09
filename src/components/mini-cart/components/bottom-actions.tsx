@@ -11,7 +11,7 @@ interface Props {
 export default function BottomActions({ total, handleNavigate }: Props) {
   return (
     <Box p={2.5}>
-      <div style={{ height: 40, paddingTop: "5%", paddingLeft: "1%", fontWeight: 600, cursor: "default"}} >Ukupno: {total}KM</div>
+      <div style={{ height: 40, paddingTop: "5%", paddingLeft: "1%", fontWeight: 600, cursor: "default"}} >Ukupno: {total} KM</div>
       <Button
         fullWidth
         color="primary"

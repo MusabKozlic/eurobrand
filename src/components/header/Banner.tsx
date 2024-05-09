@@ -67,7 +67,7 @@ const Banner = (props: Props) => {
         img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: cover; /* Ensure the entire image is visible while maintaining aspect ratio */
           position: absolute;
           top: 0;
           left: 0;

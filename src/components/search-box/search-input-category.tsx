@@ -9,6 +9,7 @@ import useSearch from "./hooks/use-search";
 import Search from "icons/Search";
 import useSales from "pages-sections/sales/use-sales";
 import { ChangeEventHandler } from "react";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 interface SearchProps {
   handleSearch: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;

@@ -50,7 +50,7 @@ export default function CheckoutForm() {
           <Span color="grey.600">Ukupno:</Span>
 
           <Span fontSize={18} fontWeight={600} lineHeight="1">
-            {getTotalPrice()}KM
+            {getTotalPrice()} KM
           </Span>
         </FlexBetween>
 

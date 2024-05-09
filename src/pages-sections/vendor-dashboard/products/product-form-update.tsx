@@ -197,7 +197,7 @@ const ProductFormUpdate: FC<Props> = (props) => {
                   >
                     <MenuItem value={8}>Računari</MenuItem>
                     <MenuItem value={9}>Laptopi</MenuItem>
-                    <MenuItem value={10}>Konzole</MenuItem>
+                    <MenuItem value={10}>Apple</MenuItem>
                     <MenuItem value={11}>Mobiteli</MenuItem>
                     <MenuItem value={12}>Monitori</MenuItem>
                     <MenuItem value={14}>Printeri</MenuItem>

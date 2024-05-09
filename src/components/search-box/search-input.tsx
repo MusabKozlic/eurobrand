@@ -41,7 +41,6 @@ export default function SearchInput() {
   };
 
   const fetchProductsByCategory = async (search: ChangeEvent<HTMLInputElement>) => {
-    console.log(search.target.value);
     try {
       const response = await axios.get(`${url}/products/byCategory`, {
         params: {

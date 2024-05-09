@@ -105,7 +105,7 @@ const OrderDetailsPageView = (props: Props) => {
                   {order.address}, {order.city}, {order.postalCode}
                 </TableCell>
                 <TableCell>{order.note}</TableCell>
-                <TableCell>{order.totalPrice.toFixed(2)}KM</TableCell>
+                <TableCell>{order.totalPrice.toFixed(2)} KM</TableCell>
                 <TableCell
                   sx={{
                     backgroundColor:
@@ -149,7 +149,7 @@ const OrderDetailsPageView = (props: Props) => {
                   <TableCell>{orderProduct.product.model}</TableCell>
                   <TableCell>{orderProduct.product.description}</TableCell>
                   <TableCell>
-                    {orderProduct.product.price.toFixed(2)}KM
+                    {orderProduct.product.price.toFixed(2)} KM
                   </TableCell>
                   <TableCell>{orderProduct.quantity}</TableCell>
                 </TableRow>

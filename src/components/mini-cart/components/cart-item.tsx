@@ -75,11 +75,11 @@ export default function MiniCartItem({ item, handleCartAmountChange }: Props) {
         </div>
 
         <Tiny color="grey.600">
-          {item.price}KM x {item.qty}
+          {item.price} KM x {item.qty}
         </Tiny>
 
         <H6 color="primary.main" mt={0.5}>
-          {item.qty * item.price}KM
+          {item.qty * item.price} KM
         </H6>
       </Box>
 

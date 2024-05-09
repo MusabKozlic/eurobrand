@@ -1,6 +1,5 @@
 export const statesSort = [
-    { title: "Sortiraj", value: "" },
-    { title: "Od najnize", value: "asc" },
-    { title: "Od najvise", value: "desc" },
+    { title: "Od najniže cijene", value: "asc" },
+    { title: "Od najviše cijene", value: "desc" },
   ];
   

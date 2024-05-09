@@ -115,11 +115,11 @@ export default function CartItem({
           style={{ cursor: "default" }}
         >
           <Span color="grey.600">
-            {price}KM x {qty}
+            {price} KM x {qty}
           </Span>
 
           <Span fontWeight={600} color="primary.main">
-            {price * qty}KM
+            {price * qty} KM
           </Span>
         </FlexBox>
 

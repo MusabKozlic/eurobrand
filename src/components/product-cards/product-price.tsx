@@ -13,7 +13,7 @@ export default function ProductPrice({ price }: Props) {
   return (
     <FlexBox alignItems="center" gap={1} mt={0.5}>
       <Paragraph fontWeight={600} color="primary.main">
-        {price}KM
+        {price} KM
       </Paragraph>
     </FlexBox>
   );

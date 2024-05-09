@@ -64,7 +64,7 @@ export default function ProductViewDialog(props: Props) {
 
   const handleCloseImageDialog = () => {
     setOpenImageDialog(false);
-  }
+  };
 
   return (
     <>
@@ -74,7 +74,7 @@ export default function ProductViewDialog(props: Props) {
         onClose={handleCloseDialog}
         sx={{ zIndex: 1501 }}
       >
-        <DialogContent sx={{ maxWidth: 900, width: "100%" }}>
+        <DialogContent sx={{ maxWidth: 900,  minWidth: 900 }}>
           <div style={{ cursor: "default" }}>
             <Grid container spacing={3}>
               <Grid item md={6} xs={12}>
@@ -107,7 +107,10 @@ export default function ProductViewDialog(props: Props) {
                   </Carousel>
                 ) : (
                   // Render single image without Carousel
-                  product.images && product.images.length === 1 && (
+                  product.images &&
+                  product.images.length === 1 && (
+                    <>
+                    <div onClick={() => handleImageClick(0)}> {/* Call handleImageClick with index 0 */}
                     <BazaarImage
                       src={product.images[0].imageUrl}
                       alt={`product-0`}
@@ -118,6 +121,8 @@ export default function ProductViewDialog(props: Props) {
                         height: { sm: 400, xs: 250 },
                       }}
                     />
+                    </div>
+                    </>
                   )
                 )}
               </Grid>
@@ -137,7 +142,7 @@ export default function ProductViewDialog(props: Props) {
                   </Paragraph>
                 )}
 
-                <H1 color="primary.main">{product.price}KM</H1>
+                <H1 color="primary.main">{product.price} KM</H1>
 
                 <Paragraph
                   py={1}
@@ -156,6 +161,8 @@ export default function ProductViewDialog(props: Props) {
                     <Paragraph style={{ color: 'blue', cursor: 'pointer' }}>Link za detaljan opis</Paragraph>
                   </Link>
                 )}
+                <Paragraph marginTop={4} sx={{ fontWeight: 'medium', fontSize: "smaller"  }}>Garancija 6 mjeseci i račun</Paragraph>
+                <Paragraph sx={{ fontWeight: 'medium', fontSize: "smaller" }}>Vršimo dostavu brzom poštom za cijelu BiH u roku 24h, cijena 10 KM</Paragraph>
 
                 <Divider sx={{ mb: 2 }} />
 
@@ -166,7 +173,7 @@ export default function ProductViewDialog(props: Props) {
                       color="primary"
                       variant="contained"
                       onClick={handleCartAmountChange(1)}
-                      sx={{ height: 45 }}
+                      sx={{ height: 45, marginRight: "2%" }}
                     >
                       Dodaj u korpu
                     </Button>
@@ -175,7 +182,6 @@ export default function ProductViewDialog(props: Props) {
                       color="secondary"
                       variant="outlined"
                       onClick={handleCloseDialog}
-                      sx={{ marginLeft: "2%" }}
                     >
                       Zatvori prozor
                     </Button>
@@ -184,7 +190,7 @@ export default function ProductViewDialog(props: Props) {
 
                 {product.stock === 0 && (
                   <>
-                    <Button variant="contained" disabled>
+                    <Button variant="contained" disabled sx={{ marginRight: "2%" }}>
                       Nema na stanju
                     </Button>
                     <Button
@@ -192,7 +198,6 @@ export default function ProductViewDialog(props: Props) {
                       color="secondary"
                       variant="outlined"
                       onClick={handleCloseDialog}
-                      sx={{ marginLeft: "2%" }}
                     >
                       Zatvori prozor
                     </Button>
@@ -270,7 +275,10 @@ export default function ProductViewDialog(props: Props) {
         fullScreen
         sx={{ zIndex: 1502 }} // Ensure the image carousel dialog appears above the main dialog
       >
-        <DialogContent>
+        <DialogContent  style={{
+          width: "100vw",
+          height: "100vh"
+        }}>
           {/* Conditionally render the Carousel component */}
           {product.images && product.images.length > 1 ? (
                   <Carousel
@@ -290,9 +298,9 @@ export default function ProductViewDialog(props: Props) {
                           alt={`product-${index}`}
                           sx={{
                             mx: "auto",
-                            width: "85vw",
-                            objectFit: "fill",
-                            height: { sm: "83.5vh", xs: 250 },
+                            objectFit: "contain",
+                            width: "95vw",
+                            height: "90vh",
                           }}
                         />
                       </div>
@@ -306,9 +314,9 @@ export default function ProductViewDialog(props: Props) {
                       alt={`product-0`}
                       sx={{
                         mx: "auto",
-                        width: "100%",
                         objectFit: "contain",
-                        height: { sm: "83.5vh", xs: 250 },
+                        width: "95vw",
+                        height: "90vh",
                       }}
                     />
                   )
