@@ -121,7 +121,7 @@ export default function Header({ isFixed, className, midSlot }: Props) {
         {/* LOGO */}
         <div>
           <FlexBox justifyContent="center" alignItems="center" style={{justifyContent: "space-between"}}>
-            <Link href="/" style={{marginLeft: "-10%"}}>
+            <Link href="/" style={{marginLeft: "-8%"}}>
               <img
                 src="/assets/eurobrand-logo/eurobrandLogo.png"
                 alt="logo"
