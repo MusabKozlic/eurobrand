@@ -206,6 +206,7 @@ const ProductFormUpdate: FC<Props> = (props) => {
                     <MenuItem value={17}>Projektori</MenuItem>
                     <MenuItem value={18}>Diskovi</MenuItem>
                     <MenuItem value={19}>Tastature</MenuItem>
+                    <MenuItem value={20}>Grafičke kartice</MenuItem>
                   </TextField>
                 </Grid>
 

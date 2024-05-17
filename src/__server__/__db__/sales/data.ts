@@ -122,5 +122,6 @@ export const subcategories = [
     { name: "Miševi", slug: "misevi" },
     { name: "Projektori", slug: "projektori" },
     { name: "Diskovi", slug: "diskovi" }, 
-    { name: "Tastature", slug: "tastature"}
+    { name: "Tastature", slug: "tastature"},
+    { name: "Grafičke kartice", slug: "graficke kartice" }
 ];

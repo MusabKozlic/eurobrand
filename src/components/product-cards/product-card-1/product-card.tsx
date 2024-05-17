@@ -177,6 +177,8 @@ export default function ProductCard1({
               
             }}
           >
+            {productStatus.status == "Novo" && <div style={{ position: "absolute", top: 0, right: 0, padding: "5px", background: "rgba(255,255,255,0.9)", fontSize: "large" }}>NOVO</div>
+}
             <LazyImage
               priority
               src={`${imgUrl}`}
