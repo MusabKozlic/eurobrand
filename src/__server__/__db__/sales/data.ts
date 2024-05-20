@@ -125,3 +125,18 @@ export const subcategories = [
     { name: "Tastature", slug: "tastature"},
     { name: "Grafičke kartice", slug: "graficke kartice" }
 ];
+
+export const subcategoriesComputer = [
+  { name: "Računari novi", slug: "racunari novi" },
+  { name: "Gaming računari", slug: "gaming racunari" },
+  { name: "Brandname računari", slug: "brandname racunari" },
+  { name: "Workstation", slug: "workstation" }, 
+  { name: "All-in-one računari", slug: "all-in-one"}
+];
+
+export const subcategoriesLaptop = [
+  { name: "Laptopi novi", slug: "laptopi novi" },
+  { name: "Brandname laptopi", slug: "brandname laptopi" },
+  { name: "Surface", slug: "surface" }, 
+  { name: "Tableti", slug: "tableti"}
+];
