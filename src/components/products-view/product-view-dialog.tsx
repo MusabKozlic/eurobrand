@@ -29,11 +29,11 @@ export default function ProductViewDialog(props: Props) {
   const [imageIndex, setImageIndex] = useState(0);
   const { state, dispatch } = useCart();
   const cartItem = state.cart.find((item) => item.id === product.id);
-  const dialogRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<any>(null);
   const carouselRef = useRef<any>(null);
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (openImageDialog && dialogRef.current) {
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (openImageDialog && carouselRef.current) {
       if (event.key === "ArrowRight") {
         setImageIndex((prevIndex) => {
           const newIndex = prevIndex < product.images.length - 1 ? prevIndex + 1 : 0;
@@ -50,11 +50,35 @@ export default function ProductViewDialog(props: Props) {
     }
   };
 
-  useEffect(() => {
-    if (openImageDialog && dialogRef.current) {
-      dialogRef.current.focus();
+
+  const handleKeyDownDialog = (event: KeyboardEvent) => {
+    if (openDialog && !openImageDialog && dialogRef.current && !carouselRef.current) {
+      if (event.key === "ArrowRight") {
+        setImageIndex((prevIndex) => {
+          const newIndex = prevIndex < product.images.length - 1 ? prevIndex + 1 : 0;
+          dialogRef.current.slickGoTo(newIndex);
+          return newIndex;
+        });
+      } else if (event.key === "ArrowLeft") {
+        setImageIndex((prevIndex) => {
+          const newIndex = prevIndex > 0 ? prevIndex - 1 : product.images.length - 1;
+          dialogRef.current.slickGoTo(newIndex);
+          return newIndex;
+        });
+      }
     }
-  }, [openImageDialog]);
+  };
+
+  useEffect(() => {
+    if (openImageDialog) {
+      document.addEventListener("keydown", handleKeyDown);
+    } else if(openDialog) {
+      document.addEventListener("keydown", handleKeyDownDialog);
+    }else {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDownDialog);
+    }
+  }, [openImageDialog, openDialog]);
 
   const handleCartAmountChange = (amount: number) => () => {
     dispatch({
@@ -97,7 +121,7 @@ export default function ProductViewDialog(props: Props) {
               <Grid item md={6} xs={12}>
                 {product.images && product.images.length > 1 ? (
                   <Carousel
-                    ref={carouselRef}
+                    ref={dialogRef}
                     slidesToShow={1}
                     arrowStyles={{
                       boxShadow: 0,
@@ -327,7 +351,6 @@ export default function ProductViewDialog(props: Props) {
         <DialogContent
           ref={dialogRef}
           tabIndex={-1}
-          onKeyDown={handleKeyDown}
           style={{
             width: "100vw",
             height: "100vh",

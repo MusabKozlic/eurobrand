@@ -5,18 +5,13 @@ import Link from "next/link";
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
-import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
 // GLOBAL CUSTOM HOOK
 import useCart from "hooks/useCart";
 // GLOBAL CUSTOM COMPONENTS
 import { Span } from "components/Typography";
 import { FlexBetween, FlexBox } from "components/flex-box";
-// DUMMY CUSTOM DATA
-import countryList from "data/countryList";
 // CUSTOM UTILS LIBRARY FUNCTION
-import { currency } from "lib";
 import { useState } from "react";
 import useOrderDetails from "hooks/orderContext";
 import { useRouter } from "next/navigation";
@@ -28,9 +23,13 @@ export default function CheckoutForm() {
   const { setTotalPrice } = useOrderDetails();
   const router = useRouter();
 
-    const goToHome = () => {
-        router.push("/");
-    }
+  const goToHome = () => {
+    router.push("/");
+  }
+
+  const goToPredracun = () => {
+    router.push("/predracun");
+  }
 
   const getTotalPrice = () => state.cart.reduce((acc, item) => acc + item.price * item.qty, 0);
 
@@ -84,8 +83,9 @@ export default function CheckoutForm() {
         </Button>
 
       </Card>
-      <FlexBox justifyContent="center" mt={2}>
+      <FlexBox justifyContent="space-around" mt={2}>
         <Button variant="contained" color="error" onClick={goToHome}>POČETNA</Button>
+        <Button variant="contained" color="error" onClick={goToPredracun}>ZATRAŽI PONUDU</Button>
       </FlexBox>  </div>
   );
 }

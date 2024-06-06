@@ -79,7 +79,7 @@ export default function CartItem({
         width={140}
         height={140}
         display="block"
-        src={imgUrl || "/assets/images/products/iphone-xi.png"}
+        src={imgUrl}
       />
 
       {/* DELETE BUTTON */}
