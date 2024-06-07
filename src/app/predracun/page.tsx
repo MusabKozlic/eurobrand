@@ -100,8 +100,8 @@ export default function Predracun() {
     Object.keys(formValues).forEach((key) => {
       const value = formValues[key as keyof FormValues];
   
-      // Basic required field validation
-      if (!value) {
+      // Basic required field validation for all fields except pdvNumber
+      if (key !== 'pdvNumber' && !value) {
         errors[key as keyof FormValues] = "Ovo polje je obavezno!";
       }
   
@@ -113,9 +113,8 @@ export default function Predracun() {
   
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
-  };
+  };  
   
-
   const goToHome = () => {
     router.push("/");
   };
@@ -228,14 +227,11 @@ export default function Predracun() {
             <TextField
               fullWidth
               autoComplete="off"
-              required
               sx={{ mb: { xs: 2, sm: 2 } }}
               label="PDV broj"
               name="pdvNumber"
               value={formValues.pdvNumber}
               onChange={handleInputChange}
-              error={!!formErrors.pdvNumber}
-              helperText={formErrors.pdvNumber}
             />
           </Grid>
         </Grid>
