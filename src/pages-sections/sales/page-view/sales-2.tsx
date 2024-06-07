@@ -26,7 +26,7 @@ export default function SalesTwoPageView() {
     handleStatus,
     status,
     sortStatus,
-    handleSortStatus
+    handleSortStatus,
   } = useSales("laptopi", 1);
   const url =
     process.env.NODE_ENV === "production"
@@ -35,20 +35,19 @@ export default function SalesTwoPageView() {
   const [productList, setProductList] = useState<Product[]>([]);
   const [bannerProducts, setBannerProducts] = useState([]);
 
-  const fetchImages = async () => {
-    const response = await axios.get(url + "/products/banner");
-    
-    setBannerProducts(response.data); 
-  }
-
-  const fetchProductsByCategory = async (category, search, status, sortStatus) => {
+  const fetchProductsByCategory = async (
+    category,
+    search,
+    status,
+    sortStatus
+  ) => {
     try {
       const response = await axios.get(`${url}/products/byCategory`, {
         params: {
           category: category,
           search: search,
           status: status,
-          sortStatus: sortStatus
+          sortStatus: sortStatus,
         },
       });
       setProductList(response.data);
@@ -59,7 +58,6 @@ export default function SalesTwoPageView() {
 
   useEffect(() => {
     fetchProductsByCategory(selectedCategory, search, status, sortStatus);
-    //fetchImages();
   }, [selectedCategory, search, status, sortStatus]);
 
   // Filter products based on the current page
@@ -85,7 +83,7 @@ export default function SalesTwoPageView() {
       handleStatus={handleStatus}
       status={status}
       bannerProducts={bannerProducts}
-      handleSortStatus={handleSortStatus} 
+      handleSortStatus={handleSortStatus}
       sortStatus={sortStatus}
     >
       <Container className="mt-2">

@@ -95,6 +95,7 @@ export default function ProductViewDialog(props: Props) {
         category: product.category,
         price: product.price,
         slug: product.slug,
+        imgUrl: product.images[0]?.imageUrl
       },
     });
   };

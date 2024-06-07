@@ -14,7 +14,7 @@ import Category from "models/Category.model";
 interface Props {
   categories: Category[];
   selectedCategory: string;
-  handleCategoryChange: (category: string) => () => void;
+  handleCategoryChange: (category: string) => void;
 }
 // ==============================================================
 
@@ -30,7 +30,7 @@ const CategoryList = forwardRef<HTMLDivElement, Props>(
             <CategoryBoxWrapper
               key={item.slug}
               selected={selectedItem}
-              onClick={handleCategoryChange(item.slug)}>
+              onClick={() => handleCategoryChange(item.slug)}>
               <Icon
                 fontSize="inherit"
                 sx={{ fontSize: 44 }}

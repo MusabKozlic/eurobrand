@@ -197,16 +197,26 @@ const ProductFormUpdate: FC<Props> = (props) => {
                   >
                     <MenuItem value={8}>Računari</MenuItem>
                     <MenuItem value={9}>Laptopi</MenuItem>
-                    <MenuItem value={10}>Apple</MenuItem>
                     <MenuItem value={11}>Mobiteli</MenuItem>
                     <MenuItem value={12}>Monitori</MenuItem>
+                    <MenuItem value={13}>Računarska oprema</MenuItem>
                     <MenuItem value={14}>Printeri</MenuItem>
+                    <MenuItem value={10}>Apple</MenuItem>
                     <MenuItem value={15}>Miševi</MenuItem>
                     <MenuItem value={16}>Adapteri</MenuItem>
                     <MenuItem value={17}>Projektori</MenuItem>
                     <MenuItem value={18}>Diskovi</MenuItem>
                     <MenuItem value={19}>Tastature</MenuItem>
-                    <MenuItem value={20}>Grafičke kartice</MenuItem>
+                    <MenuItem value={25}>Grafičke kartice</MenuItem>
+                    <MenuItem value={26}>Računari novi</MenuItem>
+                    <MenuItem value={27}>Gaming računari</MenuItem>
+                    <MenuItem value={28}>Brandname računari</MenuItem>
+                    <MenuItem value={29}>Workstation</MenuItem>
+                    <MenuItem value={30}>All-in-one računari</MenuItem>
+                    <MenuItem value={31}>Laptopi novi</MenuItem>
+                    <MenuItem value={32}>Brandname laptopi</MenuItem>
+                    <MenuItem value={33}>Surface</MenuItem>
+                    <MenuItem value={34}>Tableti</MenuItem>
                   </TextField>
                 </Grid>
 

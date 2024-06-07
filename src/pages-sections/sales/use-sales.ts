@@ -34,7 +34,7 @@ export default function useSales(defaultSelectCategory = "racunari", fetchCatego
   }
 
   // HANDLE THE CHANGE CATEGORY
-  const handleCategoryChange = (category: string) => () => {
+  const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
   };
 

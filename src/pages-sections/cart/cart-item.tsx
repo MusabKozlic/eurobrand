@@ -6,7 +6,6 @@ import Add from "@mui/icons-material/Add";
 import Close from "@mui/icons-material/Close";
 import Remove from "@mui/icons-material/Remove";
 // GLOBAL CUSTOM COMPONENTS
-import Image from "components/BazaarImage";
 import { Span } from "components/Typography";
 import { FlexBox } from "components/flex-box";
 // GLOBAL CUSTOM HOOK
@@ -17,6 +16,7 @@ import { currency } from "lib";
 import { Wrapper } from "./styles";
 import Images from "models/Images.model";
 import Category from "models/Category.model";
+import Image from "next/image";
 
 // =========================================================
 type Props = {
@@ -78,8 +78,7 @@ export default function CartItem({
         alt={name}
         width={140}
         height={140}
-        display="block"
-        src={imgUrl}
+        src={imgUrl && imgUrl}
       />
 
       {/* DELETE BUTTON */}
@@ -94,7 +93,7 @@ export default function CartItem({
       <FlexBox p={2} rowGap={2} width="100%" flexDirection="column">
         <div style={{ cursor: "default" }}>
           <Span ellipsis fontWeight="600" fontSize={18}>
-            {brand} {name}
+            {brand} {model}
           </Span>
         </div>
 
