@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, ChangeEventHandler } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 // GLOBAL CUSTOM COMPONENT
 import { H6 } from "components/Typography";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import useCart from "hooks/useCart";
 import axios from "axios";
 
@@ -23,6 +23,7 @@ type FormValues = {
 };
 
 type Predracun = {
+  id: number;
   categoryName: string;
   brand: string;
   model: string;
@@ -37,16 +38,20 @@ type FormErrors = {
 export default function Predracun() {
   const router = useRouter();
   const { state } = useCart();
-
+  const searchParams = useSearchParams();
+  const singleOrderId = searchParams.get("singleOrderId");
+  const [quantitySingleOrder, setQuantitySingleOrder] = useState<number | ''>(1);
   const url =
-  process.env.NODE_ENV === "production"
-    ? "https://www.eurobrand.ba/api"
-    : "http://localhost:8080";
+    process.env.NODE_ENV === "production"
+      ? "https://www.eurobrand.ba/api"
+      : "http://localhost:8080";
 
-    let newArray: Predracun[] = [];
+
+  let newArray: Predracun[] = [];
   // Check if state is not null and the cart array is not empty
   if (state && state.cart && state.cart.length > 0) {
-     newArray = state.cart.map((item) => ({
+    newArray = state.cart.map((item) => ({
+      id: item.id, // Assuming each item has an 'id' field
       categoryName: item.category.name,
       brand: item.brand,
       model: item.model,
@@ -54,6 +59,16 @@ export default function Predracun() {
       price: item.price,
     }));
 
+    // If singleOrderId is not null, filter newArray
+    if (singleOrderId) {
+      const singleOrderIdNumber = Number(singleOrderId);
+      newArray = newArray
+        .filter((item) => item.id === singleOrderIdNumber)
+        .map((item) => ({
+          ...item,
+          quantity: quantitySingleOrder != '' ? quantitySingleOrder : 1,
+        }));
+    }
   } else {
     console.log(
       "No items in the cart or cart data is not in the expected format."
@@ -81,40 +96,47 @@ export default function Predracun() {
     });
   };
 
-  const apiUrl =  url + '/orders/sendEmailWithPdf';
+  const handleSetSingOrderQuantity = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    // Allow empty value to let the user delete and re-enter numbers
+    if (value === '' || parseInt(value, 10) >= 1) {
+      setQuantitySingleOrder(value === '' ? '' : parseInt(value, 10));
+    }
+  };
 
+  const apiUrl = url + "/orders/sendEmailWithPdf";
 
   const sendEmailWithPdf = async () => {
     try {
       const response = await axios.post(apiUrl, { formValues, newArray });
       console.log(response.data); // Handle response as needed
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error("Error sending email:", error);
     }
   };
 
   const validateForm = (): boolean => {
     const errors: FormErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
+
     Object.keys(formValues).forEach((key) => {
       const value = formValues[key as keyof FormValues];
-  
+
       // Basic required field validation for all fields except pdvNumber
-      if (key !== 'pdvNumber' && !value) {
+      if (key !== "pdvNumber" && !value) {
         errors[key as keyof FormValues] = "Ovo polje je obavezno!";
       }
-  
+
       // Email validation
-      if (key === 'contactEmail' && value && !emailRegex.test(value)) {
+      if (key === "contactEmail" && value && !emailRegex.test(value)) {
         errors[key as keyof FormValues] = "Pogrešan format mail-a!";
       }
     });
-  
+
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
-  };  
-  
+  };
+
   const goToHome = () => {
     router.push("/");
   };
@@ -233,6 +255,19 @@ export default function Predracun() {
               value={formValues.pdvNumber}
               onChange={handleInputChange}
             />
+            {singleOrderId && (
+              <TextField
+              type="number"
+              fullWidth
+              autoComplete="off"
+              sx={{ mb: { xs: 2, sm: 2 } }}
+              label="Količina"
+              name="Kolicina"
+              value={quantitySingleOrder}
+              onChange={handleSetSingOrderQuantity}
+              inputProps={{ min: 1 }}
+            />
+            )}
           </Grid>
         </Grid>
       </Card>

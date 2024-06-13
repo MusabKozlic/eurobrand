@@ -23,6 +23,7 @@ import Category from "models/Category.model";
 import { useState } from "react";
 import ProductStatus from "models/ProductStatus.model";
 import DialogDrawer from "components/header/components/dialog-drawer";
+import { useRouter } from "next/navigation";
 
 // ========================================================
 type Props = {
@@ -71,7 +72,7 @@ export default function ProductCard1({
     toggleFavorite,
     handleCartAmountChange,
   } = useProduct(slug);
-
+  const router = useRouter();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -91,6 +92,11 @@ export default function ProductCard1({
     setDialogOpen(true);
   };
 
+  const openSinglePredracun = () => {
+    handleIncrementQuantity();
+    router.push(`/predracun?singleOrderId=${id}`);
+  };
+
   const handleIncrementQuantity = () => {
     const product = {
       id,
@@ -105,7 +111,7 @@ export default function ProductCard1({
       images,
       category,
       description,
-      descriptionUrl
+      descriptionUrl,
     };
     if ((cartItem?.qty || 0) < product.stock) {
       handleCartAmountChange(product);
@@ -126,7 +132,7 @@ export default function ProductCard1({
       images,
       category,
       description,
-      descriptionUrl
+      descriptionUrl,
     };
     handleCartAmountChange(product, "remove");
   };
@@ -134,7 +140,7 @@ export default function ProductCard1({
   const openCart = () => {
     handleIncrementQuantity();
     toggleCartDialog();
-  }
+  };
 
   return (
     <>
@@ -160,13 +166,15 @@ export default function ProductCard1({
         />
       )}
       <StyledBazaarCard hoverEffect={hoverEffect} style={{ cursor: "pointer" }}>
-        <ImageWrapper onClick={openProductDialog} 
+        <ImageWrapper
+          onClick={openProductDialog}
           style={{
-            transition: 'transform 0.3s ease-in-out, width 2s, height 2s',
-            transform: isHovered ? 'scale(1.4)' : 'scale(1)'
+            transition: "transform 0.3s ease-in-out, width 2s, height 2s",
+            transform: isHovered ? "scale(1.4)" : "scale(1)",
           }}
           onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)} >
+          onMouseLeave={() => setIsHovered(false)}
+        >
           {/* PRODUCT IMAGE / THUMBNAIL */}
           <div
             className="image-container"
@@ -174,11 +182,22 @@ export default function ProductCard1({
               width: "100%",
               height: "280px" /* Set your desired height here */,
               overflow: "hidden",
-              
             }}
           >
-            {productStatus.status == "Novo" && <div style={{ position: "absolute", top: 0, right: 0, padding: "5px", background: "rgba(255,255,255,0.9)", fontSize: "large" }}>NOVO</div>
-}
+            {productStatus.status == "Novo" && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 0,
+                  padding: "5px",
+                  background: "rgba(255,255,255,0.9)",
+                  fontSize: "large",
+                }}
+              >
+                NOVO
+              </div>
+            )}
             <LazyImage
               priority
               src={`${imgUrl}`}
@@ -248,15 +267,25 @@ export default function ProductCard1({
             <></>
           ) : (
             stock > 0 && (
-              <Button
+              <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px'}}>
+                <Button
+                  size="small"
+                  color="primary"
+                  variant="contained"
+                  onClick={openCart}
+                  sx={{ height: 45 }}
+                >
+                  Dodaj u korpu
+                </Button>
+                <Button
                 size="small"
-                color="primary"
+                color="secondary"
                 variant="contained"
-                onClick={openCart}
-                sx={{ height: 45 }}
-              >
-                Dodaj u korpu
-              </Button>
+                onClick={openSinglePredracun}
+                sx={{ height: 45 }}>
+                  Zatraži predračun
+                </Button>
+              </div>
             )
           )}
         </ContentWrapper>
@@ -264,7 +293,9 @@ export default function ProductCard1({
       <DialogDrawer
         dialogOpen={dialogOpen}
         toggleDialog={toggleCartDialog}
-        toggleSidenav={() => {setSidenavOpen(false)}} // Placeholder function if not required
+        toggleSidenav={() => {
+          setSidenavOpen(false);
+        }} // Placeholder function if not required
         sidenavOpen={sidenavOpen} // Placeholder value if not required
       />
     </>

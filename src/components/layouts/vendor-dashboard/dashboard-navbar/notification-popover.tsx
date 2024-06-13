@@ -72,7 +72,7 @@ export default function NotificationsPopover() {
 
   useEffect(() => {
     handleFetch();
-  }, [handleRedirectToOrder]);
+  }, []);
 
   const handleClick = (event) => {
     setOpen((state) => !state);

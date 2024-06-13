@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 // GLOBAL CUSTOM COMPONENTS
@@ -47,6 +47,7 @@ const ProductsPageView = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [idToDelete, setIdToDelete] = useState<number>();
+  const [searchParams, setSearchParams] = useState<string>();
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -62,14 +63,25 @@ const ProductsPageView = () => {
   };
 
   const fetchProducts = async () => {
-    const products = (await axiosInstance.get("/api/sales-2/products")).data;
-    setProductList(products);
+    try {
+      const products = (await axios.get(`${url}/products`, {
+        params: { searchParams: searchParams }
+      })).data;
+      setProductList(products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
   };
 
   const handleDeleteProduct = async (id: number) => {
     setIdToDelete(id);
     setOpen(true);
   };
+
+  const handleSearchProduct = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    let search = event.target.value;
+    setSearchParams(search);
+  }
 
   useEffect(() => {
     // Retrieve user information from cookie
@@ -79,14 +91,14 @@ const ProductsPageView = () => {
     }else {
       fetchProducts();
     }
-  }, [router]);
+  }, [router, searchParams]);
 
   return (
     <Box py={4}>
       <H3 mb={2}>Product List</H3>
 
       <SearchArea
-        handleSearch={() => {}}
+        handleSearch={handleSearchProduct}
         buttonText="Add Product"
         url="/admin/products/create"
         searchPlaceholder="Search Product..."
